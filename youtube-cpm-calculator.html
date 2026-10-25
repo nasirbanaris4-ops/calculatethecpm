@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube CPM Calculator & RPM Revenue Estimator</title>
+    <meta name="description" content="Calculate your YouTube CPM, RPM, and estimated net creator earnings. Free online tool with YouTube revenue split logic and niche benchmark rates.">
+    <meta name="keywords" content="youtube cpm calculator, youtube rpm calculator, youtube earnings estimator, cost per mille youtube, creator revenue">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Schema.org JSON-LD for AEO & Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube CPM & RPM Calculator",
+      "url": "https://calculatethecpm.net/youtube-cpm-calculator.html",
+      "description": "Calculate YouTube ad revenue, net RPM earnings, and advertiser CPM across various content niches.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Clean SaaS Domain Branding Logo -->
+            <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
+    <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
+    <span class="text-xl font-extrabold tracking-tight text-slate-900">
+        calculatethecpm<span class="text-blue-600 font-bold">.net</span>
+    </span>
+</a>
+
+            <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Main Hub</a>
+                <a href="youtube-cpm-calculator.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-200">YouTube CPM</a>
+                <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
+                <a href="facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
+                <a href="google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Google Ads</a>
+                <a href="cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM vs CPC</a>
+                <a href="roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition text-green-600">ROAS Calc</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow">
+        
+        <!-- Hero Title Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">YouTube CPM & RPM Calculator</h1>
+            <p class="text-slate-500 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Estimate YouTube gross ad spend (CPM) and net creator earnings (RPM) with automated 55/45 platform revenue split.</p>
+        </div>
+
+        <!-- SaaS Calculator Box -->
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 mb-12">
+            
+            <!-- Controls (Currency Select) -->
+            <div class="flex justify-between items-center border-b border-slate-200 pb-5 mb-6">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">YouTube Ad Revenue Engine</span>
+                
+                <div class="flex items-center gap-2">
+                    <label for="currencySelect" class="text-xs font-bold text-slate-400 uppercase">Currency:</label>
+                    <select id="currencySelect" onchange="calculate()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-700">
+                        <option value="$" selected>USD ($)</option>
+                        <option value="€">EUR (€)</option>
+                        <option value="£">GBP (£)</option>
+                        <option value="A$">AUD (A$)</option>
+                        <option value="₹">INR (₹)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Interactive 2-Column Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left Column: Inputs -->
+                <div class="lg:col-span-7 space-y-5">
+                    
+                    <!-- Views Input -->
+                    <div>
+                        <label for="views" class="block text-sm font-bold text-slate-700 mb-1">Estimated Monetized Video Views</label>
+                        <input type="number" id="views" placeholder="e.g. 50000" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    </div>
+
+                    <!-- Advertiser CPM Input -->
+                    <div>
+                        <label for="cpm" class="block text-sm font-bold text-slate-700 mb-1">Advertiser CPM (Cost Per 1,000 Ad Views)</label>
+                        <div class="relative">
+                            <span id="curr-symbol-1" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
+                            <input type="number" id="cpm" placeholder="e.g. 12.00" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <!-- Niche Fast Presets -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Fast Niche Presets</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="applyNichePreset(22.50)" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg transition">Finance / Business ($22.50)</button>
+                            <button onclick="applyNichePreset(12.00)" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg transition">Tech / Gadgets ($12.00)</button>
+                            <button onclick="applyNichePreset(6.50)" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg transition">Vlogs / Life ($6.50)</button>
+                            <button onclick="applyNichePreset(3.50)" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg transition">Gaming ($3.50)</button>
+                        </div>
+                    </div>
+
+                    <button onclick="resetFields()" class="text-xs text-slate-400 hover:text-slate-600 underline font-semibold transition">Reset Inputs</button>
+                </div>
+
+                <!-- Right Column: Results Dashboard -->
+              
+   <!-- YouTube Customized Result Dialogue Box -->
+<div class="lg:col-span-5 bg-slate-950 text-white rounded-2xl p-6 flex flex-col justify-between min-h-[320px] border-2 border-red-600/30 shadow-xl shadow-red-950/20">
+    <div class="space-y-4">
+        <div class="flex justify-between items-center border-b border-red-900/50 pb-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+                <span class="text-xs font-bold text-red-400 uppercase tracking-wider">YouTube Earnings Breakdown</span>
+            </div>
+            <button onclick="copyResult()" class="text-xs bg-red-950 hover:bg-red-900 text-red-200 px-2.5 py-1 rounded border border-red-800 transition">Copy</button>
+        </div>
+
+        <div>
+            <span class="text-xs text-slate-400 font-medium block">Net Creator Revenue (Your 55% Share):</span>
+            <div id="netRevenue" class="text-3xl sm:text-4xl font-black text-red-500 my-1">$330.00</div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800">
+            <div>
+                <span class="text-[11px] text-slate-400 block">Creator RPM:</span>
+                <span id="rpmVal" class="text-lg font-bold text-red-300">$6.60</span>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-400 block">Gross Ad Spend:</span>
+                <span id="grossSpend" class="text-lg font-bold text-slate-300">$600.00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <div class="flex justify-between mb-1">
+            <span>Creator Share: <strong class="text-red-400">55%</strong></span>
+            <span>YouTube Cut: <strong class="text-slate-500">45%</strong></span>
+        </div>
+        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden flex">
+            <div class="bg-red-600 h-full w-[55%]"></div>
+            <div class="bg-slate-700 h-full w-[45%]"></div>
+        </div>
+    </div>
+</div>
+
+                    <!-- Revenue Share Indicator -->
+                    <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                        <div class="flex justify-between mb-1">
+                            <span>Creator Share: <strong class="text-green-400">55%</strong></span>
+                            <span>YouTube Cut: <strong class="text-red-400">45%</strong></span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden flex">
+                            <div class="bg-green-500 h-full w-[55%]"></div>
+                            <div class="bg-red-500 h-full w-[45%]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Article & AEO Data Section -->
+        <article class="bg-white rounded-2xl shadow-md p-6 sm:p-10 border border-slate-200 space-y-10">
+            
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-slate-900">Understanding YouTube CPM vs. RPM</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">While CPM represents what advertisers pay for 1,000 ad impressions, RPM (Revenue Per Mille) measures what creators actually earn per 1,000 total video views after YouTube deducts its 45% revenue share.</p>
+                
+                <div class="bg-slate-900 p-5 rounded-xl text-white space-y-2">
+                    <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">YouTube Creator RPM Formula</span>
+                    <div class="text-xl sm:text-2xl font-mono text-green-400">RPM = (Advertiser CPM × 0.55)</div>
+                    <p class="text-xs text-slate-400">YouTube automatically retains 45% of long-form ad revenue while distributing 55% to Partner Program creators.</p>
+                </div>
+            </section>
+
+            <!-- Niche Rates Table -->
+            <section class="space-y-4">
+                <h3 class="text-xl font-bold text-slate-900"><span class="dyn-year"></span> Average YouTube CPM Rates by Content Niche</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 uppercase text-xs">
+                            <tr>
+                                <th class="p-3 border border-slate-200">Content Niche</th>
+                                <th class="p-3 border border-slate-200">Average CPM (Advertiser)</th>
+                                <th class="p-3 border border-slate-200">Estimated RPM (Creator)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-600">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900">Personal Finance & Investing</td>
+                                <td class="p-3 text-blue-600 font-bold">$22.00 - $45.00</td>
+                                <td class="p-3 font-semibold text-green-700">$12.10 - $24.75</td>
+                            </tr>
+                            <tr class="bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Technology & Software Reviews</td>
+                                <td class="p-3 text-blue-600 font-bold">$11.50 - $20.00</td>
+                                <td class="p-3 font-semibold text-green-700">$6.32 - $11.00</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900">Lifestyle & Travel Vlogs</td>
+                                <td class="p-3 text-blue-600 font-bold">$5.00 - $9.50</td>
+                                <td class="p-3 font-semibold text-green-700">$2.75 - $5.22</td>
+                            </tr>
+                            <tr class="bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Gaming & Live Streaming</td>
+                                <td class="p-3 text-blue-600 font-bold">$2.50 - $5.00</td>
+                                <td class="p-3 font-semibold text-green-700">$1.37 - $2.75</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 text-center text-sm space-y-3">
+            <p>&copy; <span id="currentYear"></span> calculatethecpm.net - High-Precision Advertising Utility.</p>
+            <div class="flex justify-center gap-4 text-xs text-slate-400">
+                <a href="privacy.html" class="hover:underline">Privacy Policy</a>
+                <a href="terms.html" class="hover:underline">Terms of Service</a>
+                <a href="contact.html" class="hover:underline">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS Engine -->
+    <script>
+        const yearNow = new Date().getFullYear();
+        document.getElementById('currentYear').innerText = yearNow;
+        document.querySelectorAll('.dyn-year').forEach(e => e.innerText = yearNow);
+
+        const viewsInput = document.getElementById('views');
+        const cpmInput = document.getElementById('cpm');
+        const currencySelect = document.getElementById('currencySelect');
+
+        function applyNichePreset(presetCpm) {
+            cpmInput.value = presetCpm;
+            calculate();
+        }
+
+        function calculate() {
+            const views = parseFloat(viewsInput.value) || 0;
+            const cpm = parseFloat(cpmInput.value) || 0;
+            const symbol = currencySelect.value;
+
+            document.getElementById('curr-symbol-1').innerText = symbol;
+
+            if (views > 0 && cpm > 0) {
+                const gross = (views / 1000) * cpm;
+                const net = gross * 0.55;
+                const rpm = cpm * 0.55;
+
+                document.getElementById('netRevenue').innerText = `${symbol}${net.toFixed(2)}`;
+                document.getElementById('rpmVal').innerText = `${symbol}${rpm.toFixed(2)}`;
+                document.getElementById('grossSpend').innerText = `${symbol}${gross.toFixed(2)}`;
+            } else {
+                document.getElementById('netRevenue').innerText = `${symbol}0.00`;
+                document.getElementById('rpmVal').innerText = `${symbol}0.00`;
+                document.getElementById('grossSpend').innerText = `${symbol}0.00`;
+            }
+        }
+
+        function resetFields() {
+            viewsInput.value = '';
+            cpmInput.value = '';
+            calculate();
+        }
+
+        function copyResult() {
+            const net = document.getElementById('netRevenue').innerText;
+            const rpm = document.getElementById('rpmVal').innerText;
+            navigator.clipboard.writeText(`Net Earnings: ${net} | RPM: ${rpm}`);
+            alert("Results copied to clipboard!");
+        }
+
+        [viewsInput, cpmInput].forEach(i => i.addEventListener('input', calculate));
+
+        // Defaults
+        viewsInput.value = 50000;
+        cpmInput.value = 12.00;
+        calculate();
+    </script>
+</body>
+</html>

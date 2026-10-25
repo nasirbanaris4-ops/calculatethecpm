@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate the CPM - Free Online Ad Cost & CPM Calculator</title>
+    <meta name="description" content="Calculate the CPM (Cost Per Mille), total ad spend, and impressions instantly. Free online 3-way advertising metric calculator with global benchmarks.">
+    <meta name="keywords" content="calculate the cpm, cpm calculator, cost per mille calculator, ad spend calculator, youtube cpm, meta ads cpm">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Schema.org JSON-LD for AEO & Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculate the CPM Utility",
+      "url": "https://calculatethecpm.net/",
+      "description": "Interactive ad metric utility to calculate CPM, total advertising spend, and impressions across global markets.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Clean SaaS Domain Branding Logo (No Extra Spaces) -->
+            <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
+    <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
+    <span class="text-xl font-extrabold tracking-tight text-slate-900">
+        calculatethecpm<span class="text-blue-600 font-bold">.net</span>
+    </span>
+</a>
+
+            <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="index.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-200">CPM Calculator</a>
+                <a href="youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">YouTube CPM</a>
+                <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
+                <a href="facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
+                <a href="google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Google Ads</a>
+                <a href="cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM vs CPC</a>
+                <a href="roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition text-green-600">ROAS Calc</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow">
+        
+        <!-- Hero Title Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Calculate the CPM (Cost Per Mille)</h1>
+            <p class="text-slate-500 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Instant 3-way advertising solver. Compute missing campaign variables, compare global benchmarks, and optimize ad spend.</p>
+        </div>
+
+        <!-- SaaS Calculator Box -->
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 mb-12">
+            
+            <!-- Top Controls (Tabs + Currency/Country Preset) -->
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-slate-200 pb-5 mb-6 gap-4">
+                
+                <!-- Calculation Mode Switcher -->
+                <div class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-xl w-full lg:w-auto">
+                    <button id="tab-cpm" onclick="setMode('cpm')" class="flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg bg-white text-blue-600 shadow-sm transition">Calculate CPM</button>
+                    <button id="tab-spend" onclick="setMode('spend')" class="flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg text-slate-600 hover:text-slate-900 transition">Calculate Ad Spend</button>
+                    <button id="tab-impressions" onclick="setMode('impressions')" class="flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg text-slate-600 hover:text-slate-900 transition">Calculate Impressions</button>
+                </div>
+
+                <!-- Currency & Expanded Geo Location Presets -->
+                <div class="flex flex-wrap sm:flex-nowrap items-center gap-3 w-full lg:w-auto">
+                    <div>
+                        <label for="currencySelect" class="block text-xs font-bold text-slate-400 uppercase">Currency</label>
+                        <select id="currencySelect" onchange="onSettingChange()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-700">
+                            <option value="$" selected>USD ($)</option>
+                            <option value="€">EUR (€)</option>
+                            <option value="£">GBP (£)</option>
+                            <option value="A$">AUD (A$)</option>
+                            <option value="₹">INR (₹)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="countryPreset" class="block text-xs font-bold text-slate-400 uppercase">Global Benchmarks</label>
+                        <select id="countryPreset" onchange="applyCountryPreset()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-700">
+                            <optgroup label="Tier-1 High CPM">
+                                <option value="US">🇺🇸 USA ($18.50)</option>
+                                <option value="UK">🇬🇧 UK (£16.20)</option>
+                                <option value="DE">🇩🇪 Germany (€17.80)</option>
+                                <option value="AU">🇦🇺 Australia (A$24.10)</option>
+                                <option value="CA">🇨🇦 Canada (C$19.20)</option>
+                            </optgroup>
+                            <optgroup label="High Volume & Emerging">
+                                <option value="IN">🇮🇳 India (₹280)</option>
+                                <option value="AE">🇦🇪 UAE / Gulf ($12.50)</option>
+                                <option value="BR">🇧🇷 Brazil ($2.90)</option>
+                                <option value="PK">🇵🇰 Pakistan ($1.50)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive 2-Column SaaS Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left Column: Input Fields -->
+                <div class="lg:col-span-7 space-y-5">
+                    
+                    <!-- Ad Spend Field -->
+                    <div id="field-cost-wrapper">
+                        <label for="cost" class="block text-sm font-bold text-slate-700 mb-1">Total Campaign Spend / Budget</label>
+                        <div class="relative">
+                            <span id="curr-symbol-1" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
+                            <input type="number" id="cost" placeholder="e.g. 500" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <!-- Impressions Field -->
+                    <div id="field-impressions-wrapper">
+                        <label for="impressions" class="block text-sm font-bold text-slate-700 mb-1">Total Ad Impressions / Views</label>
+                        <input type="number" id="impressions" placeholder="e.g. 100000" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    </div>
+
+                    <!-- CPM Field -->
+                    <div id="field-cpm-wrapper">
+                        <label for="cpm" class="block text-sm font-bold text-slate-700 mb-1">Target CPM (Cost Per 1,000 Impressions)</label>
+                        <div class="relative">
+                            <span id="curr-symbol-2" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
+                            <input type="number" id="cpm" placeholder="e.g. 18.50" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <button onclick="resetFields()" class="text-xs text-slate-400 hover:text-slate-600 underline font-semibold transition">Reset Inputs</button>
+                </div>
+
+                <!-- Right Column: Result Box & Live Walkthrough -->
+                <div class="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between min-h-[300px]">
+                    <div>
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
+                            <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Calculated Output</span>
+                            <button onclick="copyResult()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded border border-slate-700 transition">Copy Result</button>
+                        </div>
+
+                        <div id="resultVal" class="text-4xl sm:text-5xl font-black text-green-400 my-2">$5.00</div>
+                        <p id="resultLabel" class="text-xs text-slate-400 font-medium">Cost per 1,000 ad views</p>
+                    </div>
+
+                    <!-- Live Formula Walkthrough -->
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Live Step-By-Step Breakdown:</span>
+                        <div id="formulaWalkthrough" class="text-xs font-mono text-blue-200 bg-slate-950 p-3 rounded-lg border border-slate-800">
+                            CPM = ($500 ÷ 100,000) × 1,000 = $5.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Article & AEO/GEO Structured Data Section -->
+        <article class="bg-white rounded-2xl shadow-md p-6 sm:p-10 border border-slate-200 space-y-10">
+            
+            <!-- Direct Answer Block (AEO Engine Approved) -->
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-slate-900">How to Calculate the CPM?</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">Cost Per Mille (CPM) measures the expense an advertiser pays for every 1,000 impressions or views an advertisement receives. Calculating CPM allows media buyers and publishers to compare cost efficiency across different advertising channels.</p>
+                
+                <div class="bg-slate-900 p-5 rounded-xl text-white space-y-2">
+                    <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">Standard CPM Formula Block</span>
+                    <div class="text-xl sm:text-2xl font-mono text-green-400">CPM = (Total Ad Spend ÷ Total Impressions) × 1,000</div>
+                    <p class="text-xs text-slate-400">Where Total Ad Spend is in your local currency and Impressions represent raw ad views.</p>
+                </div>
+            </section>
+
+            <!-- GEO Industry Comparison Table (Dynamic Year) -->
+            <section class="space-y-4">
+                <h3 class="text-xl font-bold text-slate-900"><span class="dyn-year"></span> Global CPM Benchmarks by Market</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 uppercase text-xs">
+                            <tr>
+                                <th class="p-3 border border-slate-200">Market / Region</th>
+                                <th class="p-3 border border-slate-200">Meta (FB/IG) CPM</th>
+                                <th class="p-3 border border-slate-200">YouTube Ad CPM</th>
+                                <th class="p-3 border border-slate-200">Google Display CPM</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-600">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900">🇺🇸 United States</td>
+                                <td class="p-3">$16.08</td>
+                                <td class="p-3 font-semibold text-green-700">$32.75</td>
+                                <td class="p-3">$3.50</td>
+                            </tr>
+                            <tr class="bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">🇬🇧 United Kingdom</td>
+                                <td class="p-3">£11.80</td>
+                                <td class="p-3 font-semibold text-green-700">£21.50</td>
+                                <td class="p-3">£2.80</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900">🇩🇪 Germany / Europe</td>
+                                <td class="p-3">€12.50</td>
+                                <td class="p-3 font-semibold text-green-700">€18.80</td>
+                                <td class="p-3">€2.90</td>
+                            </tr>
+                            <tr class="bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">🇮🇳 India</td>
+                                <td class="p-3">₹180.00</td>
+                                <td class="p-3 font-semibold text-green-700">₹320.00</td>
+                                <td class="p-3">₹45.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- FAQ Accordion -->
+            <section class="space-y-4 border-t border-slate-200 pt-6">
+                <h3 class="text-xl font-bold text-slate-900">Frequently Asked Questions</h3>
+                <div class="space-y-3">
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                        <h4 class="font-bold text-slate-800 text-sm">What is the difference between CPM and RPM?</h4>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">CPM is the cost advertisers pay per 1,000 views. RPM (Revenue Per Mille) is the net earnings creators receive after platform revenue shares (e.g. YouTube takes 45%).</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                        <h4 class="font-bold text-slate-800 text-sm">Why do Tier-1 countries have higher CPMs?</h4>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">Markets like the US, UK, Germany, and Australia have stronger consumer purchasing power, leading to higher advertiser competition for ad space.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer with Dynamic Year -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 text-center text-sm space-y-3">
+            <p>&copy; <span id="currentYear"></span> calculatethecpm.net - High-Precision Advertising Utility.</p>
+            <div class="flex justify-center gap-4 text-xs text-slate-400">
+                <a href="privacy.html" class="hover:underline">Privacy Policy</a>
+                <a href="terms.html" class="hover:underline">Terms of Service</a>
+                <a href="contact.html" class="hover:underline">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript Engine -->
+    <script>
+        // Set Dynamic Year across the page automatically
+        const yearNow = new Date().getFullYear();
+        document.getElementById('currentYear').innerText = yearNow;
+        document.querySelectorAll('.dyn-year').forEach(e => e.innerText = yearNow);
+
+        let currentMode = 'cpm';
+        let currentSymbol = '$';
+
+        const presets = {
+            US: { symbol: '$', cpm: 18.50 },
+            UK: { symbol: '£', cpm: 16.20 },
+            DE: { symbol: '€', cpm: 17.80 },
+            AU: { symbol: 'A$', cpm: 24.10 },
+            CA: { symbol: '$', cpm: 19.20 },
+            IN: { symbol: '₹', cpm: 280.00 },
+            AE: { symbol: '$', cpm: 12.50 },
+            BR: { symbol: '$', cpm: 2.90 },
+            PK: { symbol: '$', cpm: 1.50 }
+        };
+
+        const costInput = document.getElementById('cost');
+        const impressionsInput = document.getElementById('impressions');
+        const cpmInput = document.getElementById('cpm');
+        const currencySelect = document.getElementById('currencySelect');
+        const countryPreset = document.getElementById('countryPreset');
+        const resultVal = document.getElementById('resultVal');
+        const resultLabel = document.getElementById('resultLabel');
+        const formulaWalkthrough = document.getElementById('formulaWalkthrough');
+
+        function setMode(mode) {
+            currentMode = mode;
+            ['cpm', 'spend', 'impressions'].forEach(m => {
+                const btn = document.getElementById(`tab-${m}`);
+                if (m === mode) {
+                    btn.className = "flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg bg-white text-blue-600 shadow-sm transition";
+                } else {
+                    btn.className = "flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg text-slate-600 hover:text-slate-900 transition";
+                }
+            });
+
+            document.getElementById('field-cost-wrapper').style.display = (mode === 'spend') ? 'none' : 'block';
+            document.getElementById('field-cpm-wrapper').style.display = (mode === 'cpm') ? 'none' : 'block';
+            document.getElementById('field-impressions-wrapper').style.display = (mode === 'impressions') ? 'none' : 'block';
+
+            calculate();
+        }
+
+        function onSettingChange() {
+            currentSymbol = currencySelect.value;
+            document.getElementById('curr-symbol-1').innerText = currentSymbol;
+            document.getElementById('curr-symbol-2').innerText = currentSymbol;
+            calculate();
+        }
+
+        function applyCountryPreset() {
+            const preset = presets[countryPreset.value];
+            currencySelect.value = preset.symbol;
+            cpmInput.value = preset.cpm;
+            onSettingChange();
+        }
+
+        function calculate() {
+            const cost = parseFloat(costInput.value) || 0;
+            const impressions = parseFloat(impressionsInput.value) || 0;
+            const cpm = parseFloat(cpmInput.value) || 0;
+
+            if (currentMode === 'cpm') {
+                if (impressions > 0) {
+                    const res = (cost / impressions) * 1000;
+                    resultVal.innerText = `${currentSymbol}${res.toFixed(2)}`;
+                    resultLabel.innerText = "Calculated Cost Per Mille (CPM)";
+                    formulaWalkthrough.innerText = `CPM = (${currentSymbol}${cost} ÷ ${impressions.toLocaleString()}) × 1,000 = ${currentSymbol}${res.toFixed(2)}`;
+                } else {
+                    resultVal.innerText = `${currentSymbol}0.00`;
+                    formulaWalkthrough.innerText = "Enter Ad Spend & Impressions to compute CPM";
+                }
+            } else if (currentMode === 'spend') {
+                if (impressions > 0 && cpm > 0) {
+                    const res = (cpm * impressions) / 1000;
+                    resultVal.innerText = `${currentSymbol}${res.toFixed(2)}`;
+                    resultLabel.innerText = "Total Estimated Campaign Budget";
+                    formulaWalkthrough.innerText = `Spend = (${currentSymbol}${cpm} × ${impressions.toLocaleString()}) ÷ 1,000 = ${currentSymbol}${res.toFixed(2)}`;
+                } else {
+                    resultVal.innerText = `${currentSymbol}0.00`;
+                    formulaWalkthrough.innerText = "Enter Impressions & CPM to compute Spend";
+                }
+            } else if (currentMode === 'impressions') {
+                if (cpm > 0 && cost > 0) {
+                    const res = Math.round((cost / cpm) * 1000);
+                    resultVal.innerText = res.toLocaleString();
+                    resultLabel.innerText = "Total Estimated Impressions / Views";
+                    formulaWalkthrough.innerText = `Impressions = (${currentSymbol}${cost} ÷ ${currentSymbol}${cpm}) × 1,000 = ${res.toLocaleString()}`;
+                } else {
+                    resultVal.innerText = "0";
+                    formulaWalkthrough.innerText = "Enter Total Spend & CPM to compute Impressions";
+                }
+            }
+        }
+
+        function resetFields() {
+            costInput.value = '';
+            impressionsInput.value = '';
+            cpmInput.value = '';
+            calculate();
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(`${resultLabel.innerText}: ${resultVal.innerText}`);
+            alert("Result copied to clipboard!");
+        }
+
+        [costInput, impressionsInput, cpmInput].forEach(i => i.addEventListener('input', calculate));
+        
+        // Initial Defaults
+        costInput.value = 500;
+        impressionsInput.value = 100000;
+        setMode('cpm');
+    </script>
+</body>
+</html>

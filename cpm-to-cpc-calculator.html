@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPM to CPC Calculator - Convert Ad Metrics Instantly</title>
+    <meta name="description" content="Convert CPM to CPC and calculate required CTR (Click-Through Rate). Free online ad cost comparison tool for media buyers and advertisers.">
+    <meta name="keywords" content="cpm to cpc calculator, cpc to cpm converter, calculate cpc from cpm, ad cost converter, ctr calculator">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Schema.org JSON-LD for AEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CPM to CPC Converter",
+      "url": "https://calculatethecpm.net/cpm-to-cpc-calculator.html",
+      "description": "Convert Cost Per Mille (CPM) to Cost Per Click (CPC) based on Click-Through Rate (CTR).",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Clean SaaS Domain Branding Logo -->
+            <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
+    <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
+    <span class="text-xl font-extrabold tracking-tight text-slate-900">
+        calculatethecpm<span class="text-blue-600 font-bold">.net</span>
+    </span>
+</a>
+
+            <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM Calculator</a>
+                <a href="youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">YouTube CPM</a>
+                <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
+                <a href="facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
+                <a href="google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Google Ads</a>
+                <a href="cpm-to-cpc-calculator.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-200">CPM vs CPC</a>
+                <a href="roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition text-green-600">ROAS Calc</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow">
+        
+        <!-- Hero Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">CPM to CPC Calculator</h1>
+            <p class="text-slate-500 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Convert Cost Per Mille (CPM) into Cost Per Click (CPC) using Click-Through Rate (CTR) to evaluate campaign efficiency.</p>
+        </div>
+
+        <!-- SaaS Calculator Box -->
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 mb-12">
+            
+            <div class="flex justify-between items-center border-b border-slate-200 pb-5 mb-6">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Conversion Engine</span>
+                
+                <div class="flex items-center gap-2">
+                    <label for="currencySelect" class="text-xs font-bold text-slate-400 uppercase">Currency:</label>
+                    <select id="currencySelect" onchange="calculate()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-700">
+                        <option value="$" selected>USD ($)</option>
+                        <option value="€">EUR (€)</option>
+                        <option value="£">GBP (£)</option>
+                        <option value="A$">AUD (A$)</option>
+                        <option value="₹">INR (₹)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Inputs -->
+                <div class="lg:col-span-7 space-y-5">
+                    
+                    <div>
+                        <label for="cpmInput" class="block text-sm font-bold text-slate-700 mb-1">Target CPM (Cost Per 1,000 Impressions)</label>
+                        <div class="relative">
+                            <span id="curr-symbol-1" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
+                            <input type="number" id="cpmInput" placeholder="e.g. 15.00" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="ctrInput" class="block text-sm font-bold text-slate-700 mb-1">Estimated Click-Through Rate (CTR %)</label>
+                        <div class="relative">
+                            <input type="number" id="ctrInput" step="0.1" placeholder="e.g. 1.5" class="w-full pr-9 pl-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                            <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 font-bold">%</span>
+                        </div>
+                    </div>
+
+                    <button onclick="resetFields()" class="text-xs text-slate-400 hover:text-slate-600 underline font-semibold transition">Reset Inputs</button>
+                </div>
+
+                <!-- Output Dashboard -->
+              <!-- CPM to CPC Customized Result Dialogue Box -->
+<div class="lg:col-span-5 bg-slate-950 text-white rounded-2xl p-6 flex flex-col justify-between min-h-[300px] border-2 border-amber-500/30 shadow-xl shadow-amber-950/20">
+    <div>
+        <div class="flex justify-between items-center border-b border-amber-950 pb-3 mb-4">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">CPM ➔ CPC Converter</span>
+            </div>
+            <button onclick="copyResult()" class="text-xs bg-amber-950 hover:bg-amber-900 text-amber-200 px-2.5 py-1 rounded border border-amber-800 transition">Copy</button>
+        </div>
+
+        <div id="cpcResult" class="text-4xl sm:text-5xl font-black text-amber-400 my-2">$1.00</div>
+        <p class="text-xs text-slate-400 font-medium">Estimated Cost Per Click (CPC)</p>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-slate-800">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400/80 block mb-1">Live Step-By-Step Breakdown:</span>
+        <div id="formulaWalkthrough" class="text-xs font-mono text-amber-200 bg-slate-900 p-3 rounded-lg border border-amber-900/50">
+            CPC = $15.00 ÷ (10 × 1.5%) = $1.00
+        </div>
+    </div>
+</div>
+        <!-- SEO Article Section -->
+        <article class="bg-white rounded-2xl shadow-md p-6 sm:p-10 border border-slate-200 space-y-8">
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-slate-900">How to Convert CPM to CPC?</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">To calculate CPC from CPM, you need your campaign's Click-Through Rate (CTR). High CTRs significantly lower your effective Cost Per Click when buying media on a CPM model.</p>
+
+                <div class="bg-slate-900 p-5 rounded-xl text-white space-y-2">
+                    <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">CPM to CPC Conversion Formula</span>
+                    <div class="text-xl sm:text-2xl font-mono text-green-400">CPC = CPM ÷ (10 × CTR%)</div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 text-center text-sm space-y-3">
+            <p>&copy; <span id="currentYear"></span> calculatethecpm.net - High-Precision Advertising Utility.</p>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        const yearNow = new Date().getFullYear();
+        document.getElementById('currentYear').innerText = yearNow;
+
+        const cpmInput = document.getElementById('cpmInput');
+        const ctrInput = document.getElementById('ctrInput');
+        const currencySelect = document.getElementById('currencySelect');
+        const cpcResult = document.getElementById('cpcResult');
+        const formulaWalkthrough = document.getElementById('formulaWalkthrough');
+
+        function calculate() {
+            const cpm = parseFloat(cpmInput.value) || 0;
+            const ctr = parseFloat(ctrInput.value) || 0;
+            const symbol = currencySelect.value;
+
+            document.getElementById('curr-symbol-1').innerText = symbol;
+
+            if (cpm > 0 && ctr > 0) {
+                const cpc = cpm / (10 * ctr);
+                cpcResult.innerText = `${symbol}${cpc.toFixed(2)}`;
+                formulaWalkthrough.innerText = `CPC = ${symbol}${cpm} ÷ (10 × ${ctr}%) = ${symbol}${cpc.toFixed(2)}`;
+            } else {
+                cpcResult.innerText = `${symbol}0.00`;
+                formulaWalkthrough.innerText = "Enter CPM & CTR% to calculate CPC";
+            }
+        }
+
+        function resetFields() {
+            cpmInput.value = '';
+            ctrInput.value = '';
+            calculate();
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(`CPC: ${cpcResult.innerText}`);
+            alert("Result copied to clipboard!");
+        }
+
+        [cpmInput, ctrInput].forEach(i => i.addEventListener('input', calculate));
+
+        // Defaults
+        cpmInput.value = 15.00;
+        ctrInput.value = 1.5;
+        calculate();
+    </script>
+</body>
+</html>
