@@ -4,7 +4,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Ads CPM Calculator - Calculate The CPM</title>
+  <title>Google Ads CPM Calculator - Calculate GDN & Video CPM</title>
   <meta name="description" content="Calculate Google Display Network (GDN) and YouTube campaign CPM, total ad spend, and required impressions.">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -39,11 +39,13 @@
       <p class="text-slate-600 text-sm md:text-base">Estimate Google Display Network (GDN) and YouTube campaign costs. Compute target CPM, total budget, or impression goals.</p>
     </section>
 
-    <!-- Calculator Card -->
+    <!-- 3-in-1 Dynamic Calculator Utility Card -->
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-12">
-      <div class="bg-slate-100 p-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-4">
-        <div class="flex gap-2">
-          <button class="px-4 py-2 text-sm font-bold rounded-lg bg-blue-600 text-white shadow-sm">Calculate CPM</button>
+      <div class="bg-slate-100 p-3 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
+        <div class="flex flex-wrap gap-1 md:gap-2">
+          <button id="tab-cpm" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-sm transition">Calculate CPM</button>
+          <button id="tab-spend" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-slate-600 hover:bg-slate-200 transition">Calculate Spend</button>
+          <button id="tab-impressions" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-slate-600 hover:bg-slate-200 transition">Calculate Impressions</button>
         </div>
         <div class="flex items-center gap-2 text-xs font-semibold text-slate-600">
           <label for="currency">CURRENCY:</label>
@@ -58,70 +60,29 @@
 
       <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-600 mb-1">Total Google Ads Spend</label>
+          <div id="field-cost">
+            <label class="block text-xs font-bold text-slate-600 mb-1">Total Google Ads Spend ($)</label>
             <div class="relative">
               <span class="absolute left-3 top-2.5 text-slate-400 font-semibold">$</span>
               <input type="number" id="cost" value="500" class="w-full pl-8 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
           </div>
 
-          <div>
+          <div id="field-impressions">
             <label class="block text-xs font-bold text-slate-600 mb-1">Total Banner/Ad Impressions</label>
             <input type="number" id="impressions" value="150000" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <div id="field-cpm" class="hidden">
+            <label class="block text-xs font-bold text-slate-600 mb-1">Target Google Ads CPM ($)</label>
+            <input type="number" id="cpm-rate" value="3.33" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
           </div>
 
           <button id="reset-btn" class="text-xs text-slate-500 underline hover:text-slate-800">Reset Inputs</button>
         </div>
 
-        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
+        <!-- Dark Background Output Box -->
+        <div class="bg-slate-900 text-white p-6 rounded-xl border border-slate-800 flex flex-col justify-between shadow-inner">
           <div>
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">GOOGLE DISPLAY ENGINE</div>
-            <div class="text-4xl font-extrabold text-blue-600 mb-1" id="result-val">$3.33</div>
-            <div class="text-xs font-medium text-slate-500" id="result-lbl">Google Ads CPM</div>
-          </div>
-
-          <div class="mt-6 p-4 bg-white rounded-lg border border-slate-200 text-xs">
-            <div class="font-bold text-slate-700 mb-1">LIVE STEP-BY-STEP BREAKDOWN:</div>
-            <div class="text-slate-600 font-mono" id="formula-text">CPM = ($500 ÷ 150,000) × 1,000 = $3.33</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SEO FAQs Section -->
-    <section class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">Frequently Asked Questions (FAQs)</h2>
-
-      <div class="space-y-4">
-        <div>
-          <h3 class="font-bold text-slate-800 text-base mb-1">What is a good average CPM for Google Ads?</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Average Google Display Network (GDN) CPMs typically range between $2.00 and $5.00 depending on your target industry and audience location. YouTube ads generally range higher, from $3.50 to $10.00 CPM.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="font-bold text-slate-800 text-base mb-1">How does Google calculate Display CPM?</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Google calculates CPM by dividing your total ad campaign spend by the total number of ad impressions served, then multiplying that figure by 1,000.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="font-bold text-slate-800 text-base mb-1">How do I convert Google Display CPM to Cost Per Click (CPC)?</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            To estimate CPC from your CPM, you need your Click-Through Rate (CTR). You can switch over to our dedicated <a href="cpm-to-cpc-calculator.html" class="text-blue-600 font-semibold underline hover:text-blue-800">CPM vs CPC Calculator</a> to convert metrics instantly.
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <p>© 2026 calculatethecpm.net - All Rights Reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2" id="result-title">GOOGLE DISPLAY ENGINE</div>
+            <div class="text-4xl font-extrabold text-blue-400 mb-1" id

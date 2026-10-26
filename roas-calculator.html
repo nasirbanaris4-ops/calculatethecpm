@@ -1,219 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="/favicon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROAS Calculator - Return on Ad Spend Estimator</title>
-    <meta name="description" content="Calculate your Return on Ad Spend (ROAS) and ad profitability instantly. Free online marketing metric tool for e-commerce, Meta, and Google advertisers.">
-    <meta name="keywords" content="roas calculator, return on ad spend, ad profitability calculator, e-commerce roas, marketing roi">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Schema.org JSON-LD for AEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "ROAS Calculator Utility",
-      "url": "https://calculatethecpm.net/roas-calculator.html",
-      "description": "Calculate Return on Ad Spend percentage and profit margins for digital ad campaigns.",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROAS Calculator - Return on Ad Spend Metric Tool</title>
+  <meta name="description" content="Calculate Return on Ad Spend (ROAS) percentage and profitability multiplier for digital advertising campaigns.">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
-    <!-- Header Navigation -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-            <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
-                <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
-                <span class="text-xl font-extrabold tracking-tight text-slate-900">
-                    calculatethecpm<span class="text-blue-600 font-bold">.net</span>
-                </span>
-            </a>
+  <!-- Header Navigation -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+      <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
+        <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
+        <span class="text-xl font-extrabold tracking-tight text-slate-900">
+          calculatethecpm<span class="text-blue-600 font-bold">.net</span>
+        </span>
+      </a>
 
-            <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
-                <a href="index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM Calculator</a>
-                <a href="youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">YouTube CPM</a>
-                <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
-                <a href="facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
-                <a href="google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Google Ads</a>
-                <a href="cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM vs CPC</a>
-                <a href="roas-calculator.html" class="bg-blue-50 text-green-600 px-3 py-1.5 rounded-lg border border-blue-200 font-bold">ROAS Calc</a>
-            </nav>
+      <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+        <a href="index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM Calculator</a>
+        <a href="youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">YouTube CPM</a>
+        <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
+        <a href="facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
+        <a href="google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Google Ads</a>
+        <a href="cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM vs CPC</a>
+        <a href="roas-calculator.html" class="bg-green-50 text-green-600 px-3 py-1.5 rounded-lg transition font-bold">ROAS Calc</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8 w-full">
+    <section class="text-center mb-8">
+      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Return on Ad Spend (ROAS) Calculator</h1>
+      <p class="text-slate-600 text-sm md:text-base">Measure ad revenue multiplier and profitability percentage for marketing campaigns.</p>
+    </section>
+
+    <!-- Calculator Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-12">
+      <div class="bg-slate-100 p-4 border-b border-slate-200 flex justify-between items-center">
+        <div class="font-bold text-slate-700 text-sm">Calculate Campaign ROAS</div>
+        <div class="text-xs font-bold text-slate-500">PROFITABILITY ENGINE</div>
+      </div>
+
+      <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Total Ad Spend ($)</label>
+            <input type="number" id="cost" value="1000" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Total Revenue Generated ($)</label>
+            <input type="number" id="impressions" value="4000" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <button id="reset-btn" class="text-xs text-slate-500 underline hover:text-slate-800">Reset Inputs</button>
         </div>
-    </header>
 
-    <!-- Main Container -->
-    <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow">
-        
-        <!-- Hero Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">ROAS (Return on Ad Spend) Calculator</h1>
-            <p class="text-slate-500 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Measure campaign profitability instantly. Calculate your exact ROAS ratio, percentage, and net profit margin.</p>
+        <!-- Dark Background Result Box -->
+        <div class="bg-slate-900 text-white p-6 rounded-xl border border-slate-800 flex flex-col justify-between shadow-inner">
+          <div>
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">EFFECTIVE ROAS MULTIPLIER</div>
+            <div class="text-4xl font-extrabold text-emerald-400 mb-1" id="result-val">400.00%</div>
+            <div class="text-xs font-medium text-slate-400" id="result-lbl">4.0x Revenue Multiplier</div>
+          </div>
+
+          <div class="mt-6 p-4 bg-slate-800/80 rounded-lg border border-slate-700 text-xs">
+            <div class="font-bold text-amber-400 mb-1">LIVE ROAS FORMULA:</div>
+            <div class="text-slate-200 font-mono">ROAS = ($4,000 ÷ $1,000) × 100 = 400%</div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- SaaS Calculator Box -->
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 mb-12">
-            
-            <div class="flex justify-between items-center border-b border-slate-200 pb-5 mb-6">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ad Spend Profitability Engine</span>
-                
-                <div class="flex items-center gap-2">
-                    <label for="currencySelect" class="text-xs font-bold text-slate-400 uppercase">Currency:</label>
-                    <select id="currencySelect" onchange="calculate()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-700">
-                        <option value="$" selected>USD ($)</option>
-                        <option value="€">EUR (€)</option>
-                        <option value="£">GBP (£)</option>
-                        <option value="A$">AUD (A$)</option>
-                        <option value="₹">INR (₹)</option>
-                    </select>
-                </div>
-            </div>
+    <section class="space-y-8 bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm text-slate-800">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">Understanding ROAS Percentage</h2>
+      <p class="text-slate-600 text-sm leading-relaxed">
+        Return on Ad Spend (ROAS) calculates gross revenue generated for every dollar spent on ad campaigns. A 400% ROAS means you earn $4.00 in revenue for every $1.00 spent.
+      </p>
+    </section>
+  </main>
 
-            <!-- Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Inputs -->
-                <div class="lg:col-span-7 space-y-5">
-                    <div>
-                        <label for="adSpend" class="block text-sm font-bold text-slate-700 mb-1">Total Ad Spend / Cost</label>
-                        <div class="relative">
-                            <span id="curr-symbol-1" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
-                            <input type="number" id="adSpend" placeholder="e.g. 1000" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                        </div>
-                    </div>
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <p>© 2026 calculatethecpm.net - All Rights Reserved.</p>
+  </footer>
 
-                    <div>
-                        <label for="revenue" class="block text-sm font-bold text-slate-700 mb-1">Total Revenue Generated</label>
-                        <div class="relative">
-                            <span id="curr-symbol-2" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
-                            <input type="number" id="revenue" placeholder="e.g. 4000" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                        </div>
-                    </div>
-
-                    <button onclick="resetFields()" class="text-xs text-slate-400 hover:text-slate-600 underline font-semibold transition">Reset Inputs</button>
-                </div>
-
-                <!-- ROAS Customized Result Dialogue Box -->
-                <div class="lg:col-span-5 bg-slate-950 text-white rounded-2xl p-6 flex flex-col justify-between min-h-[300px] border-2 border-green-500/30 shadow-xl shadow-green-950/20">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center border-b border-green-950 pb-3">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
-                                <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Profitability Metrics</span>
-                            </div>
-                            <button onclick="copyResult()" class="text-xs bg-green-950 hover:bg-green-900 text-green-200 px-2.5 py-1 rounded border border-green-800 transition">Copy</button>
-                        </div>
-
-                        <div>
-                            <span class="text-xs text-slate-400 font-medium block">ROAS Ratio (Multiplier):</span>
-                            <div id="roasRatio" class="text-3xl sm:text-4xl font-black text-green-400 my-1">4.00x</div>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800">
-                            <div>
-                                <span class="text-[11px] text-slate-400 block">ROAS Percentage:</span>
-                                <span id="roasPercent" class="text-lg font-bold text-green-300">400%</span>
-                            </div>
-                            <div>
-                                <span class="text-[11px] text-slate-400 block">Net Profit:</span>
-                                <span id="netProfit" class="text-lg font-bold text-emerald-400">$3,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-mono text-green-200 bg-slate-900 p-3 rounded-lg border border-green-900/50" id="formulaWalkthrough">
-                        ROAS = ($4,000 ÷ $1,000) = 4.00x (400%)
-                    </div>
-                </div>
-
-            </div> <!-- Grid Close -->
-        </div> <!-- Calculator Box Close -->
-
-        <!-- SEO Content -->
-        <article class="bg-white rounded-2xl shadow-md p-6 sm:p-10 border border-slate-200 space-y-8">
-            <section class="space-y-4">
-                <h2 class="text-2xl font-bold text-slate-900">How to Calculate ROAS (Return on Ad Spend)?</h2>
-                <p class="text-slate-600 text-sm leading-relaxed">Return on Ad Spend (ROAS) is a marketing metric that measures the efficacy of a digital advertising campaign. It determines how much gross revenue your business earns for every dollar spent on advertising.</p>
-
-                <div class="bg-slate-900 p-5 rounded-xl text-white space-y-2">
-                    <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">Standard ROAS Formula Block</span>
-                    <div class="text-xl sm:text-2xl font-mono text-green-400">ROAS = Total Campaign Revenue ÷ Total Ad Spend</div>
-                </div>
-            </section>
-        </article>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto px-4 text-center text-sm space-y-3">
-            <p>&copy; <span id="currentYear"></span> calculatethecpm.net - High-Precision Advertising Utility.</p>
-        </div>
-    </footer>
-
-    <!-- JS Logic -->
-    <script>
-        const yearNow = new Date().getFullYear();
-        document.getElementById('currentYear').innerText = yearNow;
-
-        const adSpendInput = document.getElementById('adSpend');
-        const revenueInput = document.getElementById('revenue');
-        const currencySelect = document.getElementById('currencySelect');
-
-        function calculate() {
-            const spend = parseFloat(adSpendInput.value) || 0;
-            const rev = parseFloat(revenueInput.value) || 0;
-            const symbol = currencySelect.value;
-
-            document.getElementById('curr-symbol-1').innerText = symbol;
-            document.getElementById('curr-symbol-2').innerText = symbol;
-
-            if (spend > 0) {
-                const ratio = rev / spend;
-                const percent = ratio * 100;
-                const profit = rev - spend;
-
-                document.getElementById('roasRatio').innerText = `${ratio.toFixed(2)}x`;
-                document.getElementById('roasPercent').innerText = `${percent.toFixed(0)}%`;
-                document.getElementById('netProfit').innerText = `${symbol}${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('formulaWalkthrough').innerText = `ROAS = (${symbol}${rev.toLocaleString()} ÷ ${symbol}${spend.toLocaleString()}) = ${ratio.toFixed(2)}x (${percent.toFixed(0)}%)`;
-            } else {
-                document.getElementById('roasRatio').innerText = `0.00x`;
-                document.getElementById('roasPercent').innerText = `0%`;
-                document.getElementById('netProfit').innerText = `${symbol}0.00`;
-                document.getElementById('formulaWalkthrough').innerText = "Enter Ad Spend & Revenue to compute ROAS";
-            }
-        }
-
-        function resetFields() {
-            adSpendInput.value = '';
-            revenueInput.value = '';
-            calculate();
-        }
-
-        function copyResult() {
-            const ratio = document.getElementById('roasRatio').innerText;
-            const profit = document.getElementById('netProfit').innerText;
-            navigator.clipboard.writeText(`ROAS: ${ratio} | Net Profit: ${profit}`);
-            alert("Results copied to clipboard!");
-        }
-
-        [adSpendInput, revenueInput].forEach(i => i.addEventListener('input', calculate));
-
-        // Defaults
-        adSpendInput.value = 1000;
-        revenueInput.value = 4000;
-        calculate();
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
