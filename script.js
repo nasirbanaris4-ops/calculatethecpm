@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Inject Dynamic JSON-LD Schema for SEO, AEO & GEO
+  injectJSONLDSchema();
+
   // Tabs Elements
   const tabCPM = document.getElementById('tab-cpm');
   const tabSpend = document.getElementById('tab-spend');
@@ -53,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     tabCPM.addEventListener('click', () => {
       currentMode = 'CPM';
       setActiveTab(tabCPM, tabSpend, tabImpressions);
-      fieldCost.classList.remove('hidden');
-      fieldImpressions.classList.remove('hidden');
-      fieldCPM.classList.add('hidden');
+      if (fieldCost) fieldCost.classList.remove('hidden');
+      if (fieldImpressions) fieldImpressions.classList.remove('hidden');
+      if (fieldCPM) fieldCPM.classList.add('hidden');
       calculate();
     });
   }
@@ -64,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     tabSpend.addEventListener('click', () => {
       currentMode = 'SPEND';
       setActiveTab(tabSpend, tabCPM, tabImpressions);
-      fieldCost.classList.add('hidden');
-      fieldImpressions.classList.remove('hidden');
-      fieldCPM.classList.remove('hidden');
+      if (fieldCost) fieldCost.classList.add('hidden');
+      if (fieldImpressions) fieldImpressions.classList.remove('hidden');
+      if (fieldCPM) fieldCPM.classList.remove('hidden');
       calculate();
     });
   }
@@ -75,9 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
     tabImpressions.addEventListener('click', () => {
       currentMode = 'IMPRESSIONS';
       setActiveTab(tabImpressions, tabCPM, tabSpend);
-      fieldCost.classList.remove('hidden');
-      fieldImpressions.classList.add('hidden');
-      fieldCPM.classList.remove('hidden');
+      if (fieldCost) fieldCost.classList.remove('hidden');
+      if (fieldImpressions) fieldImpressions.classList.add('hidden');
+      if (fieldCPM) fieldCPM.classList.remove('hidden');
       calculate();
     });
   }
@@ -124,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Live Real-Time Input Triggers (Zero Delay)
+  // Live Real-Time Input Triggers
   [costInput, impressionsInput, cpmInput].forEach(input => {
     if (input) {
       input.addEventListener('input', calculate);
@@ -141,6 +144,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initial Run
+  // Initial Calculation Run
   calculate();
+
+  // Function to Automatically Inject JSON-LD Schema
+  function injectJSONLDSchema() {
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "CPM Calculator Utility",
+          "operatingSystem": "All",
+          "applicationCategory": "BusinessApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Free online advertising Cost Per Mille (CPM) calculator to measure campaign efficiency across Google, YouTube, Meta, and TikTok."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is a good CPM rate?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A good CPM depends on target geography and industry niche. General display campaigns aim for $2.00–$5.00 CPM, while high-intent B2B or finance segments in Tier-1 countries can reach $30.00+."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between CPM and CPC?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "CPM charges per 1,000 ad views regardless of interactions, whereas CPC charges only when a user clicks your ad."
+              }
+            }
+          ]
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schemaData);
+    document.head.appendChild(script);
+  }
 });
