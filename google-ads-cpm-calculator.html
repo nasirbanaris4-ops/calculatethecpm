@@ -1,260 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Ads CPM Calculator - Display & Video Ad Cost Tool</title>
-    <meta name="description" content="Calculate Google Display Network and Video Ads CPM, required campaign budget, and ad impressions instantly. Free online Google Ads cost calculator.">
-    <meta name="keywords" content="google ads cpm calculator, gdn cpm calculator, google display network cost, google ad spend estimator, cpm calculator google">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Ads CPM Calculator - Calculate The CPM</title>
+  <meta name="description" content="Calculate Google Display Network (GDN) and YouTube campaign CPM, total ad spend, and required impressions.">
+  <meta name="keywords" content="google ads cpm calculator, gdn cpm, youtube ad cost calculator, calculate the cpm">
 
-    <!-- Schema.org JSON-LD for AEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Google Ads CPM Calculator",
-      "url": "https://calculatethecpm.net/google-ads-cpm-calculator.html",
-      "description": "Calculate Google Display and Video Ads CPM, required campaign budgets, and ad impressions.",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Header Navigation -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-       <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
-    <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
-    <span class="text-xl font-extrabold tracking-tight text-slate-900">
-        calculatethecpm<span class="text-blue-600 font-bold">.net</span>
-    </span>
-</a>
-
-            <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
-                <a href="index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM Calculator</a>
-                <a href="youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">YouTube CPM</a>
-                <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
-                <a href="facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
-                <a href="google-ads-cpm-calculator.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-200">Google Ads</a>
-                <a href="cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM vs CPC</a>
-                <a href="roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition text-green-600">ROAS Calc</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow">
-        
-        <!-- Hero Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Google Display & Video Ads CPM Calculator</h1>
-            <p class="text-slate-500 text-base sm:text-lg mt-2 max-w-2xl mx-auto">Estimate Google Display Network (GDN) and YouTube campaign costs. Compute target CPM, total budget, or impression goals.</p>
-        </div>
-
-        <!-- SaaS Calculator Box -->
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 mb-12">
-            
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-slate-200 pb-5 mb-6 gap-4">
-                
-                <div class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-xl w-full lg:w-auto">
-                    <button id="tab-cpm" onclick="setMode('cpm')" class="flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg bg-white text-blue-600 shadow-sm transition">Calculate CPM</button>
-                    <button id="tab-spend" onclick="setMode('spend')" class="flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg text-slate-600 hover:text-slate-900 transition">Calculate Spend</button>
-                    <button id="tab-impressions" onclick="setMode('impressions')" class="flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg text-slate-600 hover:text-slate-900 transition">Calculate Impressions</button>
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <label for="currencySelect" class="text-xs font-bold text-slate-400 uppercase">Currency:</label>
-                    <select id="currencySelect" onchange="onSettingChange()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-700">
-                        <option value="$" selected>USD ($)</option>
-                        <option value="€">EUR (€)</option>
-                        <option value="£">GBP (£)</option>
-                        <option value="A$">AUD (A$)</option>
-                        <option value="₹">INR (₹)</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Inputs -->
-                <div class="lg:col-span-7 space-y-5">
-                    
-                    <div id="field-cost-wrapper">
-                        <label for="cost" class="block text-sm font-bold text-slate-700 mb-1">Total Google Ads Spend</label>
-                        <div class="relative">
-                            <span id="curr-symbol-1" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
-                            <input type="number" id="cost" placeholder="e.g. 500" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                        </div>
-                    </div>
-
-                    <div id="field-impressions-wrapper">
-                        <label for="impressions" class="block text-sm font-bold text-slate-700 mb-1">Total Banner/Ad Impressions</label>
-                        <input type="number" id="impressions" placeholder="e.g. 150000" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                    </div>
-
-                    <div id="field-cpm-wrapper">
-                        <label for="cpm" class="block text-sm font-bold text-slate-700 mb-1">Google Target CPM</label>
-                        <div class="relative">
-                            <span id="curr-symbol-2" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-bold">$</span>
-                            <input type="number" id="cpm" placeholder="e.g. 3.33" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                        </div>
-                    </div>
-
-                    <button onclick="resetFields()" class="text-xs text-slate-400 hover:text-slate-600 underline font-semibold transition">Reset Inputs</button>
-                </div>
-
-                <!-- Output Dashboard -->
-               <!-- Google Ads Customized Result Dialogue Box -->
-<div class="lg:col-span-5 bg-slate-950 text-white rounded-2xl p-6 flex flex-col justify-between min-h-[300px] border-2 border-emerald-500/30 shadow-xl shadow-emerald-950/20">
-    <div>
-        <div class="flex justify-between items-center border-b border-emerald-950 pb-3 mb-4">
-            <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Google Display Engine</span>
-            </div>
-            <button onclick="copyResult()" class="text-xs bg-emerald-950 hover:bg-emerald-900 text-emerald-200 px-2.5 py-1 rounded border border-emerald-800 transition">Copy</button>
-        </div>
-
-        <div id="resultVal" class="text-4xl sm:text-5xl font-black text-emerald-400 my-2">$3.33</div>
-        <p id="resultLabel" class="text-xs text-slate-400 font-medium">Google Display CPM per 1,000 Impressions</p>
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="badge">CPM</span>
+      <span class="domain">calculatethecpm<span class="tld">.net</span></span>
     </div>
+    <nav class="nav-links">
+      <a href="/index.html">CPM Calculator</a>
+      <a href="/youtube-cpm.html">YouTube CPM</a>
+      <a href="/tiktok-cpm.html">TikTok CPM</a>
+      <a href="/meta-ads.html">Meta Ads</a>
+      <a href="/google-ads.html" class="active">Google Ads</a>
+      <a href="/cpm-vs-cpc.html">CPM vs CPC</a>
+      <a href="/roas-calc.html" class="btn-roas">ROAS Calc</a>
+    </nav>
+  </header>
 
-    <div class="mt-6 pt-4 border-t border-slate-800">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400/80 block mb-1">Live Step-By-Step Breakdown:</span>
-        <div id="formulaWalkthrough" class="text-xs font-mono text-emerald-200 bg-slate-900 p-3 rounded-lg border border-emerald-900/50">
-            CPM = ($500 ÷ 150,000) × 1,000 = $3.33
+  <!-- Main Content -->
+  <main class="container">
+    <section class="hero-section">
+      <h1>Google Display & Video Ads CPM Calculator</h1>
+      <p>Estimate Google Display Network (GDN) and YouTube campaign costs. Compute target CPM, total budget, or impression goals.</p>
+    </section>
+
+    <div class="calculator-card">
+      <div class="calc-header">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="cpm">Calculate CPM</button>
+          <button class="tab-btn" data-tab="spend">Calculate Spend</button>
+          <button class="tab-btn" data-tab="impressions">Calculate Impressions</button>
         </div>
+        <div class="currency-selector">
+          <label for="currency">CURRENCY:</label>
+          <select id="currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="PKR">PKR (Rs)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-body">
+        <div class="inputs-side">
+          <div class="input-group">
+            <label>Total Google Ads Spend</label>
+            <div class="input-wrapper">
+              <span class="currency-symbol">$</span>
+              <input type="number" id="cost" value="500" placeholder="0">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Total Banner/Ad Impressions</label>
+            <input type="number" id="impressions" value="150000" placeholder="0">
+          </div>
+
+          <button id="reset-btn" class="reset-link">Reset Inputs</button>
+        </div>
+
+        <div class="output-side">
+          <div class="engine-badge">
+            <span class="dot"></span> GOOGLE DISPLAY ENGINE
+            <button id="copy-btn" class="copy-btn">Copy</button>
+          </div>
+
+          <div class="result-display">
+            <span class="result-value" id="result-val">$3.33</span>
+            <span class="result-label" id="result-lbl">Google Ads CPM</span>
+          </div>
+
+          <div class="breakdown-box">
+            <div class="breakdown-title">LIVE STEP-BY-STEP BREAKDOWN:</div>
+            <div class="breakdown-formula" id="formula-text">
+              CPM = ($500 ÷ 150,000) × 1,000 = $3.33
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-        <!-- SEO Article Section -->
-        <article class="bg-white rounded-2xl shadow-md p-6 sm:p-10 border border-slate-200 space-y-8">
-            <section class="space-y-4">
-                <h2 class="text-2xl font-bold text-slate-900">Google Display Network (GDN) CPM Benchmarks in <span class="dyn-year"></span></h2>
-                <p class="text-slate-600 text-sm leading-relaxed">Google Display Ads typically offer significantly lower CPMs ($2.00 to $5.00) compared to Search Ads or Social Media platforms. This makes GDN an optimal strategy for high-frequency brand exposure and retargeting campaigns.</p>
+  </main>
 
-                <div class="bg-slate-900 p-5 rounded-xl text-white space-y-2">
-                    <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">Google Ads CPM Formula</span>
-                    <div class="text-xl sm:text-2xl font-mono text-green-400">Google CPM = (Total Ad Cost ÷ Total Impressions) × 1,000</div>
-                </div>
-            </section>
-        </article>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto px-4 text-center text-sm space-y-3">
-            <p>&copy; <span id="currentYear"></span> calculatethecpm.net - High-Precision Advertising Utility.</p>
-        </div>
-    </footer>
-
-    <!-- JS Logic -->
-    <script>
-        const yearNow = new Date().getFullYear();
-        document.getElementById('currentYear').innerText = yearNow;
-        document.querySelectorAll('.dyn-year').forEach(e => e.innerText = yearNow);
-
-        let currentMode = 'cpm';
-        let currentSymbol = '$';
-
-        const costInput = document.getElementById('cost');
-        const impressionsInput = document.getElementById('impressions');
-        const cpmInput = document.getElementById('cpm');
-        const currencySelect = document.getElementById('currencySelect');
-        const resultVal = document.getElementById('resultVal');
-        const resultLabel = document.getElementById('resultLabel');
-        const formulaWalkthrough = document.getElementById('formulaWalkthrough');
-
-        function setMode(mode) {
-            currentMode = mode;
-            ['cpm', 'spend', 'impressions'].forEach(m => {
-                const btn = document.getElementById(`tab-${m}`);
-                if (m === mode) {
-                    btn.className = "flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg bg-white text-blue-600 shadow-sm transition";
-                } else {
-                    btn.className = "flex-1 lg:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg text-slate-600 hover:text-slate-900 transition";
-                }
-            });
-
-            document.getElementById('field-cost-wrapper').style.display = (mode === 'spend') ? 'none' : 'block';
-            document.getElementById('field-cpm-wrapper').style.display = (mode === 'cpm') ? 'none' : 'block';
-            document.getElementById('field-impressions-wrapper').style.display = (mode === 'impressions') ? 'none' : 'block';
-
-            calculate();
-        }
-
-        function onSettingChange() {
-            currentSymbol = currencySelect.value;
-            document.getElementById('curr-symbol-1').innerText = currentSymbol;
-            document.getElementById('curr-symbol-2').innerText = currentSymbol;
-            calculate();
-        }
-
-        function calculate() {
-            const cost = parseFloat(costInput.value) || 0;
-            const impressions = parseFloat(impressionsInput.value) || 0;
-            const cpm = parseFloat(cpmInput.value) || 0;
-
-            if (currentMode === 'cpm') {
-                if (impressions > 0) {
-                    const res = (cost / impressions) * 1000;
-                    resultVal.innerText = `${currentSymbol}${res.toFixed(2)}`;
-                    resultLabel.innerText = "Google Ads CPM";
-                    formulaWalkthrough.innerText = `CPM = (${currentSymbol}${cost} ÷ ${impressions.toLocaleString()}) × 1,000 = ${currentSymbol}${res.toFixed(2)}`;
-                } else {
-                    resultVal.innerText = `${currentSymbol}0.00`;
-                    formulaWalkthrough.innerText = "Enter Spend & Impressions to compute CPM";
-                }
-            } else if (currentMode === 'spend') {
-                if (impressions > 0 && cpm > 0) {
-                    const res = (cpm * impressions) / 1000;
-                    resultVal.innerText = `${currentSymbol}${res.toFixed(2)}`;
-                    resultLabel.innerText = "Estimated Total Spend";
-                    formulaWalkthrough.innerText = `Spend = (${currentSymbol}${cpm} × ${impressions.toLocaleString()}) ÷ 1,000 = ${currentSymbol}${res.toFixed(2)}`;
-                } else {
-                    resultVal.innerText = `${currentSymbol}0.00`;
-                    formulaWalkthrough.innerText = "Enter Impressions & CPM to compute Spend";
-                }
-            } else if (currentMode === 'impressions') {
-                if (cpm > 0 && cost > 0) {
-                    const res = Math.round((cost / cpm) * 1000);
-                    resultVal.innerText = res.toLocaleString();
-                    resultLabel.innerText = "Estimated Impressions";
-                    formulaWalkthrough.innerText = `Impressions = (${currentSymbol}${cost} ÷ ${currentSymbol}${cpm}) × 1,000 = ${res.toLocaleString()}`;
-                } else {
-                    resultVal.innerText = "0";
-                    formulaWalkthrough.innerText = "Enter Spend & CPM to compute Impressions";
-                }
-            }
-        }
-
-        function resetFields() {
-            costInput.value = '';
-            impressionsInput.value = '';
-            cpmInput.value = '';
-            calculate();
-        }
-
-        function copyResult() {
-            navigator.clipboard.writeText(`${resultLabel.innerText}: ${resultVal.innerText}`);
-            alert("Result copied to clipboard!");
-        }
-
-        [costInput, impressionsInput, cpmInput].forEach(i => i.addEventListener('input', calculate));
-
-        // Defaults
-        costInput.value = 500;
-        impressionsInput.value = 150000;
-        setMode('cpm');
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
