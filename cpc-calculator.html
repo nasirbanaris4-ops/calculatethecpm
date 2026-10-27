@@ -3,88 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPC Calculator - Free Online Cost Per Click Utility</title>
-  <meta name="description" content="Calculate Cost Per Click (CPC), total ad campaign budget, or required clicks instantly. Free online CPC calculator with benchmarks, formulas, and guides.">
+  <title>CPC Calculator - Cost Per Click & Campaign Estimator</title>
+  <meta name="description" content="Free online CPC Calculator. Instantly calculate Cost Per Click, ad spend requirements, and click targets for Google Ads, Facebook Ads, and PPC campaigns.">
   <link rel="canonical" href="https://calculatethecpm.net/cpc-calculator.html">
   <link rel="icon" type="image/webp" href="/favicon.webp">
 
   <!-- OpenGraph / Social Media Tags -->
-  <meta property="og:title" content="CPC Calculator - Free Online Cost Per Click Utility">
-  <meta property="og:description" content="Calculate Cost Per Click (CPC), ad spend, or required clicks instantly with our free online calculator.">
+  <meta property="og:title" content="CPC Calculator - Cost Per Click Utility">
+  <meta property="og:description" content="Calculate Cost Per Click (CPC) and PPC ad spend targets instantly.">
   <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
   <meta property="og:url" content="https://calculatethecpm.net/cpc-calculator.html">
   <meta property="og:type" content="website">
 
-  <!-- Tailwind CSS CDN -->
-<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <!-- Preconnect & Tailwind CSS v3 CDN -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-<script src="https://cdn.tailwindcss.com"></script>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- MULTI-SCHEMA MARKUP (WebApplication + 5-Question FAQPage) -->
+  <!-- Schema Markup -->
   <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "CPC Calculator",
-      "url": "https://calculatethecpm.net/cpc-calculator.html",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is CPC in digital advertising?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CPC stands for Cost Per Click. It is a pay-per-click (PPC) performance metric where an advertiser pays a fee only when a user actively clicks on their ad."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is CPC calculated?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "To calculate CPC, divide your total campaign spend by the total number of clicks received. Formula: CPC = Total Ad Spend / Total Clicks."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is a good CPC rate for Google Ads?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A good CPC depends on industry competition. Average e-commerce CPCs range between $1.00 and $2.50, while competitive legal, insurance, or financial keywords can exceed $15.00 to $50.00+ per click."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between CPC and CPM?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CPC charges advertisers strictly when a user clicks an ad, making it ideal for direct response. CPM charges for every 1,000 ad impressions served regardless of clicks, making it ideal for brand awareness."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How can I lower my campaign CPC?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You can lower your CPC by improving ad relevance (Quality Score), writing engaging ad copy that boosts Click-Through Rate (CTR), targeting negative keywords, and refining audience demographics."
-          }
-        }
-      ]
-    }
-  ]
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CPC Calculator",
+    "url": "https://calculatethecpm.net/cpc-calculator.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "description": "Calculate Cost Per Click (CPC) and ad spend for digital marketing campaigns."
+  }
   </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
@@ -93,90 +39,79 @@
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
       <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
-        <span class="bg-emerald-700 text-white px-2 py-0.5 rounded-lg">CPC</span>
-        calculatethecpm<span class="text-emerald-600">.net</span>
+        <span class="bg-emerald-700 text-white px-2 py-0.5 rounded-lg">CPM</span>
+        calculatethecpm<span class="text-emerald-700">.net</span>
       </a>
       <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
         <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
         <a href="/cpc-calculator.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">CPC Calculator</a>
-        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
         <a href="/ctr-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CTR Calculator</a>
-        <a href="/ecpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">eCPM Calculator</a>
-        <a href="/google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Google Ads CPM</a>
+        <a href="/roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">ROAS Calculator</a>
+        <a href="/contact.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Contact Us</a>
       </nav>
     </div>
   </header>
 
   <!-- Main Content Area -->
-  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
+  <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
     
-    <!-- Title Section -->
     <section class="text-center mb-8">
-      <h1 class="text-3xl font-black text-slate-900 mb-2">Online CPC Calculator</h1>
-      <p class="text-slate-600 text-sm">Calculate Cost Per Click, Total Ad Campaign Spend, or Target Clicks instantly.</p>
+      <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-2">Free Online CPC Calculator</h1>
+      <p class="text-slate-600 text-sm max-w-xl mx-auto">Calculate Cost Per Click (CPC), total ad spend, or required clicks for your PPC ad campaigns instantly.</p>
     </section>
 
-    <!-- Main Calculator Component Card -->
-    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 mb-12">
+    <!-- Calculator Card -->
+    <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm mb-10">
       
-      <!-- Top Mode Selector Tabs -->
-      <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-3">
-        <div class="flex flex-wrap gap-2">
-          <button id="tab-cpm" onclick="switchMode('cpm')" class="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-700 text-white shadow-sm transition">Calculate CPM / Rate</button>
-          <button id="tab-cost" onclick="switchMode('cost')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Spend</button>
-          <button id="tab-impressions" onclick="switchMode('impressions')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Volume</button>
+      <!-- Top Control Bar (Currency Dropdown) -->
+      <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">CPC Utility</span>
+        <div class="flex items-center gap-2">
+          <label for="currency-select" class="text-xs font-bold text-slate-700 uppercase tracking-wide">Currency / Region:</label>
+          <select id="currency-select" onchange="updateCurrency()" class="px-3 py-1.5 bg-slate-100 border border-slate-300 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer">
+            <option value="$" selected>🇺🇸 USD ($) - USA</option>
+            <option value="£">🇬🇧 GBP (£) - UK</option>
+            <option value="€">🇪🇺 EUR (€) - Europe</option>
+            <option value="CAD $">🇨🇦 CAD ($) - Canada</option>
+            <option value="AUD $">🇦🇺 AUD ($) - Australia</option>
+            <option value="₹">🇮🇳 INR (₹) - India</option>
+            <option value="Rs">🇵🇰 PKR (Rs) - Pakistan</option>
+          </select>
         </div>
-        <div class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Currency: <span class="text-slate-700 font-bold">USD ($)</span></div>
       </div>
 
-      <!-- 2-Column Responsive Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Inputs & Result Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         
-        <!-- Left Column: Inputs & Controls -->
-        <div class="lg:col-span-7 space-y-5">
-          
-          <div id="wrapper-cost">
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cost">Total Ad Spend ($)</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-600 font-semibold">$</span>
-              <input type="number" id="input-cost" placeholder="e.g. 500" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
-            </div>
+        <!-- Left Side: Inputs -->
+        <div class="space-y-5">
+          <div>
+            <label id="label-input1" for="input1" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">TOTAL CAMPAIGN SPEND ($)</label>
+            <input type="text" id="input1" placeholder="e.g. 500" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-base text-slate-900 font-semibold transition">
           </div>
 
-          <div id="wrapper-cpm" class="hidden">
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cpm">Target Rate ($)</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-600 font-semibold">$</span>
-              <input type="number" id="input-cpm" placeholder="e.g. 1.50" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
-            </div>
+          <div>
+            <label id="label-input2" for="input2" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">TOTAL CLICKS</label>
+            <input type="text" id="input2" placeholder="e.g. 1000" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-base text-slate-900 font-semibold transition">
           </div>
 
-          <div id="wrapper-impressions">
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-impressions">Total Impression / Click Volume</label>
-            <input type="number" id="input-impressions" placeholder="e.g. 50000" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+          <div class="flex items-center gap-3 pt-2">
+            <button onclick="calculate()" class="flex-1 bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md transition text-sm">Calculate Result</button>
+            <button onclick="resetInputs()" class="text-xs font-bold text-slate-500 hover:text-slate-800 px-3 py-2 transition">Reset Inputs</button>
           </div>
-
-          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="calculate()" class="w-full sm:w-auto flex-1 bg-emerald-700 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition text-sm">Calculate Result</button>
-            <button onclick="resetCalculator()" class="text-xs font-semibold text-slate-600 hover:text-slate-600 underline cursor-pointer">Reset Inputs</button>
-          </div>
-
         </div>
 
-        <!-- Right Column: Rich Output Panel -->
-        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[280px]">
+        <!-- Right Side: Dark Output Box -->
+        <div class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl shadow-inner flex flex-col justify-between min-h-[220px]">
           <div>
-            <span id="output-title" class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 block mb-2">CALCULATED RATE</span>
-            <div id="output-value" class="text-4xl font-black text-emerald-400 tracking-tight my-1">$0.00</div>
-            <span id="output-subtext" class="text-xs text-slate-300 block font-medium">Cost Per Impression Unit</span>
+            <span id="result-title" class="text-xs font-bold text-emerald-400 uppercase tracking-widest block mb-2">CALCULATED CPC RATE</span>
+            <div id="output-result" class="text-4xl md:text-5xl font-black text-emerald-400 tracking-tight mb-1">$0.00</div>
+            <span id="result-subtext" class="text-xs text-slate-300 block font-medium">Cost Per Single Click</span>
           </div>
 
-          <!-- Formula Breakdown Box -->
-          <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+          <div class="mt-6 pt-4 border-t border-slate-800">
             <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">LIVE STEP-BY-STEP BREAKDOWN:</span>
-            <div id="output-breakdown" class="font-mono text-xs text-slate-300 leading-relaxed font-semibold">
-              Rate = ($0 ÷ 0) × 1,000 = $0.00
-            </div>
+            <div id="breakdown-text" class="text-xs font-mono text-emerald-300">CPC = ($0 ÷ 0) = $0.00</div>
           </div>
         </div>
 
@@ -184,22 +119,36 @@
 
     </div>
 
-    <!-- GEO / AIO Direct Answer Definition Box -->
-    <section class="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl mb-12">
-      <h2 class="text-base font-bold text-emerald-950 mb-2">What is Cost Per Click (CPC)?</h2>
-      <p class="text-sm text-emerald-900 leading-relaxed">
-        <strong>Cost Per Click (CPC)</strong> is an online advertising metric measuring the exact dollar amount an advertiser pays every time a visitor clicks on an ad banner, search link, or social ad post. CPC is a cornerstone of performance marketing across Google Search, Bing Ads, Meta, and LinkedIn.
-      </p>
-    </section>
-
-    <!-- Comprehensive SEO Article Section -->
-    <article class="prose max-w-none text-slate-700 text-sm space-y-8">
+    <!-- Regional Benchmarks Table Section -->
+    <section class="mt-12 bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
+      <h2 class="text-xl font-bold text-slate-900 mb-2">Average CPC & CPM Rates by Country & Region</h2>
+      <p class="text-xs text-slate-600 mb-6">Compare baseline Cost Per Click (CPC) & Cost Per Mille (CPM) benchmarks across major global ad markets to plan your campaign budget effectively.</p>
       
-      <!-- Section 1: How to Calculate -->
-      <section>
-        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Calculate CPC (Formula & Steps)</h2>
-        <p class="mb-3 text-slate-600 leading-relaxed">
-          Calculating CPC requires knowing your total ad campaign budget and total link clicks received. If you want to convert impression CPM rates directly into click costs, use our specialized <a href="/cpm-to-cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPM to CPC Calculator</a> or evaluate baseline view metrics on our main <a href="/index.html" class="text-emerald-600 font-semibold underline">CPM Calculator</a>. The standard formula is:
-        </p>
-        
-        <div class="bg-slate
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+              <th class="p-3 rounded-l-xl">Country / Region</th>
+              <th class="p-3">Average Benchmark Range</th>
+              <th class="p-3 rounded-r-xl">Market Potential</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-semibold text-slate-900">🇺🇸 United States</td>
+              <td class="p-3 text-emerald-700 font-bold">$10.00 – $35.00+</td>
+              <td class="p-3"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-[10px] font-bold">Tier 1 (Premium Market)</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-semibold text-slate-900">🇬🇧 United Kingdom</td>
+              <td class="p-3 text-emerald-700 font-bold">$8.00 – $25.00</td>
+              <td class="p-3"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-[10px] font-bold">Tier 1 (Premium Market)</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-semibold text-slate-900">🇪🇺 Europe (DE, FR, NL)</td>
+              <td class="p-3 text-emerald-700 font-bold">$6.00 – $20.00</td>
+              <td class="p-3"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-[10px] font-bold">Tier 1 (Premium Market)</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-semibold text-slate-900">🇨🇦 Canada / 🇦🇺 Australia</td>
+              <td class="p-3 text-emerald-700 font-bold">$7.00 – $22.00</td>
