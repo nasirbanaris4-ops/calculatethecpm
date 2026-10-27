@@ -1,176 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPM Calculator - Free Online Ad Cost & Impression Utility</title>
-  <meta name="description" content="Calculate Cost Per Mille (CPM), total ad budget, or required impressions instantly. Free online CPM calculator for digital marketers and creators.">
-  <link rel="canonical" href="https://calculatethecpm.net/">
-  <link rel="icon" type="image/webp" href="/favicon.webp">
+let currentMode = 'cpm';
 
-  <!-- OpenGraph Tags -->
-  <meta property="og:title" content="CPM Calculator - Free Online Ad Cost Utility">
-  <meta property="og:description" content="Calculate Cost Per Mille (CPM), ad spend, or required impressions instantly with our free online calculator.">
-  <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
-  <meta property="og:url" content="https://calculatethecpm.net/">
-  <meta property="og:type" content="website">
+function switchMode(mode) {
+  currentMode = mode;
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  const btnCpm = document.getElementById('tab-cpm');
+  const btnCost = document.getElementById('tab-cost');
+  const btnImp = document.getElementById('tab-impressions');
 
-  <!-- MULTI-SCHEMA MARKUP (WebApplication + FAQPage) -->
-  <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "CPM Calculator",
-      "url": "https://calculatethecpm.net/",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is CPM in advertising?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CPM stands for Cost Per Mille, where 'Mille' represents 1,000 impressions. It is a standard metric used in online advertising to measure the cost an advertiser pays for 1,000 views or impressions of an ad."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is CPM calculated?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The CPM formula is: CPM = (Total Ad Cost / Total Impressions) * 1,000. For example, spending $500 for 100,000 impressions results in a $5 CPM."
-          }
-        }
-      ]
+  const activeClass = 'px-4 py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white transition';
+  const inactiveClass = 'px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+
+  if (btnCpm) btnCpm.className = (mode === 'cpm') ? activeClass : inactiveClass;
+  if (btnCost) btnCost.className = (mode === 'cost') ? activeClass : inactiveClass;
+  if (btnImp) btnImp.className = (mode === 'impressions') ? activeClass : inactiveClass;
+
+  const costField = document.getElementById('field-cost');
+  const cpmField = document.getElementById('field-cpm');
+  const impField = document.getElementById('field-impressions');
+
+  if (mode === 'cpm') {
+    costField?.classList.remove('hidden');
+    cpmField?.classList.add('hidden');
+    impField?.classList.remove('hidden');
+  } else if (mode === 'cost') {
+    costField?.classList.add('hidden');
+    cpmField?.classList.remove('hidden');
+    impField?.classList.remove('hidden');
+  } else if (mode === 'impressions') {
+    costField?.classList.remove('hidden');
+    cpmField?.classList.remove('hidden');
+    impField?.classList.add('hidden');
+  }
+
+  document.getElementById('result-box')?.classList.add('hidden');
+}
+
+function calculate() {
+  const costInput = document.getElementById('cost');
+  const cpmInput = document.getElementById('cpm');
+  const impInput = document.getElementById('impressions');
+
+  const cost = parseFloat(costInput?.value) || 0;
+  const cpm = parseFloat(cpmInput?.value) || 0;
+  const impressions = parseFloat(impInput?.value) || 0;
+
+  const resultBox = document.getElementById('result-box');
+  const resultText = document.getElementById('result-text');
+
+  let output = '';
+
+  if (currentMode === 'cpm') {
+    if (impressions > 0) {
+      const calculatedCPM = (cost / impressions) * 1000;
+      output = `CPM = $${calculatedCPM.toFixed(2)}`;
+    } else {
+      output = 'Please enter valid ad impressions';
     }
-  ]
-  </script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+  } else if (currentMode === 'cost') {
+    if (impressions > 0 && cpm > 0) {
+      const calculatedCost = (cpm * impressions) / 1000;
+      output = `Total Cost = $${calculatedCost.toFixed(2)}`;
+    } else {
+      output = 'Please enter valid CPM and impressions';
+    }
+  } else if (currentMode === 'impressions') {
+    if (cpm > 0 && cost > 0) {
+      const calculatedImp = (cost / cpm) * 1000;
+      output = `Required Impressions = ${Math.round(calculatedImp).toLocaleString()}`;
+    } else {
+      output = 'Please enter valid cost and CPM';
+    }
+  }
 
-  <!-- Header Navigation -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-      <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
-        <span class="bg-emerald-600 text-white px-2 py-0.5 rounded-lg">CPM</span>
-        calculatethecpm<span class="text-emerald-600">.net</span>
-      </a>
-      <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
-        <a href="/index.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">CPM Calculator</a>
-        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
-        <a href="/youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">YouTube CPM</a>
-        <a href="/tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">TikTok CPM</a>
-        <a href="/facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Facebook Ads CPM</a>
-        <a href="/google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Google Ads CPM</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content & Tool -->
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow">
-    
-    <!-- Title Section -->
-    <section class="text-center mb-8">
-      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Online CPM Calculator</h1>
-      <p class="text-slate-600 text-sm">Calculate Cost Per Mille, Total Ad Budget, or Required Impressions instantly.</p>
-    </section>
-
-    <!-- Calculator Card -->
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-10">
-      
-      <!-- 3 Calculation Options (Tabs) -->
-      <div class="flex flex-wrap gap-2 mb-6 border-b border-slate-200 pb-4">
-        <button id="tab-cpm" onclick="switchMode('cpm')" class="px-4 py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white transition">Calculate CPM</button>
-        <button id="tab-cost" onclick="switchMode('cost')" class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Total Cost</button>
-        <button id="tab-impressions" onclick="switchMode('impressions')" class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Impressions</button>
-      </div>
-
-      <!-- Inputs Section -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div id="field-cost">
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Total Ad Cost ($)</label>
-          <input type="number" id="cost" placeholder="e.g. 500" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-        </div>
-        <div id="field-cpm" class="hidden">
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Target CPM ($)</label>
-          <input type="number" id="cpm" placeholder="e.g. 10" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-        </div>
-        <div id="field-impressions">
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Ad Impressions</label>
-          <input type="number" id="impressions" placeholder="e.g. 50000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-        </div>
-      </div>
-
-      <button id="calculate-btn" onclick="calculate()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition shadow-sm">Calculate Result</button>
-
-      <!-- Light Output Dialog Box -->
-      <div id="result-box" class="mt-6 p-5 bg-emerald-50 border border-emerald-200 rounded-xl text-center hidden">
-        <span class="text-xs uppercase font-bold text-emerald-700 tracking-wider block mb-1">Calculation Output</span>
-        <div id="result-text" class="text-2xl font-black text-emerald-900"></div>
-      </div>
-
-    </div>
-
-    <!-- GEO / AIO Direct Answer Definition Box -->
-    <section class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl mb-10">
-      <h2 class="text-lg font-bold text-emerald-900 mb-2">What is Cost Per Mille (CPM)?</h2>
-      <p class="text-sm text-emerald-800 leading-relaxed">
-        <strong>Cost Per Mille (CPM)</strong> is a digital marketing metric measuring the cost per 1,000 ad impressions ("Mille" means thousand). Advertisers use CPM to measure cost-efficiency across display, video, and social ad networks like Google Ads, YouTube, Meta, and TikTok.
-      </p>
-    </section>
-
-    <!-- Detailed SEO Article -->
-    <article class="prose max-w-none text-slate-700 text-sm space-y-6">
-      <section>
-        <h2 class="text-xl font-bold text-slate-900 mb-3">How to Calculate CPM (Formula & Examples)</h2>
-        <p class="mb-3">To calculate CPM, divide total ad spend by total impressions and multiply by 1,000:</p>
-        <div class="bg-slate-100 p-4 rounded-lg font-mono text-center font-bold text-slate-800 my-4 border border-slate-200">
-          CPM = ( Total Ad Spend / Total Impressions ) × 1,000
-        </div>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
-        <div class="space-y-4">
-          <div class="bg-white p-4 rounded-lg border border-slate-200">
-            <h3 class="font-bold text-slate-900 mb-1">What is a good CPM rate?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">In Tier 1 regions (US, UK, CA), CPMs between $5 and $12 are typical for general consumer audiences, while finance or B2B niches can exceed $30+.</p>
-          </div>
-          <div class="bg-white p-4 rounded-lg border border-slate-200">
-            <h3 class="font-bold text-slate-900 mb-1">What is the difference between CPM and eCPM?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">CPM is the advertiser's cost per 1,000 ad views, whereas eCPM measures the ad publisher's earnings per 1,000 ad impressions on their site.</p>
-          </div>
-        </div>
-      </section>
-    </article>
-
-  </main>
-
-  <!-- Legal Footer -->
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <div class="mb-2 space-x-4">
-      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
-      <span>|</span>
-      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
-      <span>|</span>
-      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
-    </div>
-    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
-  </footer>
-
-  <script src="script.js" defer></script>
-</body>
-</html>
+  if (resultText && resultBox) {
+    resultText.innerText = output;
+    resultBox.classList.remove('hidden');
+  }
+}
