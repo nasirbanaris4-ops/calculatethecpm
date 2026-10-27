@@ -9,7 +9,7 @@ function updateCurrency() {
   calculate();
 }
 
-// Helper to get raw numeric values safely regardless of $, spaces, or symbols
+// Helper function to extract numbers safely from inputs ($ / commas stripped)
 function getCleanNumber(elementId) {
   const el = document.getElementById(elementId);
   if (!el || !el.value) return 0;
@@ -23,6 +23,7 @@ let currentMode = 'cpm';
 function switchMode(mode) {
   currentMode = mode;
   
+  // Highlight Active Tab
   const tabs = ['cpm', 'spend', 'views'];
   tabs.forEach(tab => {
     const btn = document.getElementById(`tab-${tab}`);
@@ -30,11 +31,12 @@ function switchMode(mode) {
       if (tab === mode) {
         btn.className = "px-4 py-2 text-xs font-bold rounded-xl bg-emerald-700 text-white shadow-sm transition";
       } else {
-        btn.className = "px-4 py-2 text-xs font-bold rounded-xl text-slate-600 hover:bg-slate-100 transition";
+        btn.className = "px-4 py-2 text-xs font-bold rounded-xl text-slate-600 hover:bg-slate-200 transition";
       }
     }
   });
 
+  // Dynamic Input Labels & Result Text
   const input1Label = document.getElementById("label-input1");
   const input2Label = document.getElementById("label-input2");
   const resultTitle = document.getElementById("result-title");
@@ -60,7 +62,7 @@ function switchMode(mode) {
   calculate();
 }
 
-// Main Calculation Logic
+// Main Calculation Function
 function calculate() {
   const outputDisplay = document.getElementById("output-result");
   const breakdownDisplay = document.getElementById("breakdown-text");
@@ -101,7 +103,16 @@ function calculate() {
   }
 }
 
-// Auto attach live calculations on document setup
+// Reset Inputs
+function resetInputs() {
+  const input1 = document.getElementById("input1");
+  const input2 = document.getElementById("input2");
+  if (input1) input1.value = "";
+  if (input2) input2.value = "";
+  calculate();
+}
+
+// Auto Attach Event Listeners on Page Load
 document.addEventListener("DOMContentLoaded", () => {
   const input1 = document.getElementById("input1");
   const input2 = document.getElementById("input2");
