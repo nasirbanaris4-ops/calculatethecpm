@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - CalculateTheCPM</title>
-  <meta name="description" content="Get in touch with the CalculateTheCPM team for feedback, support, or general inquiries.">
+  <title>Contact Us - CPM Calculator Utility</title>
+  <meta name="description" content="Get in touch with the calculatethecpm.net team for feedback, advertising inquiries, media partnerships, or support.">
   <link rel="canonical" href="https://calculatethecpm.net/contact.html">
   <link rel="icon" type="image/webp" href="/favicon.webp">
 
-  <meta property="og:title" content="Contact Us - CalculateTheCPM">
-  <meta property="og:description" content="Get in touch with the CalculateTheCPM team.">
+  <!-- OpenGraph / Social Media Tags -->
+  <meta property="og:title" content="Contact Us - CPM Calculator Utility">
+  <meta property="og:description" content="Contact the calculatethecpm.net team for advertising, feedback, or support.">
   <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
   <meta property="og:url" content="https://calculatethecpm.net/contact.html">
   <meta property="og:type" content="website">
 
+  <!-- Preconnect and Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Contact Us - CalculateTheCPM",
+    "name": "Contact Us",
     "url": "https://calculatethecpm.net/contact.html",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "CalculateTheCPM",
-      "url": "https://calculatethecpm.net/",
-      "email": "support@calculatethecpm.net",
-      "logo": "https://calculatethecpm.net/favicon.webp"
-    }
+    "description": "Contact page for calculatethecpm.net inquiries, support, and feedback."
   }
   </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
+  <!-- Header Navigation -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
       <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
@@ -42,23 +42,85 @@
       </a>
       <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
         <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
-        <a href="/youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">YouTube CPM</a>
-        <a href="/tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">TikTok CPM</a>
-        <a href="/facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Facebook Ads CPM</a>
+        <a href="/cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPC Calculator</a>
+        <a href="/ctr-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CTR Calculator</a>
+        <a href="/roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">ROAS Calculator</a>
+        <a href="/contact.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">Contact Us</a>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-3xl mx-auto px-4 py-12 flex-grow">
-    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">Contact Us</h1>
-    <p class="text-slate-600 mb-6">Have questions, feedback, or need support regarding our calculators? Reach out to us below.</p>
+  <!-- Main Content Area -->
+  <main class="max-w-4xl mx-auto px-4 py-12 flex-grow w-full">
+    
+    <section class="text-center mb-10">
+      <h1 class="text-3xl font-black text-slate-900 mb-3">Contact Us</h1>
+      <p class="text-slate-600 text-sm max-w-xl mx-auto">Have questions, feedback, advertising opportunities, or feature requests? Fill out the form below or send us a direct message.</p>
+    </section>
 
-    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-      <p class="font-bold text-slate-800 mb-2">Email Support:</p>
-      <a href="mailto:support@calculatethecpm.net" class="text-emerald-600 hover:underline font-semibold text-lg">support@calculatethecpm.net</a>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Contact Form -->
+      <div class="md:col-span-7 bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900 mb-6">Send Us a Message</h2>
+        
+        <!-- FormSubmit Action Handler -->
+        <form action="https://formsubmit.co/nasirbanaris4@gmail.com" method="POST" class="space-y-4">
+          
+          <!-- Optional FormSubmit Settings -->
+          <input type="hidden" name="_subject" value="New Contact Form Submission - calculatethecpm.net">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://calculatethecpm.net/contact.html">
+
+          <div>
+            <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="e.g. John Doe" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold">
+          </div>
+
+          <div>
+            <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="e.g. john@example.com" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold">
+          </div>
+
+          <div>
+            <label for="subject" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="e.g. Advertising Inquiry / Feature Request" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold">
+          </div>
+
+          <div>
+            <label for="message" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Your Message</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md transition text-sm">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Right Column: Direct Info -->
+      <div class="md:col-span-5 bg-slate-900 text-white p-6 md:p-8 rounded-3xl border border-slate-800 space-y-6">
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 block mb-2">QUICK SUPPORT</span>
+          <h2 class="text-xl font-bold mb-2">We'd Love to Hear From You</h2>
+          <p class="text-xs text-slate-400 leading-relaxed">Whether you are a digital publisher optimizing ad placements or an advertiser planning ad spend, we are here to help.</p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 space-y-4 text-xs">
+          <div>
+            <span class="font-bold text-slate-300 block mb-1">General Inquiries:</span>
+            <p class="text-slate-400">Response time is typically within 24 to 48 hours.</p>
+          </div>
+          <div>
+            <span class="font-bold text-slate-300 block mb-1">Advertising & Partnerships:</span>
+            <p class="text-slate-400">For guest edits, ad placements, or site integrations, specify your campaign goals in the subject line.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </main>
 
+  <!-- Legal Footer -->
   <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
     <div class="mb-2 space-x-4">
       <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
@@ -70,6 +132,5 @@
     <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
   </footer>
 
-  <script src="script.js" defer></script>
 </body>
 </html>
