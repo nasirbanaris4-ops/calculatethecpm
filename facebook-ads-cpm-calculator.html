@@ -1,122 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meta & Facebook Ads CPM Calculator - Calculate Social Ad Costs</title>
-  <meta name="description" content="Calculate Facebook and Instagram ad campaign CPM, ad spend requirements, and target reach.">
+  <title>Facebook Ads CPM Calculator - Meta Ad Impressions Utility</title>
+  <meta name="description" content="Calculate Facebook and Instagram ad campaign CPM, cost, and impressions instantly.">
+  <link rel="canonical" href="https://calculatethecpm.net/facebook-ads-cpm-calculator.html">
+  <link rel="icon" type="image/webp" href="/favicon.webp">
+
+  <meta property="og:title" content="Facebook Ads CPM Calculator">
+  <meta property="og:description" content="Calculate Facebook and Instagram ad campaign CPM, cost, and impressions instantly.">
+  <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
+  <meta property="og:url" content="https://calculatethecpm.net/facebook-ads-cpm-calculator.html">
+  <meta property="og:type" content="website">
+
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Facebook Ads CPM Calculator",
+    "url": "https://calculatethecpm.net/facebook-ads-cpm-calculator.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- Header Navigation -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-      <a href="index.html" class="flex items-center gap-2 group cursor-pointer">
-        <div class="bg-blue-600 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider group-hover:bg-blue-700 transition">CPM</div>
-        <span class="text-xl font-extrabold tracking-tight text-slate-900">
-          calculatethecpm<span class="text-blue-600 font-bold">.net</span>
-        </span>
+      <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
+        <span class="bg-blue-600 text-white px-2 py-0.5 rounded-lg">Meta</span>
+        calculatethecpm<span class="text-emerald-600">.net</span>
       </a>
-
-      <nav class="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-600">
-        <a href="index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM Calculator</a>
-        <a href="youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">YouTube CPM</a>
-        <a href="tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">TikTok CPM</a>
-        <a href="facebook-ads-cpm-calculator.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg transition">Meta Ads</a>
-        <a href="google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">Google Ads</a>
-        <a href="cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition">CPM vs CPC</a>
-        <a href="roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg transition text-green-600">ROAS Calc</a>
+      <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+        <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
+        <a href="/youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">YouTube CPM</a>
+        <a href="/tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">TikTok CPM</a>
+        <a href="/facebook-ads-cpm-calculator.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-200">Facebook Ads CPM</a>
       </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-4 py-8 w-full">
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow">
     <section class="text-center mb-8">
-      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Meta & Facebook Ads CPM Calculator</h1>
-      <p class="text-slate-600 text-sm md:text-base">Compute Facebook & Instagram campaign CPMs, required budget, or target impression reach.</p>
+      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Facebook Ads CPM Calculator</h1>
+      <p class="text-slate-600 text-sm">Evaluate Meta ad cost per thousand impressions.</p>
     </section>
 
-    <!-- 3-in-1 Dynamic Calculator Card -->
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-12">
-      <div class="bg-slate-100 p-3 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
-        <div class="flex flex-wrap gap-1 md:gap-2">
-          <button id="tab-cpm" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-sm transition">Calculate CPM</button>
-          <button id="tab-spend" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-slate-600 hover:bg-slate-200 transition">Calculate Spend</button>
-          <button id="tab-impressions" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-slate-600 hover:bg-slate-200 transition">Calculate Reach</button>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Meta Spend ($)</label>
+          <input type="number" id="cost" placeholder="e.g. 1000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
         </div>
-        <div class="flex items-center gap-2 text-xs font-semibold text-slate-600">
-          <label for="currency">CURRENCY:</label>
-          <select id="currency" class="bg-white border border-slate-300 rounded px-2 py-1">
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="PKR">PKR (Rs)</option>
-          </select>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Target CPM ($)</label>
+          <input type="number" id="cpm" placeholder="e.g. 12" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Impressions</label>
+          <input type="number" id="impressions" placeholder="e.g. 80000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
         </div>
       </div>
-
-      <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="space-y-4">
-          <div id="field-cost">
-            <label class="block text-xs font-bold text-slate-600 mb-1">Total Meta Ad Spend ($)</label>
-            <div class="relative">
-              <span class="absolute left-3 top-2.5 text-slate-400 font-semibold">$</span>
-              <input type="number" id="cost" value="1500" class="w-full pl-8 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-          </div>
-
-          <div id="field-impressions">
-            <label class="block text-xs font-bold text-slate-600 mb-1">Total Facebook/IG Impressions</label>
-            <input type="number" id="impressions" value="150000" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-
-          <div id="field-cpm" class="hidden">
-            <label class="block text-xs font-bold text-slate-600 mb-1">Target Meta CPM ($)</label>
-            <input type="number" id="cpm-rate" value="10.00" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-
-          <button id="reset-btn" class="text-xs text-slate-500 underline hover:text-slate-800">Reset Inputs</button>
-        </div>
-
-        <!-- Dark Background Result Box -->
-        <div class="bg-slate-900 text-white p-6 rounded-xl border border-slate-800 flex flex-col justify-between shadow-inner">
-          <div>
-            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2" id="result-title">CALCULATED META CPM</div>
-            <div class="text-4xl font-extrabold text-blue-400 mb-1" id="result-val">$10.00</div>
-            <div class="text-xs font-medium text-slate-400" id="result-lbl">Cost Per 1,000 Facebook Ad Views</div>
-          </div>
-
-          <div class="mt-6 p-4 bg-slate-800/80 rounded-lg border border-slate-700 text-xs">
-            <div class="font-bold text-amber-400 mb-1">LIVE STEP-BY-STEP BREAKDOWN:</div>
-            <div class="text-slate-200 font-mono" id="formula-text">CPM = ($1,500 ÷ 150,000) × 1,000 = $10.00</div>
-          </div>
-        </div>
-      </div>
+      <button id="calculate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-sm">Calculate Meta CPM</button>
+      <div id="result" class="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-200 text-center font-bold text-slate-700 hidden"></div>
     </div>
-
-    <!-- SEO Content Section -->
-    <section class="space-y-8 bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm text-slate-800">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">Understanding Meta Ad Bidding Costs</h2>
-      <p class="text-slate-600 text-sm leading-relaxed">
-        Facebook & Instagram ad CPMs typically range between $7.00 and $14.00 for interest targeting. High-competition holiday periods (Q4) often push CPMs higher.
-      </p>
-    </section>
   </main>
 
-<footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-  <div class="mb-2 space-x-4">
-    <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
-    <span>|</span>
-    <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
-    <span>|</span>
-    <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
-  </div>
-  <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
-</footer>
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <div class="mb-2 space-x-4">
+      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
+      <span>|</span>
+      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
+      <span>|</span>
+      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
+    </div>
+    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
+  </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
