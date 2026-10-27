@@ -1,33 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Home Page -->
   <url>
     <loc>https://calculatethecpm.net/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>1.00</priority>
   </url>
+
+  <!-- Calculator Tools -->
   <url>
     <loc>https://calculatethecpm.net/youtube-cpm-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://calculatethecpm.net/tiktok-cpm-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://calculatethecpm.net/facebook-ads-cpm-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://calculatethecpm.net/google-ads-cpm-calculator.html</loc>
-  </url>
-  <url>
-    <loc>https://calculatethecpm.net/cpm-to-cpc-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://calculatethecpm.net/roas-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://calculatethecpm.net/contact.html</loc>
+    <loc>https://calculatethecpm.net/cpm-to-cpc-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://calculatethecpm.net/cpc-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/ctr-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/ecpm-calculator.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Legal & Support Pages -->
   <url>
     <loc>https://calculatethecpm.net/privacy-policy.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.50</priority>
   </url>
   <url>
     <loc>https://calculatethecpm.net/terms.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/contact.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.50</priority>
   </url>
 </urlset>
