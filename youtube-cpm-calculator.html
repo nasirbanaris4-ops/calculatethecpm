@@ -3,37 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube CPM Calculator - Estimate YouTube Ad Revenue & Impressions</title>
-  <meta name="description" content="Calculate your YouTube ad revenue and impression costs with our free YouTube CPM Calculator tool.">
+  <title>YouTube CPM Calculator - Estimate YouTube Ad Revenue & Impression Costs</title>
+  <meta name="description" content="Calculate YouTube ad revenue, CPM rates, and monetized view goals instantly. Free online YouTube CPM calculator with benchmarks, formulas, and guides.">
   <link rel="canonical" href="https://calculatethecpm.net/youtube-cpm-calculator.html">
   <link rel="icon" type="image/webp" href="/favicon.webp">
 
-  <meta property="og:title" content="YouTube CPM Calculator - Estimate Ad Revenue">
-  <meta property="og:description" content="Calculate your YouTube ad revenue and impression costs instantly.">
+  <!-- OpenGraph / Social Media Tags -->
+  <meta property="og:title" content="YouTube CPM Calculator - Estimate Ad Revenue & View Costs">
+  <meta property="og:description" content="Calculate your YouTube ad earnings, target CPM rates, or required monetized views easily.">
   <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
   <meta property="og:url" content="https://calculatethecpm.net/youtube-cpm-calculator.html">
   <meta property="og:type" content="website">
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- MULTI-SCHEMA MARKUP (WebApplication + 5-Question FAQPage) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "YouTube CPM Calculator",
-    "url": "https://calculatethecpm.net/youtube-cpm-calculator.html",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube CPM Calculator",
+      "url": "https://calculatethecpm.net/youtube-cpm-calculator.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a good CPM rate on YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good YouTube CPM typically ranges between $6 and $15 for general entertainment channels in Tier-1 countries. However, specialized niches like finance, business, and tech can achieve CPMs exceeding $25 to $40."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between YouTube CPM and RPM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CPM (Cost Per Mille) is the gross rate advertisers pay for 1,000 ad views. RPM (Revenue Per Mille) is the actual net earnings a creator keeps per 1,000 total video views after YouTube takes its 45% revenue cut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does YouTube pay creators for ad views?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube pays creators through Google AdSense based on ad impressions and ad clicks. Revenue is shared 55% to the creator and 45% to YouTube when viewers watch at least 30 seconds of an ad or click on it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do YouTube CPM rates fluctuate throughout the year?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube CPMs fluctuate due to advertiser seasonal demand. Ad spend peaks during Q4 (Black Friday and holiday shopping) leading to high CPMs, and typically drops in January at the start of Q1."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do all YouTube video views generate ad revenue?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, not all video views generate revenue. Only views where an ad is served (monetized playbacks) count toward ad earnings. Viewers using ad blockers or skipped ads under 30 seconds may not generate ad revenue."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
+  <!-- Header Navigation -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
       <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
@@ -42,50 +94,52 @@
       </a>
       <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
         <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
-        <a href="/youtube-cpm-calculator.html" class="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg border border-red-200">YouTube CPM</a>
+        <a href="/youtube-cpm-calculator.html" class="bg-red-50 text-red-700 px-3 py-1.5 rounded-lg border border-red-200">YouTube CPM</a>
         <a href="/tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">TikTok CPM</a>
         <a href="/facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Facebook Ads CPM</a>
+        <a href="/google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Google Ads CPM</a>
+        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow">
+  <!-- Main Content Area -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
+    
+    <!-- Title Section -->
     <section class="text-center mb-8">
-      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">YouTube CPM Calculator</h1>
-      <p class="text-slate-600 text-sm">Estimate YouTube revenue and ad costs based on view impressions.</p>
+      <h1 class="text-3xl font-black text-slate-900 mb-2">YouTube CPM Calculator</h1>
+      <p class="text-slate-600 text-sm">Estimate YouTube ad earnings, advertiser spend requirements, or monetized view goals.</p>
     </section>
 
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Estimated Earnings ($)</label>
-          <input type="number" id="cost" placeholder="e.g. 200" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none">
+    <!-- Main Calculator Component Card -->
+    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 mb-12">
+      
+      <!-- Mode Selector Tabs -->
+      <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-3">
+        <div class="flex flex-wrap gap-2">
+          <button id="tab-cpm" onclick="switchMode('cpm')" class="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-600 text-white shadow-sm transition">Calculate CPM</button>
+          <button id="tab-cost" onclick="switchMode('cost')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Revenue / Cost</button>
+          <button id="tab-impressions" onclick="switchMode('impressions')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Monetized Views</button>
         </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">YouTube CPM ($)</label>
-          <input type="number" id="cpm" placeholder="e.g. 5" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Ad Views / Impressions</label>
-          <input type="number" id="impressions" placeholder="e.g. 40000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none">
-        </div>
+        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Currency: <span class="text-slate-700 font-bold">USD ($)</span></div>
       </div>
-      <button id="calculate-btn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition shadow-sm">Calculate YouTube CPM</button>
-      <div id="result" class="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-200 text-center font-bold text-slate-700 hidden"></div>
-    </div>
-  </main>
 
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <div class="mb-2 space-x-4">
-      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
-      <span>|</span>
-      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
-      <span>|</span>
-      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
-    </div>
-    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
-  </footer>
+      <!-- 2-Column Responsive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: Inputs & Controls -->
+        <div class="lg:col-span-7 space-y-5">
+          
+          <div id="wrapper-cost">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cost">Estimated Ad Revenue / Cost ($)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-semibold">$</span>
+              <input type="number" id="input-cost" placeholder="e.g. 500" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+            </div>
+          </div>
 
-  <script src="script.js" defer></script>
-</body>
-</html>
+          <div id="wrapper-cpm" class="hidden">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cpm">YouTube CPM Rate ($)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0
