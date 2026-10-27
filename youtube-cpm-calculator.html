@@ -142,4 +142,188 @@
           <div id="wrapper-cpm" class="hidden">
             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cpm">YouTube CPM Rate ($)</label>
             <div class="relative">
-              <span class="absolute inset-y-0 left-0
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-semibold">$</span>
+              <input type="number" id="input-cpm" placeholder="e.g. 8" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+            </div>
+          </div>
+
+          <div id="wrapper-impressions">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-impressions">Monetized Ad Impressions / Views</label>
+            <input type="number" id="input-impressions" placeholder="e.g. 62500" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
+            <button onclick="calculate()" class="w-full sm:w-auto flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition text-sm">Calculate Result</button>
+            <button onclick="resetCalculator()" class="text-xs font-semibold text-slate-400 hover:text-slate-600 underline cursor-pointer">Reset Inputs</button>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Rich Output Panel -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[280px]">
+          <div>
+            <span id="output-title" class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 block mb-2">CALCULATED YOUTUBE CPM</span>
+            <div id="output-value" class="text-4xl font-black text-emerald-400 tracking-tight my-1">$0.00</div>
+            <span id="output-subtext" class="text-xs text-slate-400 block font-medium">Cost Per 1,000 Ad Impressions</span>
+          </div>
+
+          <!-- Formula Breakdown Box -->
+          <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">LIVE STEP-BY-STEP BREAKDOWN:</span>
+            <div id="output-breakdown" class="font-mono text-xs text-slate-300 leading-relaxed font-semibold">
+              CPM = ($0 ÷ 0) × 1,000 = $0.00
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- GEO / AIO Direct Answer Box -->
+    <section class="bg-red-50 border border-red-200 p-6 rounded-2xl mb-12">
+      <h2 class="text-base font-bold text-red-950 mb-2">What is YouTube CPM?</h2>
+      <p class="text-sm text-red-900 leading-relaxed">
+        <strong>YouTube CPM (Cost Per Mille)</strong> represents the price advertisers pay to place 1,000 video ad impressions on YouTube channel content. While CPM reflects gross advertiser costs, content creators receive 55% of this revenue through YouTube's Partner Program (known as RPM).
+      </p>
+    </section>
+
+    <!-- Comprehensive SEO Article Section -->
+    <article class="prose max-w-none text-slate-700 text-sm space-y-8">
+      
+      <!-- Section 1: How to Calculate -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Calculate YouTube CPM (Formula & Steps)</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">
+          YouTube CPM is determined by dividing total campaign ad spend (or gross estimated ad earnings) by total monetized video playbacks and multiplying by 1,000. You can also analyze general ad rates using our primary <a href="/index.html" class="text-emerald-600 font-semibold underline">CPM Calculator</a>. The standard YouTube CPM formula is:
+        </p>
+        
+        <div class="bg-slate-100 p-4 rounded-xl font-mono text-center font-bold text-slate-800 border border-slate-200 text-sm my-4">
+          YouTube CPM = ( Total Ad Spend / Monetized Ad Views ) × 1,000
+        </div>
+        
+        <p class="text-slate-600"><strong>Calculation Example:</strong> If an ad campaign spends $500 across 62,500 monetized playbacks, the CPM is:</p>
+        <p class="font-mono bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 my-2 font-semibold">
+          YouTube CPM = ($500 ÷ 62,500) × 1,000 = $8.00
+        </p>
+      </section>
+
+      <!-- Section 2: How to Use Tool -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Use the YouTube CPM Calculator</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">Whether you are a YouTube creator estimating channel earnings or an advertiser planning a video campaign, follow these steps:</p>
+        <ol class="list-decimal pl-5 space-y-2 text-slate-600">
+          <li><strong>Select Calculation Mode:</strong> Choose between calculating CPM rate, gross estimated earnings, or required monetized views.</li>
+          <li><strong>Input Campaign Values:</strong> Enter your known revenue numbers, CPM targets, or view counts into the fields.</li>
+          <li><strong>Evaluate Breakdown:</strong> Click <strong>Calculate Result</strong> to see real-time output and formula breakdown.</li>
+        </ol>
+      </section>
+
+      <!-- Section 3: Benefits -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">Benefits of Tracking YouTube CPM for Creators & Marketers</h2>
+        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+          <li><strong>Niche Optimization:</strong> Compare CPM performance across video topics to focus on high-paying content categories.</li>
+          <li><strong>Cross-Platform Ad Comparison:</strong> Compare video ad efficiency against short-form video platforms like <a href="/tiktok-cpm-calculator.html" class="text-emerald-600 font-semibold underline">TikTok CPM</a> and social platforms like <a href="/facebook-ads-cpm-calculator.html" class="text-emerald-600 font-semibold underline">Facebook Ads CPM</a>.</li>
+          <li><strong>Monetization Analysis:</strong> Evaluate publisher ad revenue efficiency alongside our website <a href="/ecpm-calculator.html" class="text-emerald-600 font-semibold underline">eCPM Calculator</a>.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Highest Paying Niches Table -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Highest Paying YouTube Niches (2026 Industry Benchmarks)</h2>
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-100 text-slate-900 font-bold border-b border-slate-200">
+                <th class="p-3.5 border-r border-slate-200">YouTube Content Niche</th>
+                <th class="p-3.5 border-r border-slate-200">Average CPM (Tier 1)</th>
+                <th class="p-3.5">Primary Advertiser Types</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Make Money Online & Business</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$15.00 - $35.00+</td>
+                <td class="p-3.5 text-slate-600">SaaS Tools, Marketing Agencies, CRM Software</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Personal Finance & Investing</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$12.00 - $28.00</td>
+                <td class="p-3.5 text-slate-600">Trading Platforms, Banks, Credit Cards</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Software & Tech Reviews</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$8.00 - $18.00</td>
+                <td class="p-3.5 text-slate-600">Electronics Brands, VPNs, Web Hosting</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Health, Fitness & Lifestyle</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$5.00 - $12.00</td>
+                <td class="p-3.5 text-slate-600">Supplements, Fitness Apps, Consumer Brands</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Gaming & General Vlogs</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$2.50 - $6.50</td>
+                <td class="p-3.5 text-slate-600">Mobile Games, Consumer Goods, Apparel</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5: Related Conversion Metrics -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">Converting YouTube Impressions to Clicks and Revenue</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">
+          While CPM tracks impression costs, video advertisers must evaluate click-through efficiency. Use our <a href="/cpm-to-cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPM to CPC Calculator</a> to convert impression rates into click prices, or evaluate overall campaign efficiency using our <a href="/roas-calculator.html" class="text-emerald-600 font-semibold underline">ROAS Calculator</a>.
+        </p>
+      </section>
+
+      <!-- Section 6: FAQ Section (Strictly NO Links Inside) -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">What is a good CPM rate on YouTube?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">A good YouTube CPM typically ranges between $6 and $15 for general entertainment channels in Tier-1 countries. However, specialized niches like finance, business, and tech can achieve CPMs exceeding $25 to $40.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">What is the difference between YouTube CPM and RPM?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">CPM (Cost Per Mille) is the gross rate advertisers pay for 1,000 ad views. RPM (Revenue Per Mille) is the actual net earnings a creator keeps per 1,000 total video views after YouTube takes its 45% revenue cut.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">How does YouTube pay creators for ad views?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">YouTube pays creators through Google AdSense based on ad impressions and ad clicks. Revenue is shared 55% to the creator and 45% to YouTube when viewers watch at least 30 seconds of an ad or click on it.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Why do YouTube CPM rates fluctuate throughout the year?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">YouTube CPMs fluctuate due to advertiser seasonal demand. Ad spend peaks during Q4 (Black Friday and holiday shopping) leading to high CPMs, and typically drops in January at the start of Q1.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Do all YouTube video views generate ad revenue?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">No, not all video views generate revenue. Only views where an ad is served (monetized playbacks) count toward ad earnings. Viewers using ad blockers or skipped ads under 30 seconds may not generate ad revenue.</p>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- Legal Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <div class="mb-2 space-x-4">
+      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
+      <span>|</span>
+      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
+      <span>|</span>
+      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
+    </div>
+    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
+  </footer>
+
+  <!-- Script File Reference -->
+  <script src="script.js" defer></script>
+</body>
+</html>
