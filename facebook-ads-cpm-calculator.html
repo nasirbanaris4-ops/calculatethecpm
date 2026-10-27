@@ -3,37 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facebook Ads CPM Calculator - Meta Ad Impressions Utility</title>
-  <meta name="description" content="Calculate Facebook and Instagram ad campaign CPM, cost, and impressions instantly.">
+  <title>Facebook Ads CPM Calculator - Calculate Meta Ad Spend & Impressions</title>
+  <meta name="description" content="Calculate Facebook and Instagram ad CPM rates, campaign budgets, and required impressions easily. Free online Meta Ads CPM calculator with 2026 benchmarks and guides.">
   <link rel="canonical" href="https://calculatethecpm.net/facebook-ads-cpm-calculator.html">
   <link rel="icon" type="image/webp" href="/favicon.webp">
 
-  <meta property="og:title" content="Facebook Ads CPM Calculator">
-  <meta property="og:description" content="Calculate Facebook and Instagram ad campaign CPM, cost, and impressions instantly.">
+  <!-- OpenGraph / Social Media Tags -->
+  <meta property="og:title" content="Facebook Ads CPM Calculator - Calculate Meta Ad Costs">
+  <meta property="og:description" content="Calculate Facebook and Instagram ad CPM, total ad budget, or required impressions instantly.">
   <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
   <meta property="og:url" content="https://calculatethecpm.net/facebook-ads-cpm-calculator.html">
   <meta property="og:type" content="website">
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- MULTI-SCHEMA MARKUP (WebApplication + 5-Question FAQPage) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Facebook Ads CPM Calculator",
-    "url": "https://calculatethecpm.net/facebook-ads-cpm-calculator.html",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Facebook Ads CPM Calculator",
+      "url": "https://calculatethecpm.net/facebook-ads-cpm-calculator.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a good CPM for Facebook Ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good Facebook CPM in Tier-1 regions typically ranges between $7 and $15 for general e-commerce and consumer audiences. B2B, real estate, and financial campaigns often see higher CPMs ranging from $20 to $40+."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are my Facebook Ads CPMs so high?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "High Facebook CPMs are usually caused by narrow audience targeting, low ad relevance diagnostics, intense auction competition during peak shopping seasons (like Q4), or creative fatigue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I lower my Facebook Ads CPM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can lower your Facebook CPM by broadening your target audience, testing dynamic creative variations, improving ad engagement through better hooks, and using Advantage+ placements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Facebook charge per click or per impression?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By default, Meta charges advertisers based on impressions (CPM). Even if you choose link clicks (CPC) as your optimization goal, Meta enters your ad into auctions using calculated CPM bids."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between CPM and Frequency on Facebook?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CPM measures the cost per 1,000 total ad impressions, while Frequency measures the average number of times a single user sees your ad. High frequency alongside rising CPM indicates audience fatigue."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
+  <!-- Header Navigation -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
       <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
@@ -42,39 +94,219 @@
       </a>
       <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
         <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
+        <a href="/facebook-ads-cpm-calculator.html" class="bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg border border-blue-200">Facebook Ads CPM</a>
         <a href="/youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">YouTube CPM</a>
         <a href="/tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">TikTok CPM</a>
-        <a href="/facebook-ads-cpm-calculator.html" class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-200">Facebook Ads CPM</a>
+        <a href="/google-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Google Ads CPM</a>
+        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow">
+  <!-- Main Content Area -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
+    
+    <!-- Title Section -->
     <section class="text-center mb-8">
-      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Facebook Ads CPM Calculator</h1>
-      <p class="text-slate-600 text-sm">Evaluate Meta ad cost per thousand impressions.</p>
+      <h1 class="text-3xl font-black text-slate-900 mb-2">Facebook Ads CPM Calculator</h1>
+      <p class="text-slate-600 text-sm">Calculate Meta ad costs, campaign budgets, or required impression goals across Facebook & Instagram.</p>
     </section>
 
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Meta Spend ($)</label>
-          <input type="number" id="cost" placeholder="e.g. 1000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+    <!-- Main Calculator Component Card -->
+    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 mb-12">
+      
+      <!-- Mode Selector Tabs -->
+      <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-3">
+        <div class="flex flex-wrap gap-2">
+          <button id="tab-cpm" onclick="switchMode('cpm')" class="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-600 text-white shadow-sm transition">Calculate CPM</button>
+          <button id="tab-cost" onclick="switchMode('cost')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Spend</button>
+          <button id="tab-impressions" onclick="switchMode('impressions')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Views</button>
         </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Target CPM ($)</label>
-          <input type="number" id="cpm" placeholder="e.g. 12" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Impressions</label>
-          <input type="number" id="impressions" placeholder="e.g. 80000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-        </div>
+        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Currency: <span class="text-slate-700 font-bold">USD ($)</span></div>
       </div>
-      <button id="calculate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-sm">Calculate Meta CPM</button>
-      <div id="result" class="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-200 text-center font-bold text-slate-700 hidden"></div>
+
+      <!-- 2-Column Responsive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: Inputs & Controls -->
+        <div class="lg:col-span-7 space-y-5">
+          
+          <div id="wrapper-cost">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cost">Total Meta Ad Spend ($)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-semibold">$</span>
+              <input type="number" id="input-cost" placeholder="e.g. 1000" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+            </div>
+          </div>
+
+          <div id="wrapper-cpm" class="hidden">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cpm">Facebook Target CPM ($)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-semibold">$</span>
+              <input type="number" id="input-cpm" placeholder="e.g. 12" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+            </div>
+          </div>
+
+          <div id="wrapper-impressions">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-impressions">Total Ad Impressions</label>
+            <input type="number" id="input-impressions" placeholder="e.g. 80000" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
+            <button onclick="calculate()" class="w-full sm:w-auto flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition text-sm">Calculate Result</button>
+            <button onclick="resetCalculator()" class="text-xs font-semibold text-slate-400 hover:text-slate-600 underline cursor-pointer">Reset Inputs</button>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Rich Output Panel -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[280px]">
+          <div>
+            <span id="output-title" class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 block mb-2">CALCULATED META CPM</span>
+            <div id="output-value" class="text-4xl font-black text-emerald-400 tracking-tight my-1">$0.00</div>
+            <span id="output-subtext" class="text-xs text-slate-400 block font-medium">Cost Per 1,000 Ad Impressions</span>
+          </div>
+
+          <!-- Formula Breakdown Box -->
+          <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">LIVE STEP-BY-STEP BREAKDOWN:</span>
+            <div id="output-breakdown" class="font-mono text-xs text-slate-300 leading-relaxed font-semibold">
+              CPM = ($0 ÷ 0) × 1,000 = $0.00
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
+
+    <!-- GEO / AIO Direct Answer Box -->
+    <section class="bg-blue-50 border border-blue-200 p-6 rounded-2xl mb-12">
+      <h2 class="text-base font-bold text-blue-950 mb-2">What is Facebook Ads CPM?</h2>
+      <p class="text-sm text-blue-900 leading-relaxed">
+        <strong>Facebook Ads CPM (Cost Per Mille)</strong> measures the total cost incurred to display an advertisement 1,000 times across Meta platforms, including Facebook Feed, Instagram Reels, Stories, and Audience Network. CPM serves as Meta's primary auction pricing unit for bidding competition.
+      </p>
+    </section>
+
+    <!-- Comprehensive SEO Article Section -->
+    <article class="prose max-w-none text-slate-700 text-sm space-y-8">
+      
+      <!-- Section 1: How to Calculate -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Calculate Facebook Ads CPM (Formula & Steps)</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">
+          Facebook Ads CPM is calculated by dividing your total Meta campaign spend by the total number of ad impressions delivered, then multiplying by 1,000. You can also evaluate overall ad benchmarks on our general <a href="/index.html" class="text-emerald-600 font-semibold underline">CPM Calculator</a>. The standard Meta CPM formula is:
+        </p>
+        
+        <div class="bg-slate-100 p-4 rounded-xl font-mono text-center font-bold text-slate-800 border border-slate-200 text-sm my-4">
+          Facebook CPM = ( Total Meta Ad Spend / Total Impressions ) × 1,000
+        </div>
+        
+        <p class="text-slate-600"><strong>Real Campaign Example:</strong> An e-commerce brand spends $1,000 on Facebook Feed ads that deliver 80,000 impressions. The calculation is:</p>
+        <p class="font-mono bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 my-2 font-semibold">
+          Facebook CPM = ($1,000 ÷ 80,000) × 1,000 = $12.50
+        </p>
+      </section>
+
+      <!-- Section 2: How to Use Tool -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Use the Facebook Ads CPM Calculator</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">Follow these quick steps to plan and evaluate your Meta advertising campaigns:</p>
+        <ol class="list-decimal pl-5 space-y-2 text-slate-600">
+          <li><strong>Select Calculation Mode:</strong> Choose whether you want to calculate CPM rate, total ad spend required, or target ad impressions.</li>
+          <li><strong>Input Campaign Data:</strong> Enter your Meta Ads Manager budget, CPM target, or impression counts into the fields.</li>
+          <li><strong>Evaluate Breakdown:</strong> Click <strong>Calculate Result</strong> to see live output along with step-by-step mathematical details.</li>
+        </ol>
+      </section>
+
+      <!-- Section 3: Benefits -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">Benefits of Tracking Facebook Ads CPM for Marketers</h2>
+        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+          <li><strong>Auction Efficiency:</strong> Identify audience saturation or ad creative fatigue before cost per acquisition spikes.</li>
+          <li><strong>Cross-Platform Comparison:</strong> Compare Meta ad impression costs against video platforms like <a href="/youtube-cpm-calculator.html" class="text-emerald-600 font-semibold underline">YouTube CPM</a> and <a href="/tiktok-cpm-calculator.html" class="text-emerald-600 font-semibold underline">TikTok CPM</a>.</li>
+          <li><strong>Convert Views to Traffic:</strong> Translate your CPM rates into traffic costs using our <a href="/cpm-to-cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPM to CPC Calculator</a>.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Meta Industry Benchmarks Table -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Facebook Ads CPM Benchmarks by Industry (2026)</h2>
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-100 text-slate-900 font-bold border-b border-slate-200">
+                <th class="p-3.5 border-r border-slate-200">Industry / Niche</th>
+                <th class="p-3.5 border-r border-slate-200">Average Facebook CPM (Tier 1)</th>
+                <th class="p-3.5">Typical Targeting Strategy</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">E-Commerce & Retail Apparel</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$8.00 - $16.00</td>
+                <td class="p-3.5 text-slate-600">Broad Targeting & Dynamic Product Catalog Ads</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Financial Services & Insurance</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$22.00 - $45.00</td>
+                <td class="p-3.5 text-slate-600">High-Intent Demographics & Custom Lookalikes</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Real Estate & Property Development</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$14.00 - $28.00</td>
+                <td class="p-3.5 text-slate-600">Geographic Radius & High Income Filters</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">B2B SaaS & Professional Services</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">$18.00 - $35.00</td>
+                <td class="p-3.5 text-slate-600">Job Title Match & Retargeting Lists</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5: Related Conversion Metrics -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">Scaling Meta Ad Campaigns Efficiently</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">
+          Tracking impression cost is critical for campaign reach, but full funnel profitability requires measuring link clicks and conversions. Determine your cost per link click using our <a href="/cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPC Calculator</a>, analyze user click rates with our <a href="/ctr-calculator.html" class="text-emerald-600 font-semibold underline">CTR Calculator</a>, and calculate total revenue generated per ad dollar spent using our <a href="/roas-calculator.html" class="text-emerald-600 font-semibold underline">ROAS Calculator</a>.
+        </p>
+      </section>
+
+      <!-- Section 6: FAQ Section (Strictly NO Links Inside) -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">What is a good CPM for Facebook Ads?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">A good Facebook CPM in Tier-1 regions typically ranges between $7 and $15 for general e-commerce and consumer audiences. B2B, real estate, and financial campaigns often see higher CPMs ranging from $20 to $40+.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Why are my Facebook Ads CPMs so high?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">High Facebook CPMs are usually caused by narrow audience targeting, low ad relevance diagnostics, intense auction competition during peak shopping seasons (like Q4), or creative fatigue.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">How can I lower my Facebook Ads CPM?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">You can lower your Facebook CPM by broadening your target audience, testing dynamic creative variations, improving ad engagement through better hooks, and using Advantage+ placements.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Does Facebook charge per click or per impression?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">By default, Meta charges advertisers based on impressions (CPM). Even if you choose link clicks (CPC) as your optimization goal, Meta enters your ad into auctions using calculated CPM bids.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">What is the difference between CPM and Frequency on Facebook?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">CPM measures the cost per 1,000 total ad impressions, while Frequency measures the average number of times a single user sees your ad. High frequency alongside rising CPM indicates audience fatigue.</p>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
   </main>
 
+  <!-- Legal Footer -->
   <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
     <div class="mb-2 space-x-4">
       <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
@@ -86,6 +318,7 @@
     <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
   </footer>
 
+  <!-- Script File Reference -->
   <script src="script.js" defer></script>
 </body>
 </html>
