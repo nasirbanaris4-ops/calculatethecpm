@@ -1,316 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ROAS Calculator - Calculate Return On Ad Spend & Revenue</title>
-  <meta name="description" content="Calculate Return On Ad Spend (ROAS) ratio, total generated revenue, or required ad budget easily. Free online ROAS calculator with 2026 benchmarks and guides.">
-  <link rel="canonical" href="https://calculatethecpm.net/roas-calculator.html">
-  <link rel="icon" type="image/webp" href="/favicon.webp">
-
-  <!-- OpenGraph / Social Media Tags -->
-  <meta property="og:title" content="ROAS Calculator - Calculate Return On Ad Spend">
-  <meta property="og:description" content="Calculate Return On Ad Spend (ROAS) ratio, total campaign revenue, or required ad spend instantly.">
-  <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
-  <meta property="og:url" content="https://calculatethecpm.net/roas-calculator.html">
-  <meta property="og:type" content="website">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- MULTI-SCHEMA MARKUP (WebApplication + 5-Question FAQPage) -->
-  <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "ROAS Calculator",
-      "url": "https://calculatethecpm.net/roas-calculator.html",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is Return On Ad Spend (ROAS)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Return On Ad Spend (ROAS) is a marketing metric that measures the gross revenue generated for every dollar spent on an advertising campaign. Formula: ROAS = Gross Revenue / Total Ad Spend."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is considered a good ROAS ratio?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A good ROAS ratio depends on profit margins. An average benchmark for e-commerce campaigns is 4:1 ($4 revenue for every $1 spent), while high-margin SaaS businesses may operate profitably at 2.5:1."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between ROAS and ROI?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ROAS measures gross revenue generated strictly against direct advertising spend. ROI (Return On Investment) calculates overall net profit after deducting all business operational costs, shipping, and COGS."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is breakeven ROAS?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Breakeven ROAS is the exact return ratio where your advertising revenue equals your combined product costs and ad expenses, resulting in zero net profit or loss."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How can advertisers improve campaign ROAS?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Advertisers can improve ROAS by increasing landing page conversion rates, raising Average Order Value (AOV) with upsells, refining audience targeting, and pausing low-performing ad creatives."
-          }
-        }
-      ]
-    }
-  ]
-  </script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
-
-  <!-- Header Navigation -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-      <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
-        <span class="bg-emerald-600 text-white px-2 py-0.5 rounded-lg">ROAS</span>
-        calculatethecpm<span class="text-emerald-600">.net</span>
-      </a>
-      <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
-        <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
-        <a href="/roas-calculator.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">ROAS Calculator</a>
-        <a href="/cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPC Calculator</a>
-        <a href="/ctr-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CTR Calculator</a>
-        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
-        <a href="/ecpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">eCPM Calculator</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content Area -->
-  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
-    
-    <!-- Title Section -->
-    <section class="text-center mb-8">
-      <h1 class="text-3xl font-black text-slate-900 mb-2">ROAS Calculator (Return On Ad Spend)</h1>
-      <p class="text-slate-600 text-sm">Calculate Return On Ad Spend ratios, total generated revenue, or required campaign budgets.</p>
-    </section>
-
-    <!-- Main Calculator Component Card -->
-    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 mb-12">
-      
-      <!-- Top Mode Selector Tabs -->
-      <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-3">
-        <div class="flex flex-wrap gap-2">
-          <button id="tab-cpm" onclick="switchMode('cpm')" class="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-600 text-white shadow-sm transition">Calculate ROAS / Rate</button>
-          <button id="tab-cost" onclick="switchMode('cost')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Spend</button>
-          <button id="tab-impressions" onclick="switchMode('impressions')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Revenue</button>
-        </div>
-        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Currency: <span class="text-slate-700 font-bold">USD ($)</span></div>
-      </div>
-
-      <!-- 2-Column Responsive Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Left Column: Inputs & Controls -->
-        <div class="lg:col-span-7 space-y-5">
-          
-          <div id="wrapper-cost">
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cost">Total Ad Campaign Spend ($)</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-semibold">$</span>
-              <input type="number" id="input-cost" placeholder="e.g. 500" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
-            </div>
-          </div>
-
-          <div id="wrapper-cpm" class="hidden">
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cpm">Target ROAS Metric ($)</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 font-semibold">$</span>
-              <input type="number" id="input-cpm" placeholder="e.g. 4.0" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
-            </div>
-          </div>
-
-          <div id="wrapper-impressions">
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-impressions">Total Revenue Generated ($)</label>
-            <input type="number" id="input-impressions" placeholder="e.g. 2000" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
-          </div>
-
-          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="calculate()" class="w-full sm:w-auto flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition text-sm">Calculate Result</button>
-            <button onclick="resetCalculator()" class="text-xs font-semibold text-slate-400 hover:text-slate-600 underline cursor-pointer">Reset Inputs</button>
-          </div>
-
-        </div>
-
-        <!-- Right Column: Rich Output Panel -->
-        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[280px]">
-          <div>
-            <span id="output-title" class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 block mb-2">CALCULATED METRIC</span>
-            <div id="output-value" class="text-4xl font-black text-emerald-400 tracking-tight my-1">$0.00</div>
-            <span id="output-subtext" class="text-xs text-slate-400 block font-medium">Return On Ad Spend Metric</span>
-          </div>
-
-          <!-- Formula Breakdown Box -->
-          <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
-            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">LIVE STEP-BY-STEP BREAKDOWN:</span>
-            <div id="output-breakdown" class="font-mono text-xs text-slate-300 leading-relaxed font-semibold">
-              Calculation = ($0 ÷ 0) × 1,000 = $0.00
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- GEO / AIO Direct Answer Definition Box -->
-    <section class="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl mb-12">
-      <h2 class="text-base font-bold text-emerald-950 mb-2">What is Return On Ad Spend (ROAS)?</h2>
-      <p class="text-sm text-emerald-900 leading-relaxed">
-        <strong>Return On Ad Spend (ROAS)</strong> is a financial effectiveness metric that measures the gross revenue generated for every dollar spent on an advertising campaign. Expressed as a multiplier (e.g., 4x) or a percentage (e.g., 400%), ROAS evaluates campaign profitability across Meta, Google Ads, and e-commerce marketing.
-      </p>
-    </section>
-
-    <!-- Comprehensive SEO Article Section -->
-    <article class="prose max-w-none text-slate-700 text-sm space-y-8">
-      
-      <!-- Section 1: How to Calculate -->
-      <section>
-        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Calculate ROAS (Formula & Steps)</h2>
-        <p class="mb-3 text-slate-600 leading-relaxed">
-          Calculating ROAS requires dividing your gross sales revenue generated from ads by your total ad spend. To evaluate top-of-funnel view costs, use our master <a href="/index.html" class="text-emerald-600 font-semibold underline">CPM Calculator</a>, or analyze per-click acquisition costs with our <a href="/cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPC Calculator</a>. The standard ROAS formula is:
-        </p>
-        
-        <div class="bg-slate-100 p-4 rounded-xl font-mono text-center font-bold text-slate-800 border border-slate-200 text-sm my-4">
-          ROAS Ratio = Total Ad Campaign Revenue / Total Ad Spend
-        </div>
-        
-        <p class="text-slate-600"><strong>Real Campaign Example:</strong> An e-commerce store spends $500 on ads and generates $2,000 in gross sales revenue. The calculation is:</p>
-        <p class="font-mono bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 my-2 font-semibold">
-          ROAS Ratio = $2,000 ÷ $500 = 4.0x (or 400% Return)
-        </p>
-      </section>
-
-      <!-- Section 2: How to Use Tool -->
-      <section>
-        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Use the Online ROAS Calculator</h2>
-        <p class="mb-3 text-slate-600 leading-relaxed">Digital marketers and e-commerce store owners can measure ad performance in 3 simple steps:</p>
-        <ol class="list-decimal pl-5 space-y-2 text-slate-600">
-          <li><strong>Select Calculation Mode:</strong> Choose whether you want to calculate ROAS ratio, required ad budget, or target sales revenue.</li>
-          <li><strong>Enter Campaign Figures:</strong> Input your ad spend, target ROAS multiplier, or total revenue figures into the boxes.</li>
-          <li><strong>Review Output:</strong> Click <strong>Calculate Result</strong> to view live performance output and step-by-step mathematical details.</li>
-        </ol>
-      </section>
-
-      <!-- Section 3: Benefits -->
-      <section>
-        <h2 class="text-xl font-extrabold text-slate-900 mb-3">Benefits of Measuring ROAS for E-Commerce & Media Buyers</h2>
-        <ul class="list-disc pl-5 space-y-2 text-slate-600">
-          <li><strong>Campaign Scaling:</strong> Identify winning ad sets on <a href="/facebook-ads-cpm-calculator.html" class="text-emerald-600 font-semibold underline">Facebook Ads CPM</a> and <a href="/google-ads-cpm-calculator.html" class="text-emerald-600 font-semibold underline">Google Ads CPM</a> that exceed your target profit margins.</li>
-          <li><strong>Budget Allocation:</strong> Shift advertising budget away from low-performing channels toward high-ROI platforms like <a href="/tiktok-cpm-calculator.html" class="text-emerald-600 font-semibold underline">TikTok CPM</a> or <a href="/youtube-cpm-calculator.html" class="text-emerald-600 font-semibold underline">YouTube CPM</a>.</li>
-          <li><strong>Funnel Optimization:</strong> Connect click engagement from our <a href="/ctr-calculator.html" class="text-emerald-600 font-semibold underline">CTR Calculator</a> directly to bottom-of-funnel revenue metrics.</li>
-        </ul>
-      </section>
-
-      <!-- Section 4: Industry Benchmarks Table -->
-      <section>
-        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Target ROAS Benchmarks by Industry (2026)</h2>
-        <div class="overflow-x-auto rounded-xl border border-slate-200">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-slate-100 text-slate-900 font-bold border-b border-slate-200">
-                <th class="p-3.5 border-r border-slate-200">Industry Sector</th>
-                <th class="p-3.5 border-r border-slate-200">Average ROAS Target</th>
-                <th class="p-3.5">Typical Margin Profile</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 bg-white">
-              <tr>
-                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">E-Commerce Retail & Apparel</td>
-                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">3.5x - 5.0x (350% - 500%)</td>
-                <td class="p-3.5 text-slate-600">Medium Product Margins (40% - 60% COGS)</td>
-              </tr>
-              <tr>
-                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Digital Software & SaaS</td>
-                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">2.0x - 3.0x (200% - 300%)</td>
-                <td class="p-3.5 text-slate-600">High Profit Margins with Customer LTV Focus</td>
-              </tr>
-              <tr>
-                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">High-Ticket Lead Generation</td>
-                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">4.0x - 8.0x (400% - 800%)</td>
-                <td class="p-3.5 text-slate-600">High Contract Value & Low Direct COGS</td>
-              </tr>
-              <tr>
-                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Dropshipping & Consumer Goods</td>
-                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">2.5x - 3.8x (250% - 380%)</td>
-                <td class="p-3.5 text-slate-600">Thin Profit Margins Requiring High Volume</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Section 5: FAQ Section (Strictly NO Links Inside) -->
-      <section>
-        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
-        <div class="space-y-4">
-          <div class="bg-white p-5 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-sm mb-1">What is Return On Ad Spend (ROAS)?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">Return On Ad Spend (ROAS) is a marketing metric that measures the gross revenue generated for every dollar spent on an advertising campaign. Formula: ROAS = Gross Revenue / Total Ad Spend.</p>
-          </div>
-          <div class="bg-white p-5 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-sm mb-1">What is considered a good ROAS ratio?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">A good ROAS ratio depends on profit margins. An average benchmark for e-commerce campaigns is 4:1 ($4 revenue for every $1 spent), while high-margin SaaS businesses may operate profitably at 2.5:1.</p>
-          </div>
-          <div class="bg-white p-5 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-sm mb-1">What is the difference between ROAS and ROI?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">ROAS measures gross revenue generated strictly against direct advertising spend. ROI (Return On Investment) calculates overall net profit after deducting all business operational costs, shipping, and COGS.</p>
-          </div>
-          <div class="bg-white p-5 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-sm mb-1">What is breakeven ROAS?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">Breakeven ROAS is the exact return ratio where your advertising revenue equals your combined product costs and ad expenses, resulting in zero net profit or loss.</p>
-          </div>
-          <div class="bg-white p-5 rounded-xl border border-slate-200">
-            <h3 class="font-bold text-slate-900 text-sm mb-1">How can advertisers improve campaign ROAS?</h3>
-            <p class="text-slate-600 text-xs leading-relaxed">Advertisers can improve ROAS by increasing landing page conversion rates, raising Average Order Value (AOV) with upsells, refining audience targeting, and pausing low-performing ad creatives.</p>
-          </div>
-        </div>
-      </section>
-
-    </article>
-
-  </main>
-
-  <!-- Legal Footer -->
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <div class="mb-2 space-x-4">
-      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
-      <span>|</span>
-      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
-      <span>|</span>
-      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
-    </div>
-    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
-  </footer>
-
-  <!-- Script File Reference -->
-  <script src="script.js" defer></script>
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://calculatethecpm.net/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/youtube-cpm-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/tiktok-cpm-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/facebook-ads-cpm-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/google-ads-cpm-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/cpm-to-cpc-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/cpc-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/ctr-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/ecpm-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/roas-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/privacy-policy.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/terms.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://calculatethecpm.net/contact.html</loc>
+    <priority>0.3</priority>
+  </url>
+</urlset>
