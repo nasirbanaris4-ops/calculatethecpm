@@ -7,73 +7,118 @@ function switchMode(mode) {
   const btnCost = document.getElementById('tab-cost');
   const btnImp = document.getElementById('tab-impressions');
 
-  const activeClass = 'px-4 py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white transition';
-  const inactiveClass = 'px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+  const activeClass = 'px-4 py-2 text-xs font-bold rounded-xl bg-emerald-600 text-white shadow-sm transition';
+  const inactiveClass = 'px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
 
   if (btnCpm) btnCpm.className = (mode === 'cpm') ? activeClass : inactiveClass;
   if (btnCost) btnCost.className = (mode === 'cost') ? activeClass : inactiveClass;
   if (btnImp) btnImp.className = (mode === 'impressions') ? activeClass : inactiveClass;
 
-  const costField = document.getElementById('field-cost');
-  const cpmField = document.getElementById('field-cpm');
-  const impField = document.getElementById('field-impressions');
+  const wrapCost = document.getElementById('wrapper-cost');
+  const wrapCpm = document.getElementById('wrapper-cpm');
+  const wrapImp = document.getElementById('wrapper-impressions');
 
   if (mode === 'cpm') {
-    costField?.classList.remove('hidden');
-    cpmField?.classList.add('hidden');
-    impField?.classList.remove('hidden');
+    wrapCost?.classList.remove('hidden');
+    wrapCpm?.classList.add('hidden');
+    wrapImp?.classList.remove('hidden');
   } else if (mode === 'cost') {
-    costField?.classList.add('hidden');
-    cpmField?.classList.remove('hidden');
-    impField?.classList.remove('hidden');
+    wrapCost?.classList.add('hidden');
+    wrapCpm?.classList.remove('hidden');
+    wrapImp?.classList.remove('hidden');
   } else if (mode === 'impressions') {
-    costField?.classList.remove('hidden');
-    cpmField?.classList.remove('hidden');
-    impField?.classList.add('hidden');
+    wrapCost?.classList.remove('hidden');
+    wrapCpm?.classList.remove('hidden');
+    wrapImp?.classList.add('hidden');
   }
 
-  document.getElementById('result-box')?.classList.add('hidden');
+  resetOutput();
 }
 
 function calculate() {
-  const costInput = document.getElementById('cost');
-  const cpmInput = document.getElementById('cpm');
-  const impInput = document.getElementById('impressions');
+  const costVal = parseFloat(document.getElementById('input-cost')?.value) || 0;
+  const cpmVal = parseFloat(document.getElementById('input-cpm')?.value) || 0;
+  const impVal = parseFloat(document.getElementById('input-impressions')?.value) || 0;
 
-  const cost = parseFloat(costInput?.value) || 0;
-  const cpm = parseFloat(cpmInput?.value) || 0;
-  const impressions = parseFloat(impInput?.value) || 0;
-
-  const resultBox = document.getElementById('result-box');
-  const resultText = document.getElementById('result-text');
-
-  let output = '';
+  const outputTitle = document.getElementById('output-title');
+  const outputValue = document.getElementById('output-value');
+  const outputSubtext = document.getElementById('output-subtext');
+  const outputBreakdown = document.getElementById('output-breakdown');
 
   if (currentMode === 'cpm') {
-    if (impressions > 0) {
-      const calculatedCPM = (cost / impressions) * 1000;
-      output = `CPM = $${calculatedCPM.toFixed(2)}`;
+    if (impVal > 0) {
+      const calculatedCPM = (costVal / impVal) * 1000;
+      if (outputTitle) outputTitle.innerText = 'CALCULATED CPM RATE';
+      if (outputValue) outputValue.innerText = `$${calculatedCPM.toFixed(2)}`;
+      if (outputSubtext) outputSubtext.innerText = 'Cost Per 1,000 Impressions';
+      if (outputBreakdown) {
+        outputBreakdown.innerText = `CPM = ($${costVal.toLocaleString()} ÷ ${impVal.toLocaleString()}) × 1,000 = $${calculatedCPM.toFixed(2)}`;
+      }
     } else {
-      output = 'Please enter valid ad impressions';
+      if (outputValue) outputValue.innerText = '$0.00';
+      if (outputBreakdown) outputBreakdown.innerText = 'Please enter valid ad impressions';
     }
   } else if (currentMode === 'cost') {
-    if (impressions > 0 && cpm > 0) {
-      const calculatedCost = (cpm * impressions) / 1000;
-      output = `Total Cost = $${calculatedCost.toFixed(2)}`;
+    if (impVal > 0 && cpmVal > 0) {
+      const calculatedCost = (cpmVal * impVal) / 1000;
+      if (outputTitle) outputTitle.innerText = 'REQUIRED AD SPEND';
+      if (outputValue) outputValue.innerText = `$${calculatedCost.toFixed(2)}`;
+      if (outputSubtext) outputSubtext.innerText = 'Total Budget Required';
+      if (outputBreakdown) {
+        outputBreakdown.innerText = `Spend = ($${cpmVal} × ${impVal.toLocaleString()}) ÷ 1,000 = $${calculatedCost.toFixed(2)}`;
+      }
     } else {
-      output = 'Please enter valid CPM and impressions';
+      if (outputValue) outputValue.innerText = '$0.00';
+      if (outputBreakdown) outputBreakdown.innerText = 'Please enter valid CPM and impressions';
     }
   } else if (currentMode === 'impressions') {
-    if (cpm > 0 && cost > 0) {
-      const calculatedImp = (cost / cpm) * 1000;
-      output = `Required Impressions = ${Math.round(calculatedImp).toLocaleString()}`;
+    if (cpmVal > 0 && costVal > 0) {
+      const calculatedImp = (costVal / cpmVal) * 1000;
+      if (outputTitle) outputTitle.innerText = 'ESTIMATED IMPRESSIONS';
+      if (outputValue) outputValue.innerText = `${Math.round(calculatedImp).toLocaleString()}`;
+      if (outputSubtext) outputSubtext.innerText = 'Total Ad Views Delivered';
+      if (outputBreakdown) {
+        outputBreakdown.innerText = `Views = ($${costVal.toLocaleString()} ÷ $${cpmVal}) × 1,000 = ${Math.round(calculatedImp).toLocaleString()}`;
+      }
     } else {
-      output = 'Please enter valid cost and CPM';
+      if (outputValue) outputValue.innerText = '0';
+      if (outputBreakdown) outputBreakdown.innerText = 'Please enter valid spend and CPM';
     }
   }
+}
 
-  if (resultText && resultBox) {
-    resultText.innerText = output;
-    resultBox.classList.remove('hidden');
+function resetCalculator() {
+  const inputCost = document.getElementById('input-cost');
+  const inputCpm = document.getElementById('input-cpm');
+  const inputImp = document.getElementById('input-impressions');
+
+  if (inputCost) inputCost.value = '';
+  if (inputCpm) inputCpm.value = '';
+  if (inputImp) inputImp.value = '';
+
+  resetOutput();
+}
+
+function resetOutput() {
+  const outputTitle = document.getElementById('output-title');
+  const outputValue = document.getElementById('output-value');
+  const outputSubtext = document.getElementById('output-subtext');
+  const outputBreakdown = document.getElementById('output-breakdown');
+
+  if (currentMode === 'cpm') {
+    if (outputTitle) outputTitle.innerText = 'CALCULATED CPM RATE';
+    if (outputValue) outputValue.innerText = '$0.00';
+    if (outputSubtext) outputSubtext.innerText = 'Cost Per 1,000 Impressions';
+    if (outputBreakdown) outputBreakdown.innerText = 'CPM = ($0 ÷ 0) × 1,000 = $0.00';
+  } else if (currentMode === 'cost') {
+    if (outputTitle) outputTitle.innerText = 'REQUIRED AD SPEND';
+    if (outputValue) outputValue.innerText = '$0.00';
+    if (outputSubtext) outputSubtext.innerText = 'Total Budget Required';
+    if (outputBreakdown) outputBreakdown.innerText = 'Spend = ($0 × 0) ÷ 1,000 = $0.00';
+  } else if (currentMode === 'impressions') {
+    if (outputTitle) outputTitle.innerText = 'ESTIMATED IMPRESSIONS';
+    if (outputValue) outputValue.innerText = '0';
+    if (outputSubtext) outputSubtext.innerText = 'Total Ad Views Delivered';
+    if (outputBreakdown) outputBreakdown.innerText = 'Views = ($0 ÷ $0) × 1,000 = 0';
   }
 }
