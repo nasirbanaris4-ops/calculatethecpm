@@ -7,7 +7,7 @@ function switchMode(mode) {
   const btnCost = document.getElementById('tab-cost');
   const btnImp = document.getElementById('tab-impressions');
 
-  const activeClass = 'px-4 py-2 text-xs font-bold rounded-xl bg-emerald-600 text-white shadow-sm transition';
+  const activeClass = 'px-4 py-2 text-xs font-bold rounded-xl bg-emerald-700 text-white shadow-sm transition';
   const inactiveClass = 'px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
 
   if (btnCpm) btnCpm.className = (mode === 'cpm') ? activeClass : inactiveClass;
