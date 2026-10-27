@@ -9,11 +9,10 @@ function updateCurrency() {
   calculate();
 }
 
-// Helper function to extract pure numbers safely from inputs
+// Helper to get raw numeric values safely regardless of $, spaces, or symbols
 function getCleanNumber(elementId) {
   const el = document.getElementById(elementId);
   if (!el || !el.value) return 0;
-  // Strip everything except digits and decimal points
   const cleanVal = el.value.toString().replace(/[^0-9.]/g, '');
   return parseFloat(cleanVal) || 0;
 }
@@ -61,14 +60,13 @@ function switchMode(mode) {
   calculate();
 }
 
-// Main Calculation Function
+// Main Calculation Logic
 function calculate() {
   const outputDisplay = document.getElementById("output-result");
   const breakdownDisplay = document.getElementById("breakdown-text");
 
   if (!outputDisplay) return;
 
-  // Get cleaned numeric values safely
   const val1 = getCleanNumber("input1");
   const val2 = getCleanNumber("input2");
 
@@ -103,16 +101,7 @@ function calculate() {
   }
 }
 
-// Reset Inputs
-function resetInputs() {
-  const input1 = document.getElementById("input1");
-  const input2 = document.getElementById("input2");
-  if (input1) input1.value = "";
-  if (input2) input2.value = "";
-  calculate();
-}
-
-// Auto Attach Event Listeners on Load
+// Auto attach live calculations on document setup
 document.addEventListener("DOMContentLoaded", () => {
   const input1 = document.getElementById("input1");
   const input2 = document.getElementById("input2");
