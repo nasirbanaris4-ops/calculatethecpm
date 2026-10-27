@@ -7,7 +7,6 @@ function updateCurrency() {
   if (selectElement) {
     currentCurrencySymbol = selectElement.value;
   }
-  // Trigger calculation refresh if inputs are filled
   calculate();
 }
 
@@ -17,7 +16,7 @@ let currentMode = 'cpm';
 function switchMode(mode) {
   currentMode = mode;
   
-  // Tab Styling Updates
+  // Tab Styling Updates safely
   const tabs = ['cpm', 'spend', 'views'];
   tabs.forEach(tab => {
     const btn = document.getElementById(`tab-${tab}`);
@@ -30,7 +29,7 @@ function switchMode(mode) {
     }
   });
 
-  // Dynamic Input Labels
+  // Dynamic Input Labels safely
   const input1Label = document.getElementById("label-input1");
   const input2Label = document.getElementById("label-input2");
   const resultTitle = document.getElementById("result-title");
@@ -53,19 +52,22 @@ function switchMode(mode) {
     if (resultSubtext) resultSubtext.innerText = "Total Expected Views/Impressions";
   }
 
-  // Clear or Recalculate
   calculate();
 }
 
-// Main Calculator Logic
+// Main Calculation Logic
 function calculate() {
-  const input1Val = parseFloat(document.getElementById("input1")?.value) || 0;
-  const input2Val = parseFloat(document.getElementById("input2")?.value) || 0;
+  const input1 = document.getElementById("input1");
+  const input2 = document.getElementById("input2");
   const outputDisplay = document.getElementById("output-result");
 
+  // Exit safely if output element doesn't exist on page
   if (!outputDisplay) return;
 
-  if (input1Val <= 0 || input2Val <= 0) {
+  const val1 = parseFloat(input1 ? input1.value : 0) || 0;
+  const val2 = parseFloat(input2 ? input2.value : 0) || 0;
+
+  if (val1 <= 0 || val2 <= 0) {
     outputDisplay.innerText = currentMode === 'views' ? "0" : `${currentCurrencySymbol}0.00`;
     return;
   }
@@ -73,21 +75,18 @@ function calculate() {
   let result = 0;
 
   if (currentMode === 'cpm') {
-    // CPM = (Spend / Impressions) * 1000
-    result = (input1Val / input2Val) * 1000;
+    result = (val1 / val2) * 1000;
     outputDisplay.innerText = `${currentCurrencySymbol}${result.toFixed(2)}`;
   } else if (currentMode === 'spend') {
-    // Total Spend = (CPM * Impressions) / 1000
-    result = (input1Val * input2Val) / 1000;
+    result = (val1 * val2) / 1000;
     outputDisplay.innerText = `${currentCurrencySymbol}${result.toFixed(2)}`;
   } else if (currentMode === 'views') {
-    // Impressions = (Total Spend / CPM) * 1000
-    result = (input1Val / input2Val) * 1000;
+    result = (val1 / val2) * 1000;
     outputDisplay.innerText = Math.round(result).toLocaleString();
   }
 }
 
-// Reset Function
+// Reset Inputs
 function resetInputs() {
   const input1 = document.getElementById("input1");
   const input2 = document.getElementById("input2");
