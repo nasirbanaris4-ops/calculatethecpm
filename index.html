@@ -4,34 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CPM Calculator - Free Online Ad Cost & Impression Utility</title>
-  <meta name="description" content="Calculate Cost Per Mille (CPM), total ad budget, or required impressions easily with our free online calculator.">
+  <meta name="description" content="Calculate Cost Per Mille (CPM), total ad budget, or required impressions instantly. Free online CPM calculator for digital marketers and creators.">
   <link rel="canonical" href="https://calculatethecpm.net/">
   <link rel="icon" type="image/webp" href="/favicon.webp">
 
   <!-- OpenGraph / Social Media Tags -->
-  <meta property="og:title" content="CPM Calculator - Online Ad Cost Utility">
-  <meta property="og:description" content="Calculate Cost Per Mille (CPM), total ad budget, or required impressions instantly.">
+  <meta property="og:title" content="CPM Calculator - Free Online Ad Cost Utility">
+  <meta property="og:description" content="Calculate Cost Per Mille (CPM), ad spend, or required impressions instantly with our free online calculator.">
   <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
   <meta property="og:url" content="https://calculatethecpm.net/">
   <meta property="og:type" content="website">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- SCHEMA MARKUP -->
+  <!-- MULTI-SCHEMA MARKUP (WebApplication + FAQPage) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "CPM Calculator",
-    "url": "https://calculatethecpm.net/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CPM Calculator",
+      "url": "https://calculatethecpm.net/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is CPM in advertising?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CPM stands for Cost Per Mille, where 'Mille' represents 1,000 impressions. It is a standard metric used in online advertising to measure the cost an advertiser pays for 1,000 views or impressions of an ad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is CPM calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The CPM formula is: CPM = (Total Ad Cost / Total Impressions) * 1,000. For example, spending $500 for 100,000 impressions results in a $5 CPM."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
@@ -45,53 +69,5 @@
       </a>
       <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
         <a href="/index.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">CPM Calculator</a>
-        <a href="/youtube-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">YouTube CPM</a>
-        <a href="/tiktok-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">TikTok CPM</a>
-        <a href="/facebook-ads-cpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">Facebook Ads CPM</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content & Tool -->
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow">
-    <section class="text-center mb-8">
-      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Online CPM Calculator</h1>
-      <p class="text-slate-600 text-sm">Calculate Cost Per Mille, Ad Spend, or Required Impressions instantly.</p>
-    </section>
-
-    <!-- Calculator Card -->
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Total Cost ($)</label>
-          <input type="number" id="cost" placeholder="e.g. 500" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">CPM ($)</label>
-          <input type="number" id="cpm" placeholder="e.g. 10" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Impressions</label>
-          <input type="number" id="impressions" placeholder="e.g. 50000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-        </div>
-      </div>
-      <button id="calculate-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition shadow-sm">Calculate</button>
-      <div id="result" class="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-200 text-center font-bold text-slate-700 hidden"></div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <div class="mb-2 space-x-4">
-      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
-      <span>|</span>
-      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
-      <span>|</span>
-      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
-    </div>
-    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
-  </footer>
-
-  <script src="script.js" defer></script>
-</body>
-</html>
+        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
+        <a href="/youtube-cpm-calculator.html" class="
