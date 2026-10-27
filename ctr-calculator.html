@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTR Calculator - Calculate Click-Through Rate & Ad Impressions</title>
+  <meta name="description" content="Calculate Click-Through Rate (CTR) percentage, total ad clicks, or required impressions easily. Free online CTR calculator with 2026 benchmarks and guides.">
+  <link rel="canonical" href="https://calculatethecpm.net/ctr-calculator.html">
+  <link rel="icon" type="image/webp" href="/favicon.webp">
+
+  <!-- OpenGraph / Social Media Tags -->
+  <meta property="og:title" content="CTR Calculator - Calculate Click-Through Rate & Clicks">
+  <meta property="og:description" content="Calculate Click-Through Rate (CTR) percentage, total clicks, or required impressions instantly.">
+  <meta property="og:image" content="https://calculatethecpm.net/thumbnail.webp">
+  <meta property="og:url" content="https://calculatethecpm.net/ctr-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- MULTI-SCHEMA MARKUP (WebApplication + 5-Question FAQPage) -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CTR Calculator",
+      "url": "https://calculatethecpm.net/ctr-calculator.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Click-Through Rate (CTR)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Click-Through Rate (CTR) is a digital marketing metric measuring the percentage of total ad viewers who click on an advertisement link. Formula: CTR = (Total Clicks / Total Impressions) * 100."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is considered a good CTR for online ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good CTR varies by platform. Search ads average 2% to 5% CTR, social feed ads range between 1% and 2.5%, while web display banners typically average 0.35% to 0.80%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does CTR impact ad costs and CPM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A higher CTR signals strong ad relevance to ad platforms like Google and Meta. High CTR improves your Quality Score, leading to lower CPM and CPC rates in ad auctions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my ad Click-Through Rate low?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Low CTR is typically caused by weak ad copy, unengaging visuals, poor audience targeting, creative fatigue, or irrelevant call-to-action (CTA) buttons."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I improve my ad campaign CTR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can improve CTR by writing strong headline hooks, testing dynamic ad creative variations, adding clear CTA buttons, and narrowing audience targeting to high-intent users."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- Header Navigation -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+      <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
+        <span class="bg-emerald-600 text-white px-2 py-0.5 rounded-lg">CTR</span>
+        calculatethecpm<span class="text-emerald-600">.net</span>
+      </a>
+      <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+        <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
+        <a href="/ctr-calculator.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">CTR Calculator</a>
+        <a href="/cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPC Calculator</a>
+        <a href="/cpm-to-cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM to CPC</a>
+        <a href="/roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">ROAS Calculator</a>
+        <a href="/ecpm-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">eCPM Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
+    
+    <!-- Title Section -->
+    <section class="text-center mb-8">
+      <h1 class="text-3xl font-black text-slate-900 mb-2">Click-Through Rate (CTR) Calculator</h1>
+      <p class="text-slate-600 text-sm">Calculate CTR percentage, total ad clicks received, or impression requirements.</p>
+    </section>
+
+    <!-- Main Calculator Component Card -->
+    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 mb-12">
+      
+      <!-- Top Mode Selector Tabs -->
+      <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-3">
+        <div class="flex flex-wrap gap-2">
+          <button id="tab-cpm" onclick="switchMode('cpm')" class="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-600 text-white shadow-sm transition">Calculate Rate / CTR</button>
+          <button id="tab-cost" onclick="switchMode('cost')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Volume</button>
+          <button id="tab-impressions" onclick="switchMode('impressions')" class="px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Calculate Impressions</button>
+        </div>
+        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Unit: <span class="text-slate-700 font-bold">Percentage (%)</span></div>
+      </div>
+
+      <!-- 2-Column Responsive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: Inputs & Controls -->
+        <div class="lg:col-span-7 space-y-5">
+          
+          <div id="wrapper-cost">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cost">Total Ad Clicks</label>
+            <div class="relative">
+              <input type="number" id="input-cost" placeholder="e.g. 500" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+            </div>
+          </div>
+
+          <div id="wrapper-cpm" class="hidden">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-cpm">Target CTR Rate (%)</label>
+            <div class="relative">
+              <input type="number" id="input-cpm" placeholder="e.g. 2.5" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+            </div>
+          </div>
+
+          <div id="wrapper-impressions">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" id="label-impressions">Total Ad Impressions</label>
+            <input type="number" id="input-impressions" placeholder="e.g. 25000" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition text-slate-800 font-semibold text-sm">
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
+            <button onclick="calculate()" class="w-full sm:w-auto flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition text-sm">Calculate Result</button>
+            <button onclick="resetCalculator()" class="text-xs font-semibold text-slate-400 hover:text-slate-600 underline cursor-pointer">Reset Inputs</button>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Rich Output Panel -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[280px]">
+          <div>
+            <span id="output-title" class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 block mb-2">CALCULATED METRIC</span>
+            <div id="output-value" class="text-4xl font-black text-emerald-400 tracking-tight my-1">0.00</div>
+            <span id="output-subtext" class="text-xs text-slate-400 block font-medium">Click-Through Metric Output</span>
+          </div>
+
+          <!-- Formula Breakdown Box -->
+          <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">LIVE STEP-BY-STEP BREAKDOWN:</span>
+            <div id="output-breakdown" class="font-mono text-xs text-slate-300 leading-relaxed font-semibold">
+              Calculation = (0 ÷ 0) × 100
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- GEO / AIO Direct Answer Definition Box -->
+    <section class="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl mb-12">
+      <h2 class="text-base font-bold text-emerald-950 mb-2">What is Click-Through Rate (CTR)?</h2>
+      <p class="text-sm text-emerald-900 leading-relaxed">
+        <strong>Click-Through Rate (CTR)</strong> measures the proportion of users who click on a digital ad compared to the total number of users who viewed it. Expressed as a percentage, CTR is a critical measure of creative engagement and audience relevance across Google Ads, Meta, and email campaigns.
+      </p>
+    </section>
+
+    <!-- Comprehensive SEO Article Section -->
+    <article class="prose max-w-none text-slate-700 text-sm space-y-8">
+      
+      <!-- Section 1: How to Calculate -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Calculate CTR (Formula & Steps)</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">
+          Calculating CTR requires dividing total ad clicks by total ad impressions and multiplying by 100. To see how CTR impacts your impression and click costs, use our <a href="/cpm-to-cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPM to CPC Calculator</a> or analyze cost-per-click rates using our <a href="/cpc-calculator.html" class="text-emerald-600 font-semibold underline">CPC Calculator</a>. The standard formula is:
+        </p>
+        
+        <div class="bg-slate-100 p-4 rounded-xl font-mono text-center font-bold text-slate-800 border border-slate-200 text-sm my-4">
+          CTR (%) = ( Total Ad Clicks / Total Impressions ) × 100
+        </div>
+        
+        <p class="text-slate-600"><strong>Real Campaign Example:</strong> An ad campaign receives 500 clicks from 25,000 ad impressions. The calculation is:</p>
+        <p class="font-mono bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 my-2 font-semibold">
+          CTR (%) = (500 ÷ 25,000) × 100 = 2.00%
+        </p>
+      </section>
+
+      <!-- Section 2: How to Use Tool -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">How to Use the Online CTR Calculator</h2>
+        <p class="mb-3 text-slate-600 leading-relaxed">Follow these quick steps to determine your campaign engagement rates:</p>
+        <ol class="list-decimal pl-5 space-y-2 text-slate-600">
+          <li><strong>Select Calculation Mode:</strong> Choose whether you want to calculate CTR percentage, total click volume, or required impressions.</li>
+          <li><strong>Enter Known Values:</strong> Input your click numbers, impression counts, or target CTR percentages into the fields.</li>
+          <li><strong>Evaluate Output:</strong> Click <strong>Calculate Result</strong> to view live metrics and mathematical details.</li>
+        </ol>
+      </section>
+
+      <!-- Section 3: Benefits -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-3">Benefits of Tracking Click-Through Rate</h2>
+        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+          <li><strong>Ad Quality Score Improvement:</strong> Higher CTR scores directly reduce your cost per impression on our <a href="/google-ads-cpm-calculator.html" class="text-emerald-600 font-semibold underline">Google Ads CPM Calculator</a> and <a href="/facebook-ads-cpm-calculator.html" class="text-emerald-600 font-semibold underline">Facebook Ads CPM Calculator</a>.</li>
+          <li><strong>Creative A/B Testing:</strong> Test headlines and thumbnail hooks to see which creative variation converts impressions into traffic best.</li>
+          <li><strong>Return on Ad Spend:</strong> Connect high CTR traffic to revenue output using our <a href="/roas-calculator.html" class="text-emerald-600 font-semibold underline">ROAS Calculator</a>.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Industry Benchmarks Table -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Average CTR Benchmarks by Channel (2026)</h2>
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-100 text-slate-900 font-bold border-b border-slate-200">
+                <th class="p-3.5 border-r border-slate-200">Marketing Channel</th>
+                <th class="p-3.5 border-r border-slate-200">Average CTR Range</th>
+                <th class="p-3.5">Key Performance Driver</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Google Search Ads</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">2.50% - 6.00%</td>
+                <td class="p-3.5 text-slate-600">Keyword Intent & Headline Relevance</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Meta (Facebook/IG) Feeds</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">1.10% - 2.20%</td>
+                <td class="p-3.5 text-slate-600">Visual Thumbnails & Offer Hook</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">TikTok In-Feed Video</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">0.80% - 1.80%</td>
+                <td class="p-3.5 text-slate-600">First 3-Second Retention Hook</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 border-r border-slate-200 font-bold text-slate-800">Google Display Banners</td>
+                <td class="p-3.5 border-r border-slate-200 text-emerald-700 font-bold">0.35% - 0.75%</td>
+                <td class="p-3.5 text-slate-600">Banner Contrast & Call-To-Action Button</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5: FAQ Section (Strictly NO Links Inside) -->
+      <section>
+        <h2 class="text-xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">What is Click-Through Rate (CTR)?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">Click-Through Rate (CTR) is a digital marketing metric measuring the percentage of total ad viewers who click on an advertisement link. Formula: CTR = (Total Clicks / Total Impressions) * 100.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">What is considered a good CTR for online ads?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">A good CTR varies by platform. Search ads average 2% to 5% CTR, social feed ads range between 1% and 2.5%, while web display banners typically average 0.35% to 0.80%.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">How does CTR impact ad costs and CPM?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">A higher CTR signals strong ad relevance to ad platforms like Google and Meta. High CTR improves your Quality Score, leading to lower CPM and CPC rates in ad auctions.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Why is my ad Click-Through Rate low?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">Low CTR is typically caused by weak ad copy, unengaging visuals, poor audience targeting, creative fatigue, or irrelevant call-to-action (CTA) buttons.</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm mb-1">How can I improve my ad campaign CTR?</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">You can improve CTR by writing strong headline hooks, testing dynamic ad creative variations, adding clear CTA buttons, and narrowing audience targeting to high-intent users.</p>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- Legal Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <div class="mb-2 space-x-4">
+      <a href="/privacy-policy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
+      <span>|</span>
+      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
+      <span>|</span>
+      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
+    </div>
+    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
+  </footer>
+
+  <!-- Script File Reference -->
+  <script src="script.js" defer></script>
+</body>
+</html>
