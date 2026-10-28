@@ -8,7 +8,7 @@ function page(file, title, description, content, type = 'WebPage') {
  fs.writeFileSync(file, `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title} — CalculateTheCPM</title><meta name="description" content="${description}"><link rel="canonical" href="${url}">
-<link rel="icon" type="image/webp" href="/favicon.webp"><link rel="stylesheet" href="/styles.css?v=4">
+<link rel="icon" type="image/webp" href="/favicon.webp"><link rel="stylesheet" href="/styles.css?v=${file === 'contact.html' ? '5' : '4'}">
 <meta property="og:title" content="${title} — CalculateTheCPM"><meta property="og:description" content="${description}"><meta property="og:type" content="website"><meta property="og:url" content="${url}"><meta property="og:image" content="https://calculatethecpm.net/calculatethecpm%20thumbnail.webp">
 <script type="application/ld+json">${schema}</script></head><body><a class="skip" href="#main">Skip to content</a>${header}<main id="main"><article class="support-content">${content}</article></main>${footer}</body></html>\n`);
 }
@@ -33,18 +33,20 @@ page('about.html','About Us','Learn about CalculateTheCPM, our advertising calcu
 `, 'AboutPage');
 // Recipient explicitly selected by the site owner. FormSubmit inbox activation is required.
 page('contact.html','Contact Us','Email CalculateTheCPM support or send a message about our advertising calculators using the contact form.',`
-<h1>Contact Us</h1><p>Questions, feedback, and calculation corrections help us improve these tools.</p>
-<section class="answer"><h2>Email support</h2><p>Prefer email? Write to <a href="mailto:support@calculatethecpm.net">support@calculatethecpm.net</a> from your email app.</p></section>
-<h2>Send a message</h2><p id="contact-data">Your name, email address, subject and message will be sent through FormSubmit to our support inbox. Please read our <a href="/privacy.html#contact-messages">contact privacy information</a> before submitting.</p>
-<form action="https://formsubmit.co/support@calculatethecpm.net" method="POST" aria-label="Contact form" aria-describedby="contact-data"><fieldset><legend>Message details</legend>
+<h1>Contact Us</h1><p>Have a question or feedback? Send us a message.</p>
+<p class="contact-email"><a href="mailto:support@calculatethecpm.net">support@calculatethecpm.net</a></p>
+<form id="contact-form" action="https://formsubmit.co/support@calculatethecpm.net" method="POST" aria-label="Contact form"><fieldset><legend class="sr-only">Message details</legend>
 <input type="hidden" name="_subject" value="CalculateTheCPM website contact">
 <input type="hidden" name="_template" value="table">
+<div class="contact-trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="_honey" tabindex="-1" autocomplete="off"></div>
 <label for="name">Your name</label><input id="name" name="name" autocomplete="name" maxlength="100" required>
 <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
 <label for="subject">Subject</label><input id="subject" name="subject" maxlength="160" required>
 <label for="message">Message</label><textarea id="message" name="message" rows="6" maxlength="5000" required></textarea>
-<button type="submit">Send message</button></fieldset></form>
-<h2>Reporting a calculation issue</h2><p>Include the calculator name, selected mode, example inputs, and expected result. Please avoid sending passwords, account access details, or private campaign data.</p>
+<button type="submit"><span class="send-spinner" aria-hidden="true" hidden></span><span id="send-label">Send message</span></button></fieldset>
+<p id="contact-status" class="contact-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+<p class="note contact-privacy">Your details are used to respond to your message. <a href="/privacy.html#contact-messages">Privacy Policy</a></p></form>
+<script src="/contact.js?v=1" defer></script>
 `, 'ContactPage');
 for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
  let html = fs.readFileSync(file, 'utf8').replace(/<footer\b[\s\S]*?<\/footer>/, footer).replace('/styles.css?v=3', '/styles.css?v=4');
