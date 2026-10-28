@@ -1,108 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - CPM Calculator Utility</title>
-  <meta name="description" content="Get in touch with the calculatethecpm.net team for support, feedback, or general inquiries.">
-  <link rel="canonical" href="https://calculatethecpm.net/contact.html">
-  <link rel="icon" type="image/webp" href="/favicon.webp">
-
-  <!-- OpenGraph / Social Media Tags -->
-  <meta property="og:title" content="Contact Us - CPM Calculator Utility">
-  <meta property="og:description" content="Contact the calculatethecpm.net team for support or general inquiries.">
-  <meta property="og:image" content="https://calculatethecpm.net/calculatethecpm%20thumbnail.webp">
-  <meta property="og:url" content="https://calculatethecpm.net/contact.html">
-  <meta property="og:type" content="website">
-
-  <!-- Preconnect and Tailwind CSS CDN -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Schema Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact Us",
-    "url": "https://calculatethecpm.net/contact.html",
-    "description": "Contact page for calculatethecpm.net support and inquiries."
-  }
-  </script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
-
-  <!-- Header Navigation -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-      <a href="/index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">
-        <span class="bg-emerald-700 text-white px-2 py-0.5 rounded-lg">CPM</span>
-        calculatethecpm<span class="text-emerald-700">.net</span>
-      </a>
-      <nav class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
-        <a href="/index.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPM Calculator</a>
-        <a href="/cpc-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CPC Calculator</a>
-        <a href="/ctr-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">CTR Calculator</a>
-        <a href="/roas-calculator.html" class="hover:bg-slate-100 px-3 py-1.5 rounded-lg">ROAS Calculator</a>
-        <a href="/contact.html" class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200">Contact Us</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content Area -->
-  <main class="max-w-xl mx-auto px-4 py-12 flex-grow w-full">
-    
-    <section class="text-center mb-8">
-      <h1 class="text-3xl font-black text-slate-900 mb-2">Contact Us</h1>
-      <p class="text-slate-600 text-sm">Have a question or need assistance? Fill out the form below to send us a direct message.</p>
-    </section>
-
-    <!-- Clean Contact Form Box -->
-    <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
-      <form action="https://formsubmit.co/YOUR_EMAIL@GMAIL.COM" method="POST" class="space-y-4">
-        
-        <input type="hidden" name="_subject" value="New Contact Form Submission - calculatethecpm.net">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://calculatethecpm.net/contact.html">
-
-        <div>
-          <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Full Name</label>
-          <input type="text" id="name" name="name" required placeholder="e.g. John Doe" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold">
-        </div>
-
-        <div>
-          <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Email Address</label>
-          <input type="email" id="email" name="email" required placeholder="e.g. john@example.com" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold">
-        </div>
-
-        <div>
-          <label for="subject" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Subject</label>
-          <input type="text" id="subject" name="subject" required placeholder="Enter the subject" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold">
-        </div>
-
-        <div>
-          <label for="message" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Your Message</label>
-          <textarea id="message" name="message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none text-sm text-slate-800 font-semibold"></textarea>
-        </div>
-
-        <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md transition text-sm">Send Message</button>
-      </form>
-    </div>
-
-  
-
-  <!-- Legal Footer -->
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <div class="mb-2 space-x-4">
-      <a href="/privacy.html" class="hover:underline hover:text-slate-700">Privacy Policy</a>
-      <span>|</span>
-      <a href="/terms.html" class="hover:underline hover:text-slate-700">Terms of Service</a>
-      <span>|</span>
-      <a href="/contact.html" class="hover:underline hover:text-slate-700">Contact Us</a>
-    </div>
-    <p>&copy; 2026 calculatethecpm.net - All Rights Reserved.</p>
-  </footer>
-
-</body>
-</html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us — CalculateTheCPM</title><meta name="description" content="Contact availability and guidance for reporting a CalculateTheCPM calculation issue."><link rel="canonical" href="https://calculatethecpm.net/contact.html">
+<link rel="icon" type="image/webp" href="/favicon.webp"><link rel="stylesheet" href="/styles.css?v=4">
+<meta property="og:title" content="Contact Us — CalculateTheCPM"><meta property="og:description" content="Contact availability and guidance for reporting a CalculateTheCPM calculation issue."><meta property="og:type" content="website"><meta property="og:url" content="https://calculatethecpm.net/contact.html"><meta property="og:image" content="https://calculatethecpm.net/calculatethecpm%20thumbnail.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact Us","description":"Contact availability and guidance for reporting a CalculateTheCPM calculation issue.","url":"https://calculatethecpm.net/contact.html","inLanguage":"en"}</script></head><body><a class="skip" href="#main">Skip to content</a><header><div class="header-inner"><a class="brand" href="/"><span>CPM</span>CalculateTheCPM</a><nav aria-label="Advertising calculators"><a href="/">CPM</a><a href="/youtube-cpm-calculator.html">YouTube CPM</a><a href="/tiktok-cpm-calculator.html">TikTok CPM</a><a href="/facebook-ads-cpm-calculator.html">Facebook Ads CPM</a><a href="/google-ads-cpm-calculator.html">Google Ads CPM</a><a href="/cpc-calculator.html">CPC</a><a href="/ctr-calculator.html">CTR</a><a href="/ecpm-calculator.html">eCPM</a><a href="/roas-calculator.html">ROAS</a><a href="/cpm-to-cpc-calculator.html">CPM to CPC</a></nav></div></header><main id="main"><article class="support-content">
+<h1>Contact Us</h1><p>Questions, feedback, and calculation corrections help us improve these tools.</p>
+<section class="answer" aria-labelledby="contact-status"><h2 id="contact-status">Contact form temporarily unavailable</h2><p>Our contact mailbox is being set up. This form cannot send messages yet. Please check back before entering your details.</p></section>
+<form aria-label="Contact form" aria-describedby="contact-status"><fieldset disabled><legend>Send a message</legend>
+<label for="name">Your name</label><input id="name" name="name" autocomplete="name" maxlength="100" required>
+<label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+<label for="subject">Subject</label><input id="subject" name="subject" maxlength="160" required>
+<label for="message">Message</label><textarea id="message" name="message" rows="6" maxlength="5000" required></textarea>
+<button type="button" disabled>Messaging unavailable</button></fieldset></form>
+<h2>Reporting a calculation issue</h2><p>When messaging becomes available, include the calculator name, selected mode, example inputs, and expected result. Please avoid sending passwords, account access details, or private campaign data.</p><p>Read our <a href="/privacy.html">Privacy Policy</a> for information about site data practices.</p>
+</article></main><footer><div class="footer-inner"><a href="/about.html">About Us</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><p>© 2026 CalculateTheCPM. Independent tools; not affiliated with the advertising platforms mentioned.</p></div></footer></body></html>
