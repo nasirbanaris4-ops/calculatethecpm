@@ -2,7 +2,7 @@ const fs=require('node:fs'),http=require('node:http'),assert=require('node:asser
 let playwright;try{playwright=require('playwright');}catch{playwright=require('C:/Users/hp/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');}
 const {chromium}=playwright;
 const cases=[['index.html','spend','impressions','rate',800,160000,5,'$5.00'],['cpc-calculator.html','spend','clicks','rate',500,250,2,'$2.00'],['ctr-calculator.html','clicks','impressions','rate',500,25000,2,'2%'],['ecpm-calculator.html','revenue','impressions','rate',1200,300000,4,'$4.00'],['roas-calculator.html','revenue','spend','rate',2000,500,4,'4x'],['cpm-to-cpc-calculator.html','cpc','ctr','cpm',.5,2,10,'$0.50']];
-const server=http.createServer((req,res)=>{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);const file=pathname==='/'?'index.html':pathname.slice(1);if(file.includes('..')){res.writeHead(403);return res.end();}try{const data=fs.readFileSync(file);res.setHeader('Content-Type',file.endsWith('.css')?'text/css':file.endsWith('.js')?'application/javascript':file.endsWith('.webp')?'image/webp':'text/html');res.end(data);}catch{res.writeHead(404);res.end();}});
+const server=http.createServer((req,res)=>{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);let file=pathname==='/'?'index.html':pathname.slice(1);if(!fs.existsSync(file)&&fs.existsSync(file+'.html'))file+='.html';if(file.includes('..')){res.writeHead(403);return res.end();}try{const data=fs.readFileSync(file);res.setHeader('Content-Type',file.endsWith('.css')?'text/css':file.endsWith('.js')?'application/javascript':file.endsWith('.webp')?'image/webp':'text/html');res.end(data);}catch{res.writeHead(404);res.end();}});
 (async()=>{await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const origin='http://127.0.0.1:'+server.address().port;const browser=await chromium.launch({headless:true,channel:"chrome"});const page=await browser.newPage();let checks=0;const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
 for(const [file,a,b,c,x,y,z,expected] of cases){
@@ -23,7 +23,7 @@ for(const [file,a,b,c,x,y,z,expected] of cases){
 }
 for(const file of fs.readdirSync('.').filter(f=>f.endsWith('.html'))){
  const html=fs.readFileSync(file,'utf8');const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,'duplicate ids '+file);
- for(const match of html.matchAll(/(?:href|src)="(\/[^"?#]*)(?:[?#][^"]*)?"/g)){const path=decodeURIComponent(match[1].slice(1)||'index.html');assert.ok(fs.existsSync(path),file+' missing '+path);checks++;}
+ for(const match of html.matchAll(/(?:href|src)="(\/[^"?#]*)(?:[?#][^"]*)?"/g)){const path=decodeURIComponent(match[1].slice(1)||'index.html');assert.ok(fs.existsSync(path)||fs.existsSync(path+'.html'),file+' missing '+path);checks++;}
  for(const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)){JSON.parse(match[1]);checks++;}
  assert.equal((html.match(/<h1\b/g)||[]).length,1,'single h1 '+file);
  if(html.includes('id="calculator"')){
@@ -34,4 +34,5 @@ await page.goto(origin+'/');await page.selectOption('#currency','GBP');await pag
 await page.fill('#input-spend','0');assert.equal(await page.locator('#output-value').textContent(),'€0.00');checks++;
 await page.screenshot({path:'mobile-preview.png',fullPage:true});await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'desktop-preview.png',fullPage:true});assert.deepEqual(errors,[]);console.log(`PASS: ${checks} formula, validation, currency, metadata, link, and mobile checks; no browser JavaScript errors.`);
 }finally{await browser.close();server.close();}})().catch(error=>{console.error(error);process.exitCode=1;server.close();});
+
 
