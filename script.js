@@ -1,128 +1,88 @@
-// Dynamic Currency State
-let currentCurrencySymbol = "$";
-
-function updateCurrency() {
-  const selectElement = document.getElementById("currency-select");
-  if (selectElement) {
-    currentCurrencySymbol = selectElement.value;
+/* Shared calculator engine. Currency is a unit, not an exchange-rate conversion. */
+(function () {
+  'use strict';
+  const form = document.getElementById('calculator');
+  if (!form) return;
+  const type = form.dataset.metric;
+  const definitions = {
+    cpm: { fields: ['spend', 'impressions', 'rate'], labels: ['Ad spend', 'Ad impressions', 'CPM'], factor: 1000 },
+    ecpm: { fields: ['revenue', 'impressions', 'rate'], labels: ['Ad revenue', 'Ad impressions', 'eCPM'], factor: 1000 },
+    cpc: { fields: ['spend', 'clicks', 'rate'], labels: ['Ad spend', 'Clicks', 'CPC'], factor: 1 },
+    ctr: { fields: ['clicks', 'impressions', 'rate'], labels: ['Clicks', 'Ad impressions', 'CTR (%)'], factor: 100 },
+    roas: { fields: ['revenue', 'spend', 'rate'], labels: ['Attributed revenue', 'Ad spend', 'ROAS (multiple)'], factor: 1 },
+    conversion: { fields: ['cpc', 'ctr', 'cpm'], labels: ['CPC', 'CTR (%)', 'CPM'], factor: 10 }
+  };
+  const definition = definitions[type];
+  if (!definition) return;
+  const { fields, labels, factor } = definition;
+  const mode = document.getElementById('solve-for');
+  const currency = document.getElementById('currency');
+  const result = document.getElementById('output-value');
+  const breakdown = document.getElementById('output-breakdown');
+  const message = document.getElementById('input-error');
+  const moneyFields = type === 'ctr' ? [] : type === 'conversion' ? ['cpc', 'cpm'] : type === 'roas' ? ['revenue', 'spend'] : [fields[0], 'rate'];
+  const number = value => value.toLocaleString('en-US', { maximumFractionDigits: 4 });
+  const format = (value, field) => moneyFields.includes(field)
+    ? new Intl.NumberFormat('en-US', { style: 'currency', currency: currency.value, minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value)
+    : number(value) + (field === 'ctr' || (type === 'ctr' && field === 'rate') ? '%' : type === 'roas' && field === 'rate' ? 'x' : '');
+  function clear() {
+    result.textContent = '—';
+    breakdown.textContent = 'Enter the two known values to see the calculation.';
+    message.textContent = '';
+    fields.forEach(field => document.getElementById('input-' + field).removeAttribute('aria-invalid'));
   }
-  calculate();
-}
-
-// Helper function to extract numbers safely from inputs ($ / commas stripped)
-function getCleanNumber(elementId) {
-  const el = document.getElementById(elementId);
-  if (!el || !el.value) return 0;
-  const cleanVal = el.value.toString().replace(/[^0-9.]/g, '');
-  return parseFloat(cleanVal) || 0;
-}
-
-// Mode Switcher Logic
-let currentMode = 'cpm';
-
-function switchMode(mode) {
-  currentMode = mode;
-  
-  // Highlight Active Tab
-  const tabs = ['cpm', 'spend', 'views'];
-  tabs.forEach(tab => {
-    const btn = document.getElementById(`tab-${tab}`);
-    if (btn) {
-      if (tab === mode) {
-        btn.className = "px-4 py-2 text-xs font-bold rounded-xl bg-emerald-700 text-white shadow-sm transition";
-      } else {
-        btn.className = "px-4 py-2 text-xs font-bold rounded-xl text-slate-600 hover:bg-slate-200 transition";
-      }
+  function calculate(explicit = false) {
+    clear();
+    const target = fields.indexOf(mode.value);
+    const values = fields.map(field => {
+      const input = document.getElementById('input-' + field);
+      return input.value.trim() === '' ? NaN : Number(input.value);
+    });
+    const known = values.filter((_, index) => index !== target);
+    if (known.some(value => !Number.isFinite(value))) {
+      if (explicit) message.textContent = 'Enter both known values as numbers.';
+      return;
     }
+    if (known.some(value => value < 0)) {
+      message.textContent = 'Values must be zero or greater.';
+      fields.forEach((field, index) => { if (index !== target && values[index] < 0) document.getElementById('input-' + field).setAttribute('aria-invalid', 'true'); });
+      return;
+    }
+    const [a, b, c] = values;
+    // Standard relation: c = a / b * factor. Conversion: c = a * b * 10.
+    const denominator = type === 'conversion' ? (target === 0 ? b : target === 1 ? a : 1) : target === 0 ? factor : target === 1 ? c : b;
+    if (denominator === 0) {
+      message.textContent = 'The divisor must be greater than zero. This combination has no unique result.';
+      return;
+    }
+    const value = type === 'conversion'
+      ? target === 2 ? a * b * factor : target === 0 ? c / (b * factor) : c / (a * factor)
+      : target === 2 ? a / b * factor : target === 0 ? c * b / factor : a / c * factor;
+    if (!Number.isFinite(value)) { message.textContent = 'These values are too large. Try smaller numbers.'; return; }
+    result.textContent = format(value, fields[target]);
+    const formula = type === 'conversion'
+      ? target === 2 ? `${format(a, fields[0])} × ${number(b)} × 10` : target === 0 ? `${format(c, fields[2])} ÷ (${number(b)} × 10)` : `${format(c, fields[2])} ÷ (${format(a, fields[0])} × 10)`
+      : target === 2 ? `(${format(a, fields[0])} ÷ ${format(b, fields[1])}) × ${factor}` : target === 0 ? `(${format(c, fields[2])} × ${format(b, fields[1])}) ÷ ${factor}` : `(${format(a, fields[0])} ÷ ${format(c, fields[2])}) × ${factor}`;
+    breakdown.textContent = `${labels[target]} = ${formula} = ${format(value, fields[target])}`;
+  }
+  function switchMode() {
+    fields.forEach(field => {
+      const input = document.getElementById('input-' + field);
+      const hidden = field === mode.value;
+      input.disabled = hidden;
+      input.closest('.field').hidden = hidden;
+    });
+    document.getElementById('output-title').textContent = labels[fields.indexOf(mode.value)];
+    calculate();
+  }
+  form.addEventListener('submit', event => { event.preventDefault(); calculate(true); });
+  form.addEventListener('input', event => { if (event.target !== mode && event.target !== currency) calculate(); });
+  mode.addEventListener('change', switchMode);
+  currency.addEventListener('change', () => calculate());
+  document.getElementById('reset-inputs').addEventListener('click', () => {
+    fields.forEach(field => { document.getElementById('input-' + field).value = ''; });
+    clear();
+    document.querySelector('.field:not([hidden]) input').focus();
   });
-
-  // Dynamic Input Labels & Result Text
-  const input1Label = document.getElementById("label-input1");
-  const input2Label = document.getElementById("label-input2");
-  const resultTitle = document.getElementById("result-title");
-  const resultSubtext = document.getElementById("result-subtext");
-
-  if (mode === 'cpm') {
-    if (input1Label) input1Label.innerText = "TOTAL CAMPAIGN AD SPEND";
-    if (input2Label) input2Label.innerText = "TOTAL CAMPAIGN AD IMPRESSIONS";
-    if (resultTitle) resultTitle.innerText = "CALCULATED CPM RATE";
-    if (resultSubtext) resultSubtext.innerText = "Cost Per 1,000 Impressions";
-  } else if (mode === 'spend') {
-    if (input1Label) input1Label.innerText = "TARGET CPM RATE";
-    if (input2Label) input2Label.innerText = "TOTAL CAMPAIGN AD IMPRESSIONS";
-    if (resultTitle) resultTitle.innerText = "ESTIMATED TOTAL SPEND";
-    if (resultSubtext) resultSubtext.innerText = "Total Required Budget";
-  } else if (mode === 'views') {
-    if (input1Label) input1Label.innerText = "TOTAL CAMPAIGN AD SPEND";
-    if (input2Label) input2Label.innerText = "TARGET CPM RATE";
-    if (resultTitle) resultTitle.innerText = "ESTIMATED IMPRESSIONS";
-    if (resultSubtext) resultSubtext.innerText = "Total Expected Views/Impressions";
-  }
-
-  calculate();
-}
-
-// Main Calculation Function
-function calculate() {
-  const outputDisplay = document.getElementById("output-result");
-  const breakdownDisplay = document.getElementById("breakdown-text");
-
-  if (!outputDisplay) return;
-
-  const val1 = getCleanNumber("input1");
-  const val2 = getCleanNumber("input2");
-
-  if (val1 <= 0 || val2 <= 0) {
-    outputDisplay.innerText = currentMode === 'views' ? "0" : `${currentCurrencySymbol}0.00`;
-    if (breakdownDisplay) {
-      breakdownDisplay.innerText = `${currentMode.toUpperCase()} = (${currentCurrencySymbol}0 ÷ 0) × 1,000 = ${currentCurrencySymbol}0.00`;
-    }
-    return;
-  }
-
-  let result = 0;
-
-  if (currentMode === 'cpm') {
-    result = (val1 / val2) * 1000;
-    outputDisplay.innerText = `${currentCurrencySymbol}${result.toFixed(2)}`;
-    if (breakdownDisplay) {
-      breakdownDisplay.innerText = `CPM = (${currentCurrencySymbol}${val1} ÷ ${val2.toLocaleString()}) × 1,000 = ${currentCurrencySymbol}${result.toFixed(2)}`;
-    }
-  } else if (currentMode === 'spend') {
-    result = (val1 * val2) / 1000;
-    outputDisplay.innerText = `${currentCurrencySymbol}${result.toFixed(2)}`;
-    if (breakdownDisplay) {
-      breakdownDisplay.innerText = `Spend = (${currentCurrencySymbol}${val1} × ${val2.toLocaleString()}) ÷ 1,000 = ${currentCurrencySymbol}${result.toFixed(2)}`;
-    }
-  } else if (currentMode === 'views') {
-    result = (val1 / val2) * 1000;
-    outputDisplay.innerText = Math.round(result).toLocaleString();
-    if (breakdownDisplay) {
-      breakdownDisplay.innerText = `Impressions = (${currentCurrencySymbol}${val1} ÷ ${currentCurrencySymbol}${val2}) × 1,000 = ${Math.round(result).toLocaleString()}`;
-    }
-  }
-}
-
-// Reset Inputs
-function resetInputs() {
-  const input1 = document.getElementById("input1");
-  const input2 = document.getElementById("input2");
-  if (input1) input1.value = "";
-  if (input2) input2.value = "";
-  calculate();
-}
-
-// Auto Attach Event Listeners on Page Load
-document.addEventListener("DOMContentLoaded", () => {
-  const input1 = document.getElementById("input1");
-  const input2 = document.getElementById("input2");
-
-  if (input1) {
-    input1.addEventListener("input", calculate);
-    input1.addEventListener("keyup", calculate);
-  }
-  if (input2) {
-    input2.addEventListener("input", calculate);
-    input2.addEventListener("keyup", calculate);
-  }
-});
+  switchMode();
+}());
