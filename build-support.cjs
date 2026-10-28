@@ -46,7 +46,7 @@ page('contact.html','Contact Us','Email CalculateTheCPM support or send a messag
 <button type="submit"><span class="send-spinner" aria-hidden="true" hidden></span><span id="send-label">Send message</span></button></fieldset>
 <p id="contact-status" class="contact-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
 <p class="note contact-privacy">Your details are used to respond to your message. <a href="/privacy.html#contact-messages">Privacy Policy</a></p></form>
-<script src="/contact.js?v=1" defer></script>
+<script src="/contact.js?v=2" defer></script>
 `, 'ContactPage');
 for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
  let html = fs.readFileSync(file, 'utf8').replace(/<footer\b[\s\S]*?<\/footer>/, footer).replace('/styles.css?v=3', '/styles.css?v=4');
