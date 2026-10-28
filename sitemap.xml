@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://calculatethecpm.net/about</loc></url>
+  <url><loc>https://calculatethecpm.net/blog</loc></url>
   <url><loc>https://calculatethecpm.net/contact</loc></url>
   <url><loc>https://calculatethecpm.net/cpc-calculator</loc></url>
   <url><loc>https://calculatethecpm.net/cpm-to-cpc-calculator</loc></url>
+  <url><loc>https://calculatethecpm.net/cpm-vs-cpc-vs-cpa</loc></url>
   <url><loc>https://calculatethecpm.net/ctr-calculator</loc></url>
   <url><loc>https://calculatethecpm.net/ecpm-calculator</loc></url>
   <url><loc>https://calculatethecpm.net/facebook-ads-cpm-calculator</loc></url>

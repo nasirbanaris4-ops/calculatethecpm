@@ -1,7 +1,8 @@
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const base='https://calculatethecpm.net';
 const urls=[...fs.readFileSync('sitemap.xml','utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>x[1]);
-assert.equal(urls.length,14);assert.equal(new Set(urls).size,14);
+const expected=fs.readdirSync('.').filter(f=>f.endsWith('.html')&&f!=='404.html').map(f=>base+(f==='index.html'?'/':'/'+f.replace(/\.html$/,'')));
+assert.deepEqual([...urls].sort(),expected.sort());assert.equal(new Set(urls).size,expected.length);
 const titles=new Set(),descriptions=new Set();let checks=0;
 for(const url of urls){
  assert.ok(!url.endsWith('.html'));const pathname=new URL(url).pathname;
