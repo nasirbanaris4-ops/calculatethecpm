@@ -31,17 +31,20 @@ page('about.html','About Us','Learn about CalculateTheCPM, our advertising calcu
 <h2>Independent tools</h2><p>CalculateTheCPM is an independent website. It is not affiliated with Google, YouTube, Meta, or TikTok and does not access your advertising accounts.</p>
 <h2>Explore the tools</h2><p>Start with the <a href="/">CPM calculator</a>, compare <a href="/cpc-calculator.html">cost per click</a>, or measure <a href="/roas-calculator.html">return on ad spend</a>. Visit our <a href="/contact.html">contact page</a> for support availability.</p>
 `, 'AboutPage');
-// No address is inferred from GitHub or other account metadata. A verified mailbox is required.
-page('contact.html','Contact Us','Contact availability and guidance for reporting a CalculateTheCPM calculation issue.',`
+// Recipient explicitly selected by the site owner. FormSubmit inbox activation is required.
+page('contact.html','Contact Us','Email CalculateTheCPM support or send a message about our advertising calculators using the contact form.',`
 <h1>Contact Us</h1><p>Questions, feedback, and calculation corrections help us improve these tools.</p>
-<section class="answer" aria-labelledby="contact-status"><h2 id="contact-status">Contact form temporarily unavailable</h2><p>Our contact mailbox is being set up. This form cannot send messages yet. Please check back before entering your details.</p></section>
-<form aria-label="Contact form" aria-describedby="contact-status"><fieldset disabled><legend>Send a message</legend>
+<section class="answer"><h2>Email support</h2><p>Prefer email? Write to <a href="mailto:support@calculatethecpm.net">support@calculatethecpm.net</a> from your email app.</p></section>
+<h2>Send a message</h2><p id="contact-data">Your name, email address, subject and message will be sent through FormSubmit to our support inbox. Please read our <a href="/privacy.html#contact-messages">contact privacy information</a> before submitting.</p>
+<form action="https://formsubmit.co/support@calculatethecpm.net" method="POST" aria-label="Contact form" aria-describedby="contact-data"><fieldset><legend>Message details</legend>
+<input type="hidden" name="_subject" value="CalculateTheCPM website contact">
+<input type="hidden" name="_template" value="table">
 <label for="name">Your name</label><input id="name" name="name" autocomplete="name" maxlength="100" required>
 <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
 <label for="subject">Subject</label><input id="subject" name="subject" maxlength="160" required>
 <label for="message">Message</label><textarea id="message" name="message" rows="6" maxlength="5000" required></textarea>
-<button type="button" disabled>Messaging unavailable</button></fieldset></form>
-<h2>Reporting a calculation issue</h2><p>When messaging becomes available, include the calculator name, selected mode, example inputs, and expected result. Please avoid sending passwords, account access details, or private campaign data.</p><p>Read our <a href="/privacy.html">Privacy Policy</a> for information about site data practices.</p>
+<button type="submit">Send message</button></fieldset></form>
+<h2>Reporting a calculation issue</h2><p>Include the calculator name, selected mode, example inputs, and expected result. Please avoid sending passwords, account access details, or private campaign data.</p>
 `, 'ContactPage');
 for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
  let html = fs.readFileSync(file, 'utf8').replace(/<footer\b[\s\S]*?<\/footer>/, footer).replace('/styles.css?v=3', '/styles.css?v=4');
@@ -50,4 +53,4 @@ for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
 let sitemap = fs.readFileSync('sitemap.xml', 'utf8');
 if (!sitemap.includes('/about.html')) sitemap = sitemap.replace('</urlset>', '  <url><loc>https://calculatethecpm.net/about.html</loc></url>\n</urlset>');
 fs.writeFileSync('sitemap.xml', sitemap);
-console.log('Unified header/footer; removed legal-page tables; added About Us; disabled unconfigured form.');
+console.log('Unified support pages; configured support email and FormSubmit contact form.');
