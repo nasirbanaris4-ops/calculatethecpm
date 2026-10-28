@@ -4,6 +4,7 @@ const base = 'https://calculatethecpm.net';
 const files = fs.readdirSync('.').filter(file => file.endsWith('.html') && file !== '404.html');
 for (const file of files) {
  let html = fs.readFileSync(file, 'utf8');
+ html = html.replace(/<link rel="icon"[^>]*>/g, '<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">');
  html = html.replace(/((?:https:\/\/calculatethecpm\.net)?\/[a-z0-9-]+)\.html(?=["#?])/g, (_, path) => path.endsWith('/index') ? path.slice(0,-5) : path);
  if(file === 'index.html') {
   html = html.replace('<title>CPM Calculator — Free Formula &amp; Examples</title>', '<title>CPM Calculator — Calculate the CPM, Cost &amp; Impressions</title>');
