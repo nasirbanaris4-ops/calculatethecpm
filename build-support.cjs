@@ -31,14 +31,14 @@ page('about.html','About Us','Learn about CalculateTheCPM, our advertising calcu
 <h2>Independent tools</h2><p>CalculateTheCPM is an independent website. It is not affiliated with Google, YouTube, Meta, or TikTok and does not access your advertising accounts.</p>
 <h2>Explore the tools</h2><p>Start with the <a href="/">CPM calculator</a>, compare <a href="/cpc-calculator.html">cost per click</a>, or measure <a href="/roas-calculator.html">return on ad spend</a>. Visit our <a href="/contact.html">contact page</a> for support availability.</p>
 `, 'AboutPage');
-// Recipient explicitly selected by the site owner. FormSubmit inbox activation is required.
+// Recipient explicitly selected by the site owner. Web3Forms public access key is intended for client-side use.
 page('contact.html','Contact Us','Email CalculateTheCPM support or send a message about our advertising calculators using the contact form.',`
 <h1>Contact Us</h1><p>Have a question or feedback? Send us a message.</p>
 <p class="contact-email"><a href="mailto:support@calculatethecpm.net">support@calculatethecpm.net</a></p>
-<form id="contact-form" action="https://formsubmit.co/support@calculatethecpm.net" method="POST" aria-label="Contact form"><fieldset><legend class="sr-only">Message details</legend>
-<input type="hidden" name="_subject" value="CalculateTheCPM website contact">
-<input type="hidden" name="_template" value="table">
-<div class="contact-trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="_honey" tabindex="-1" autocomplete="off"></div>
+<form id="contact-form" action="https://api.web3forms.com/submit" method="POST" aria-label="Contact form"><fieldset><legend class="sr-only">Message details</legend>
+<input type="hidden" name="access_key" value="0e2dfc65-6cc5-4d5a-a062-8616060963f1">
+<input type="hidden" name="from_name" value="CalculateTheCPM Contact">
+<div class="contact-trap" aria-hidden="true"><label for="website">Leave this field empty</label><input type="checkbox" id="website" name="botcheck" tabindex="-1" autocomplete="off"></div>
 <label for="name">Your name</label><input id="name" name="name" autocomplete="name" maxlength="100" required>
 <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
 <label for="subject">Subject</label><input id="subject" name="subject" maxlength="160" required>
@@ -46,7 +46,7 @@ page('contact.html','Contact Us','Email CalculateTheCPM support or send a messag
 <button type="submit"><span class="send-spinner" aria-hidden="true" hidden></span><span id="send-label">Send message</span></button></fieldset>
 <p id="contact-status" class="contact-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
 <p class="note contact-privacy">Your details are used to respond to your message. <a href="/privacy.html#contact-messages">Privacy Policy</a></p></form>
-<script src="/contact.js?v=2" defer></script>
+<script src="/contact.js?v=3" defer></script>
 `, 'ContactPage');
 for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
  let html = fs.readFileSync(file, 'utf8').replace(/<footer\b[\s\S]*?<\/footer>/, footer).replace('/styles.css?v=3', '/styles.css?v=4');
@@ -55,4 +55,6 @@ for (const file of fs.readdirSync('.').filter(file => file.endsWith('.html'))) {
 let sitemap = fs.readFileSync('sitemap.xml', 'utf8');
 if (!sitemap.includes('/about.html')) sitemap = sitemap.replace('</urlset>', '  <url><loc>https://calculatethecpm.net/about.html</loc></url>\n</urlset>');
 fs.writeFileSync('sitemap.xml', sitemap);
-console.log('Unified support pages; configured support email and FormSubmit contact form.');
+console.log('Unified support pages; configured support email and Web3Forms contact form.');
+
+

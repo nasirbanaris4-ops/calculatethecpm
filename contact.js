@@ -8,7 +8,9 @@
  const status = document.querySelector('#contact-status');
  let sending = false;
  let sent = false;
+ let editedWhileSending = false;
  form.addEventListener('input', () => {
+  if (sending) editedWhileSending = true;
   if (sent) {
    sent = false;
    label.textContent = 'Send message';
@@ -18,9 +20,10 @@
  form.addEventListener('submit', async event => {
   event.preventDefault();
   if (sending || !form.reportValidity()) return;
-  if (form.elements._honey.value) return;
-  const payload = new URLSearchParams(new FormData(form));
+  if (form.elements.botcheck.checked) return;
+  const payload = JSON.stringify(Object.fromEntries(new FormData(form)));
   sending = true;
+  editedWhileSending = false;
   form.setAttribute('aria-busy', 'true');
   label.textContent = 'Sending…';
   spinner.hidden = false;
@@ -28,25 +31,32 @@
   status.textContent = 'Sending your message…';
   const controller = new AbortController();
   const slowTimer = setTimeout(() => {
-   status.textContent = 'Still sending. Please wait—there is no need to submit again.';
-  }, 15000);
-  const timer = setTimeout(() => controller.abort(), 60000);
+   status.textContent = 'Taking a little longer. Please wait…';
+  }, 8000);
+  const timer = setTimeout(() => controller.abort(), 20000);
   try {
-   const response = await fetch('https://formsubmit.co/ajax/support@calculatethecpm.net', {
-    method: 'POST', headers: {Accept:'application/json'},
+   const response = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST', headers: {'Content-Type':'application/json', Accept:'application/json'},
     body: payload, signal: controller.signal
    });
+   if (!response.ok) throw new Error('unconfirmed');
    const result = await response.json();
-   if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('unconfirmed');
+   if (!(result.success === true || result.success === 'true')) throw new Error('unconfirmed');
    sent = true;
-   form.reset();
+   if (!editedWhileSending) form.reset();
    label.textContent = 'Sent ✓';
    status.className = 'contact-status success';
-   status.textContent = 'Thank you. Your message has been submitted.';
+   status.textContent = editedWhileSending
+    ? 'Your original message was submitted. Your latest edits are still here.'
+    : 'Thank you. Your message has been submitted.';
   } catch (error) {
    status.className = 'contact-status error';
-   label.textContent = 'Try again';
-   status.textContent = 'We could not confirm delivery. If the message has already arrived, please do not resend it. You can also email support@calculatethecpm.net.';
+   label.textContent = 'Send message';
+   status.textContent = 'Submission could not be confirmed. Your message is still in the form.';
+   const emailLink = document.createElement('a');
+   emailLink.href = 'mailto:support@calculatethecpm.net';
+   emailLink.textContent = 'Email support instead';
+   status.append(' ', emailLink, '.');
   } finally {
    clearTimeout(timer);
    clearTimeout(slowTimer);
@@ -58,3 +68,5 @@
   }
  });
 })();
+
+
