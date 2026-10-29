@@ -17,6 +17,7 @@
   const { fields, labels, factor } = definition;
   const mode = document.getElementById('solve-for');
   const currency = document.getElementById('currency');
+  const tabs = [...document.querySelectorAll('[data-solve]')];
   const result = document.getElementById('output-value');
   const breakdown = document.getElementById('output-breakdown');
   const message = document.getElementById('input-error');
@@ -66,6 +67,7 @@
     breakdown.textContent = `${labels[target]} = ${formula} = ${format(value, fields[target])}`;
   }
   function switchMode() {
+    tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.solve === mode.value)));
     fields.forEach(field => {
       const input = document.getElementById('input-' + field);
       const hidden = field === mode.value;
@@ -78,6 +80,9 @@
   form.addEventListener('submit', event => { event.preventDefault(); calculate(true); });
   form.addEventListener('input', event => { if (event.target !== mode && event.target !== currency) calculate(); });
   mode.addEventListener('change', switchMode);
+  tabs.forEach(tab => tab.addEventListener('click', () => { mode.value = tab.dataset.solve; switchMode(); }));
+  let currencyChosen = false;
+  currency.addEventListener('change', () => { currencyChosen = true; });
   currency.addEventListener('change', () => calculate());
   document.getElementById('reset-inputs').addEventListener('click', () => {
     fields.forEach(field => { document.getElementById('input-' + field).value = ''; });
@@ -85,4 +90,18 @@
     document.querySelector('.field:not([hidden]) input').focus();
   });
   switchMode();
+  if (type !== 'ctr' && location.protocol === 'https:') {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000);
+    fetch('/cdn-cgi/trace', {signal:controller.signal, cache:'no-store', credentials:'omit'})
+      .then(r => r.ok ? r.text() : '')
+      .then(text => {
+        if (currencyChosen) return;
+        const country = text.match(/^loc=([A-Z]{2})$/m)?.[1];
+        const map = {US:'USD',GB:'GBP',CA:'CAD',AU:'AUD',IN:'INR',PK:'PKR',AE:'AED',SA:'SAR',JP:'JPY'};
+        const euro = ['AT','BE','HR','CY','EE','FI','FR','DE','GR','IE','IT','LV','LT','LU','MT','NL','PT','SK','SI','ES','BG'];
+        currency.value = map[country] || (euro.includes(country) ? 'EUR' : 'USD');
+        calculate();
+      }).catch(() => {}).finally(() => clearTimeout(timeout));
+  }
 }());

@@ -64,3 +64,4 @@ console.log('Built 10 calculators; repaired legal links and sitemap.');
 require('./build-support.cjs');
 require('./build-blog.cjs');
 require('./build-seo.cjs');
+require('./apply-design.cjs');

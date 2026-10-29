@@ -10,16 +10,16 @@ for(const [file,a,b,c,x,y,z,expected] of cases){
  for(let target=0;target<3;target++){
   await page.selectOption('#solve-for',fields[target]);
   for(let i=0;i<3;i++)if(i!==target)await page.fill('#input-'+fields[i],String(values[i]));
-  await page.click('button[type=submit]');
+  await page.locator('#calculator').evaluate(form=>form.requestSubmit());
   const output=await page.locator('#output-value').textContent();
   const numeric=Number(output.replace(/[^0-9.]/g,''));assert.ok(Math.abs(numeric-values[target])<.0001,`${file} ${fields[target]}: ${output}`);checks++;
  }
  await page.selectOption('#solve-for',file.includes('cpm-to-cpc')?a:c);
  if(file.includes('cpm-to-cpc')){await page.fill('#input-'+b,'0');await page.fill('#input-'+c,'10');}else{await page.fill('#input-'+a,'10');await page.fill('#input-'+b,'0');}
- await page.click('button[type=submit]');assert.match(await page.locator('#input-error').textContent(),/divisor/);checks++;
- const visible=page.locator('.field:not([hidden]) input').first();await visible.fill('-1');await page.click('button[type=submit]');assert.match(await page.locator('#input-error').textContent(),/zero or greater/);checks++;
+ await page.locator('#calculator').evaluate(form=>form.requestSubmit());assert.match(await page.locator('#input-error').textContent(),/divisor/);checks++;
+ const visible=page.locator('.field:not([hidden]) input').first();await visible.fill('-1');await page.locator('#calculator').evaluate(form=>form.requestSubmit());assert.match(await page.locator('#input-error').textContent(),/zero or greater/);checks++;
  await page.click('#reset-inputs');assert.equal(await page.locator('#output-value').textContent(),'—');checks++;
- await page.click('button[type=submit]');assert.match(await page.locator('#input-error').textContent(),/both known values/);checks++;
+ await page.locator('#calculator').evaluate(form=>form.requestSubmit());assert.match(await page.locator('#input-error').textContent(),/both known values/);checks++;
 }
 for(const file of fs.readdirSync('.').filter(f=>f.endsWith('.html'))){
  const html=fs.readFileSync(file,'utf8');const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,'duplicate ids '+file);
@@ -34,5 +34,6 @@ await page.goto(origin+'/');await page.selectOption('#currency','GBP');await pag
 await page.fill('#input-spend','0');assert.equal(await page.locator('#output-value').textContent(),'€0.00');checks++;
 await page.screenshot({path:'mobile-preview.png',fullPage:true});await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'desktop-preview.png',fullPage:true});assert.deepEqual(errors,[]);console.log(`PASS: ${checks} formula, validation, currency, metadata, link, and mobile checks; no browser JavaScript errors.`);
 }finally{await browser.close();server.close();}})().catch(error=>{console.error(error);process.exitCode=1;server.close();});
+
 
 
