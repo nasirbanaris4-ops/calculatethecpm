@@ -27,4 +27,6 @@ page('cpm-vs-cpc-vs-cpa','CPM vs CPC vs CPA: Formulas and Campaign Examples','Co
 page('blog','Advertising Blog and CPM Tutorials','Practical advertising guides with reproducible CPM, CPC and CPA examples, campaign comparison advice, and links to free calculators.',`<h1>Blog</h1><p>Understand the numbers behind your campaigns with formulas, worked examples and practical limitations.</p><section><h2><a href="/cpm-vs-cpc-vs-cpa">CPM vs CPC vs CPA: which metric should you use?</a></h2><p>Compare delivery, traffic and conversion costs using one campaign, then see how CTR connects CPM and CPC.</p></section><p>Ready to work with your campaign totals? Use the <a href="/">CPM calculator</a>.</p>`,'CollectionPage');
 for(const file of fs.readdirSync('.').filter(f=>f.endsWith('.html'))){let html=fs.readFileSync(file,'utf8');html=html.replace('<div class="footer-inner">','<div class="footer-inner"><a href="/blog">Blog</a>');fs.writeFileSync(file,html);}
 console.log('Built guides index and CPM vs CPC vs CPA article.');
+require('./build-ecpm-article.cjs');
+
 
