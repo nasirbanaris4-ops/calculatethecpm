@@ -28,5 +28,6 @@ page('blog','Advertising Blog and CPM Tutorials','Practical advertising guides w
 for(const file of fs.readdirSync('.').filter(f=>f.endsWith('.html'))){let html=fs.readFileSync(file,'utf8');html=html.replace('<div class="footer-inner">','<div class="footer-inner"><a href="/blog">Blog</a>');fs.writeFileSync(file,html);}
 console.log('Built guides index and CPM vs CPC vs CPA article.');
 require('./build-ecpm-article.cjs');
+require('./improve-comparison-article.cjs');
 
 
