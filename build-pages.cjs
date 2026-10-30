@@ -32,7 +32,7 @@ for(const p of pages){
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.name)}"><meta name="twitter:description" content="${esc(p.description)}"><meta name="twitter:image" content="${base}/calculatethecpm%20thumbnail.webp">
 <script type="application/ld+json">${JSON.stringify(schema)}</script><script src="/script.js?v=3" defer></script>
 </head><body><a class="skip" href="#main">Skip to calculator</a>
-<header><div class="header-inner"><a class="brand" href="/"><span>CPM</span>CalculateTheCPM</a><nav aria-label="Advertising calculators">${pages.map(n=>`<a href="${n.file==='index.html'?'/':'/'+n.file}"${n.file===p.file?' aria-current="page"':''}>${esc(n.name.replace(' Calculator',''))}</a>`).join('')}</nav></div></header>
+<header><div class="header-inner"><a class="brand" href="/"><img class="brand-logo" src="/favicon.png" width="36" height="36" alt="">CalculateTheCPM</a><nav aria-label="Advertising calculators">${pages.map(n=>`<a href="${n.file==='index.html'?'/':'/'+n.file}"${n.file===p.file?' aria-current="page"':''}>${esc(n.name.replace(' Calculator',''))}</a>`).join('')}</nav></div></header>
 <main id="main"><section class="hero"><div class="eyebrow">Free advertising tools</div><h1>${esc(p.name)}</h1><p>${esc(p.description)}</p></section>
 <form id="calculator" class="calculator" data-metric="${p.type}" novalidate aria-label="${esc(p.name)}">
 <div class="controls"><label for="solve-for">Calculate<select id="solve-for">${fields.map(([id,label])=>`<option value="${id}"${id===target?' selected':''}>${esc(label)}</option>`).join('')}</select></label>
@@ -65,3 +65,4 @@ require('./build-support.cjs');
 require('./build-blog.cjs');
 require('./build-seo.cjs');
 require('./apply-design.cjs');
+
