@@ -18,4 +18,5 @@ fs.writeFileSync('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: https://calc
 console.log(`Aligned canonical, schema, social and internal URLs; generated ${urls.length} canonical sitemap entries.`);
 require('./apply-analytics.cjs');
 require('./optimize-home-metadata.cjs');
+require('./apply-breadcrumbs.cjs');
 
