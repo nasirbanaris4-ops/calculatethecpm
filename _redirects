@@ -1,2 +1,37 @@
+# Legacy policy addresses
 /privacy-policy.html /privacy 301
 /privacy-policy /privacy 301
+# Permanent canonical redirects for known HTML documents
+/about.html /about 301
+/about/ /about 301
+/blog.html /blog 301
+/blog/ /blog 301
+/contact.html /contact 301
+/contact/ /contact 301
+/cpc-calculator.html /cpc-calculator 301
+/cpc-calculator/ /cpc-calculator 301
+/cpm-to-cpc-calculator.html /cpm-to-cpc-calculator 301
+/cpm-to-cpc-calculator/ /cpm-to-cpc-calculator 301
+/cpm-vs-cpc-vs-cpa.html /cpm-vs-cpc-vs-cpa 301
+/cpm-vs-cpc-vs-cpa/ /cpm-vs-cpc-vs-cpa 301
+/cpm-vs-ecpm.html /cpm-vs-ecpm 301
+/cpm-vs-ecpm/ /cpm-vs-ecpm 301
+/ctr-calculator.html /ctr-calculator 301
+/ctr-calculator/ /ctr-calculator 301
+/ecpm-calculator.html /ecpm-calculator 301
+/ecpm-calculator/ /ecpm-calculator 301
+/facebook-ads-cpm-calculator.html /facebook-ads-cpm-calculator 301
+/facebook-ads-cpm-calculator/ /facebook-ads-cpm-calculator 301
+/google-ads-cpm-calculator.html /google-ads-cpm-calculator 301
+/google-ads-cpm-calculator/ /google-ads-cpm-calculator 301
+/index.html / 301
+/privacy.html /privacy 301
+/privacy/ /privacy 301
+/roas-calculator.html /roas-calculator 301
+/roas-calculator/ /roas-calculator 301
+/terms.html /terms 301
+/terms/ /terms 301
+/tiktok-cpm-calculator.html /tiktok-cpm-calculator 301
+/tiktok-cpm-calculator/ /tiktok-cpm-calculator 301
+/youtube-cpm-calculator.html /youtube-cpm-calculator 301
+/youtube-cpm-calculator/ /youtube-cpm-calculator 301

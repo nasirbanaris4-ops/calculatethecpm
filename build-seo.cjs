@@ -19,4 +19,5 @@ console.log(`Aligned canonical, schema, social and internal URLs; generated ${ur
 require('./apply-analytics.cjs');
 require('./optimize-home-metadata.cjs');
 require('./apply-breadcrumbs.cjs');
+require('./build-canonical-redirects.cjs');
 
