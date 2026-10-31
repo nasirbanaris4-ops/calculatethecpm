@@ -26,6 +26,29 @@
   const format = (value, field) => moneyFields.includes(field)
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: currency.value, minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value)
     : number(value) + (field === 'ctr' || (type === 'ctr' && field === 'rate') ? '%' : type === 'roas' && field === 'rate' ? 'x' : '');
+  // Track completed user calculations once inputs settle, never on each keystroke.
+  let completionTimer, lastTracked = '';
+  function scheduleCompletion() {
+    clearTimeout(completionTimer);
+    if (result.textContent === '—' || message.textContent) return;
+    const inputs = fields.filter(field => field !== mode.value).map(field => document.getElementById('input-' + field).value.trim());
+    if (inputs.some(value => value === '')) return;
+    const signature = JSON.stringify([type, mode.value, currency.value, ...inputs]);
+    if (signature === lastTracked) return;
+    completionTimer = setTimeout(() => {
+      // Do not send measurement events before consent or include numeric user inputs.
+      let accepted = false;
+      try { accepted = localStorage.getItem('cpm-analytics-consent-v1') === 'accepted'; } catch {}
+      if (!accepted || result.textContent === '—' || message.textContent) return;
+      lastTracked = signature;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_completed',
+        tool_name: type === 'conversion' ? 'cpm_to_cpc' : type,
+        calculation_mode: mode.value
+      });
+    }, 1200);
+  }
   function clear() {
     result.textContent = '—';
     breakdown.textContent = 'Enter the two known values to see the calculation.';
@@ -67,6 +90,7 @@
     breakdown.textContent = `${labels[target]} = ${formula} = ${format(value, fields[target])}`;
   }
   function switchMode() {
+    clearTimeout(completionTimer);
     tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.solve === mode.value)));
     fields.forEach(field => {
       const input = document.getElementById('input-' + field);
@@ -78,13 +102,15 @@
     calculate();
   }
   form.addEventListener('submit', event => { event.preventDefault(); calculate(true); });
-  form.addEventListener('input', event => { if (event.target !== mode && event.target !== currency) calculate(); });
+  form.addEventListener('input', event => { if (event.target !== mode && event.target !== currency) { calculate(); scheduleCompletion(); } });
   mode.addEventListener('change', switchMode);
   tabs.forEach(tab => tab.addEventListener('click', () => { mode.value = tab.dataset.solve; switchMode(); }));
   let currencyChosen = false;
   currency.addEventListener('change', () => { currencyChosen = true; });
-  currency.addEventListener('change', () => calculate());
+  currency.addEventListener('change', () => { clearTimeout(completionTimer); calculate(); });
   document.getElementById('reset-inputs').addEventListener('click', () => {
+    clearTimeout(completionTimer);
+    lastTracked = '';
     fields.forEach(field => { document.getElementById('input-' + field).value = ''; });
     clear();
     document.querySelector('.field:not([hidden]) input').focus();
