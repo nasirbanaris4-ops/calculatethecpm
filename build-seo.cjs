@@ -17,5 +17,5 @@ fs.writeFileSync('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset
 fs.writeFileSync('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: https://calculatethecpm.net/sitemap.xml\n');
 console.log(`Aligned canonical, schema, social and internal URLs; generated ${urls.length} canonical sitemap entries.`);
 require('./apply-analytics.cjs');
-
+require('./optimize-home-metadata.cjs');
 

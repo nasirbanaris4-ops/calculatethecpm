@@ -1,0 +1,5 @@
+const fs=require('node:fs');let h=fs.readFileSync('index.html','utf8');
+const title='CPM Calculator — Calculate the CPM, Cost &amp; Impressions';
+const description='Calculate the CPM, ad spend or impressions instantly with our free CPM calculator. Get live results, formulas and worked examples. No signup required.';
+h=h.replace(/<title>[\s\S]*?<\/title>/,`<title>${title}</title>`).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${description}">`).replace(/<meta property="og:title" content="[^"]*">/,`<meta property="og:title" content="${title}">`).replace(/<meta property="og:description" content="[^"]*">/,`<meta property="og:description" content="${description}">`);
+h=h.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,s)=>{const j=JSON.parse(s);for(const item of Array.isArray(j)?j:[j])if(item['@type']==='WebApplication')item.description=description;return '<script type="application/ld+json">'+JSON.stringify(j)+'</script>';});fs.writeFileSync('index.html',h);
