@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CPM Formula in Excel and Google Sheets (With Free Template) — CalculateTheCPM</title><meta name="description" content="Calculate CPM in Excel and Google Sheets with copyable formulas, a free template, zero-impression checks, and correct combined campaign totals."><link rel="canonical" href="https://calculatethecpm.net/cpm-formula-excel-google-sheets"><link rel="icon" type="image/png" sizes="96x96" href="/favicon.png"><link rel="stylesheet" href="/styles.css?v=7"><meta property="og:title" content="CPM Formula in Excel and Google Sheets (With Free Template)"><meta property="og:description" content="Calculate CPM in Excel and Google Sheets with copyable formulas, a free template, zero-impression checks, and correct combined campaign totals."><meta property="og:type" content="article"><meta property="og:url" content="https://calculatethecpm.net/cpm-formula-excel-google-sheets"><meta property="og:image" content="https://calculatethecpm.net/images/cpm-formula-excel-google-sheets-example.webp"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"CPM Formula in Excel and Google Sheets (With Free Template)","description":"Calculate CPM in Excel and Google Sheets with copyable formulas, a free template, zero-impression checks, and correct combined campaign totals.","url":"https://calculatethecpm.net/cpm-formula-excel-google-sheets","inLanguage":"en","datePublished":"2026-11-02","image":"https://calculatethecpm.net/images/cpm-formula-excel-google-sheets-example.webp","publisher":{"@type":"Organization","name":"CalculateTheCPM","url":"https://calculatethecpm.net/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the CPM formula in Excel?","acceptedAnswer":{"@type":"Answer","text":"Use =B2/C2*1000, where B2 is spend and C2 is impressions. The result is cost per 1,000 impressions. Cross-check with our CPM calculator."}},{"@type":"Question","name":"Is the CPM formula the same in Google Sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes. The basic formula is identical. Only the argument separator (comma or semicolon) in longer formulas may differ by locale."}},{"@type":"Question","name":"Should I average CPM values in a spreadsheet?","acceptedAnswer":{"@type":"Answer","text":"No. For combined CPM, divide total spend by total impressions and multiply by 1,000. A simple average is correct only when every row has the same impressions."}},{"@type":"Question","name":"Can I calculate eCPM with this sheet?","acceptedAnswer":{"@type":"Answer","text":"Yes, for publisher reports. Replace spend with ad revenue and label the result eCPM. Keep ad impressions as the denominator. Use our eCPM calculator for a quick check. Never mix revenue rows with advertiser-spend rows in one total."}}]}</script><script defer src="/analytics.js?v=1"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calculatethecpm.net/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://calculatethecpm.net/blog"},{"@type":"ListItem","position":3,"name":"CPM Formula in Excel and Google Sheets (With Free Template)","item":"https://calculatethecpm.net/cpm-formula-excel-google-sheets"}]}</script><link rel="stylesheet" href="/breadcrumbs.css?v=1"></head><body><a class="skip" href="#main">Skip to content</a><header><div class="header-inner"><a class="brand" href="/"><img class="brand-logo" src="/favicon.png" width="36" height="36" alt="">CalculateTheCPM.net</a><nav class="main-nav" aria-label="Main navigation"><a href="/#calculator">Calculators</a><a href="/blog">Blog</a><a href="/about">About Us</a><a href="/contact">Contact</a></nav></div><nav class="tool-nav" aria-label="Advertising calculators"><a href="/">CPM</a><a href="/youtube-cpm-calculator">YouTube CPM</a><a href="/tiktok-cpm-calculator">TikTok CPM</a><a href="/facebook-ads-cpm-calculator">Facebook Ads CPM</a><a href="/google-ads-cpm-calculator">Google Ads CPM</a><a href="/cpc-calculator">CPC</a><a href="/ctr-calculator">CTR</a><a href="/ecpm-calculator">eCPM</a><a href="/roas-calculator">ROAS</a><a href="/cpm-to-cpc-calculator">CPM to CPC</a></nav></header><main id="main"><nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog">Blog</a></li><li><span aria-current="page">CPM Formula in Excel and Google Sheets (With Free Template)</span></li></ol></nav><article class="support-content"><h1>CPM Formula in Excel and Google Sheets (With Free Template)</h1><p class="note">Published <time datetime="2026-11-02">November 2, 2026</time></p>
+<p><strong>Quick answer:</strong> To calculate CPM in Excel or Google Sheets, divide spend by impressions and multiply by 1,000. If spend is in B2 and impressions are in C2, enter <code>=B2/C2*1000</code>. Example: $600 spent on 120,000 impressions gives a CPM of $5.00.</p>
+<p>Need a one-off result? Use our <a href="https://calculatethecpm.net/">CPM calculator</a>. Need to compare several campaigns? Use a sheet.</p>
+<figure><img width="1200" height="311" loading="lazy" alt="Three advertising campaigns in a spreadsheet with total spend of $1,250, 270,000 impressions, and combined CPM of $4.63." src="/images/cpm-formula-excel-google-sheets-example.webp"  style="max-width:100%;height:auto" decoding="async"></figure>
+<p><a href="/downloads/cpm-formula-excel-google-sheets-template.csv" download="cpm-formula-excel-google-sheets-template.csv"><strong>Download the free CPM spreadsheet template (.csv)</strong></a><br>Opens in Excel, Google Sheets, and Numbers.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>CPM formula: <code>=B2/C2*1000</code> (spend ÷ impressions × 1,000).</li>
+<li>Combined CPM: add spend and impressions first, then calculate. Never average row CPMs.</li>
+<li>Zero impressions break the formula. Use the guarded version below.</li>
+<li>Do not mix currencies or reporting periods in one total.</li>
+</ul>
+<h2>Step 1: Set up your spreadsheet</h2>
+<p>Create four columns:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Header</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Campaign</td>
+<td>Campaign name</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Spend (USD)</td>
+<td>Cost as a number</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Impressions</td>
+<td>Whole number</td>
+</tr>
+<tr>
+<td>D</td>
+<td>CPM (USD)</td>
+<td>Formula</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use these hypothetical campaigns (USD, same reporting period):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Campaign</th>
+<th>Spend (USD)</th>
+<th>Impressions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Campaign A</td>
+<td>600</td>
+<td>120,000</td>
+</tr>
+<tr>
+<td>Campaign B</td>
+<td>400</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>Campaign C</td>
+<td>250</td>
+<td>100,000</td>
+</tr>
+</tbody>
+</table></div>
+<p>Impressions count ad displays. They do not count unique people, clicks, or page views.</p>
+<h2>Step 2: Enter the CPM formula</h2>
+<p>In D2, type:</p>
+<p class="formula">=B2/C2*1000</p>
+<p>Press Enter. The result is 5. Format it as currency to show $5.00.</p>
+<p>Copy D2 down to D3 and D4. Expected results:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Campaign</th>
+<th>CPM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Campaign A</td>
+<td>$5.00</td>
+</tr>
+<tr>
+<td>Campaign B</td>
+<td>$8.00</td>
+</tr>
+<tr>
+<td>Campaign C</td>
+<td>$2.50</td>
+</tr>
+</tbody>
+</table></div>
+<p>The same formula works in Excel and Google Sheets. Currency formatting changes how the number looks. It does not convert currency.</p>
+<h2>Step 3: Handle blank cells and zero impressions</h2>
+<p>CPM cannot be calculated when impressions are zero. Microsoft explains that <a href="https://support.microsoft.com/en-gb/excel/how-to-correct-a-div-0-error">dividing by zero or a blank cell causes a #DIV/0! error</a>.</p>
+<p>Use this guarded formula in D2:</p>
+<p class="formula">=IF(OR(B2=&quot;&quot;,C2=&quot;&quot;),&quot;&quot;,IF(OR(B2&lt;0,C2&lt;=0),&quot;Check inputs&quot;,B2/C2*1000))</p>
+<p>What it does:</p>
+<ul>
+<li>Leaves the cell blank if an input is missing.</li>
+<li>Shows "Check inputs" for negative spend or zero impressions.</li>
+<li>Calculates CPM in all other cases.</li>
+</ul>
+<p>Avoid <code>IFERROR(...,0)</code>. A CPM of zero looks like a real result. Google explains how <a href="https://support.google.com/docs/answer/3093364">the IF function works</a>.</p>
+<p>Tip: If your sheet uses semicolons, replace the commas between arguments with semicolons. Locale settings decide this.</p>
+<h2>Step 4: Calculate combined CPM correctly</h2>
+<p>Add a Totals row in row 5:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Cell</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B5</td>
+<td><code>=SUM(B2:B4)</code></td>
+</tr>
+<tr>
+<td>C5</td>
+<td><code>=SUM(C2:C4)</code></td>
+</tr>
+<tr>
+<td>D5</td>
+<td><code>=B5/C5*1000</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Total spend is $1,250. Total impressions are 270,000. Combined CPM is $1,250 ÷ 270,000 × 1,000 = <strong>$4.63</strong>.</p>
+<p><strong>Do not use <code>=AVERAGE(D2:D4)</code>.</strong> It returns about $5.17 because it treats every campaign equally, even though their impressions differ. Combined CPM gives every impression equal weight.</p>
+<h2>Step 5: Keep currencies and dates consistent</h2>
+<ul>
+<li>Do not add USD, GBP, and EUR into one total.</li>
+<li>Report each currency separately, or convert using a documented rate and date.</li>
+<li>Use the same date range for every row.</li>
+<li>Label whether CPM is media-only or includes fees.</li>
+<li>Do not add a campaign total and its ad-group rows together. That counts the same spend twice.</li>
+</ul>
+<h2>Step 6: Check your results before sharing</h2>
+<ol>
+<li>Verify one row by hand.</li>
+<li>Confirm copied formulas point to the right cells.</li>
+<li>Check that impressions are numbers, not text.</li>
+<li>Compare unusual results with the original platform export.</li>
+</ol>
+<p>CPM measures delivery cost, not results. Campaign C has the lowest CPM here, but that does not show which campaign produced the best leads or sales. See our <a href="https://calculatethecpm.net/cpm-vs-cpc-vs-cpa">CPM vs CPC vs CPA guide</a> for the difference.</p>
+<h2>Frequently asked questions</h2>
+<h3>1. What is the CPM formula in Excel?</h3>
+<p>Use <code>=B2/C2*1000</code>, where B2 is spend and C2 is impressions. The result is cost per 1,000 impressions. Cross-check with our <a href="https://calculatethecpm.net/">CPM calculator</a>.</p>
+<h3>2. Is the CPM formula the same in Google Sheets?</h3>
+<p>Yes. The basic formula is identical. Only the argument separator (comma or semicolon) in longer formulas may differ by locale.</p>
+<h3>3. Should I average CPM values in a spreadsheet?</h3>
+<p>No. For combined CPM, divide total spend by total impressions and multiply by 1,000. A simple average is correct only when every row has the same impressions.</p>
+<h3>4. Can I calculate eCPM with this sheet?</h3>
+<p>Yes, for publisher reports. Replace spend with ad revenue and label the result eCPM. Keep ad impressions as the denominator. Use our <a href="https://calculatethecpm.net/ecpm-calculator">eCPM calculator</a> for a quick check. Never mix revenue rows with advertiser-spend rows in one total.</p></article></main><footer><div class="footer-inner"><div><a class="brand" href="/"><img class="brand-logo" src="/favicon.png" width="36" height="36" alt="">CalculateTheCPM.net</a><p>Independent advertising calculators with clear formulas and practical explanations.</p></div><div><h2>Explore</h2><a href="/#calculator">Calculators</a><a href="/blog">Blog</a><a href="/about">About Us</a></div><div><h2>Help &amp; Legal</h2><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div><p class="copyright">© 2026 CalculateTheCPM. Independent tools; not affiliated with the advertising platforms mentioned.</p></div></footer></body></html>

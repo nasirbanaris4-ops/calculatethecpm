@@ -1,0 +1,5 @@
+Campaign,Spend (USD),Impressions,CPM (USD)
+Campaign A,600,120000,"=IF(OR(B2="""",C2=""""),"""",IF(OR(B2<0,C2<=0),""Check inputs"",B2/C2*1000))"
+Campaign B,400,50000,"=IF(OR(B3="""",C3=""""),"""",IF(OR(B3<0,C3<=0),""Check inputs"",B3/C3*1000))"
+Campaign C,250,100000,"=IF(OR(B4="""",C4=""""),"""",IF(OR(B4<0,C4<=0),""Check inputs"",B4/C4*1000))"
+Totals,=SUM(B2:B4),=SUM(C2:C4),"=IF(C5>0,B5/C5*1000,""Check inputs"")"
