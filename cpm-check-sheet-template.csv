@@ -1,4 +1,0 @@
-Campaign,Spend (USD),Impressions,Results,Target cost per result (USD),CPM (USD),Cost per result (USD),Within target?
-Campaign A,500,50000,20,30,"=IF(OR(B2="""",C2=""""),"""",IF(OR(B2<0,C2<=0),""Check inputs"",B2/C2*1000))","=IF(OR(B2="""",D2=""""),"""",IF(D2<=0,""No results"",B2/D2))","=IF(AND(ISNUMBER(G2),ISNUMBER(E2)),IF(G2<=E2,""Yes"",""No""),"""")"
-Campaign B,500,25000,25,30,"=IF(OR(B3="""",C3=""""),"""",IF(OR(B3<0,C3<=0),""Check inputs"",B3/C3*1000))","=IF(OR(B3="""",D3=""""),"""",IF(D3<=0,""No results"",B3/D3))","=IF(AND(ISNUMBER(G3),ISNUMBER(E3)),IF(G3<=E3,""Yes"",""No""),"""")"
-Campaign C,500,100000,8,30,"=IF(OR(B4="""",C4=""""),"""",IF(OR(B4<0,C4<=0),""Check inputs"",B4/C4*1000))","=IF(OR(B4="""",D4=""""),"""",IF(D4<=0,""No results"",B4/D4))","=IF(AND(ISNUMBER(G4),ISNUMBER(E4)),IF(G4<=E4,""Yes"",""No""),"""")"
