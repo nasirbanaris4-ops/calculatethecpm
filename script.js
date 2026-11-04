@@ -8,6 +8,7 @@
     cpm: { fields: ['spend', 'impressions', 'rate'], labels: ['Ad spend', 'Ad impressions', 'CPM'], factor: 1000 },
     ecpm: { fields: ['revenue', 'impressions', 'rate'], labels: ['Ad revenue', 'Ad impressions', 'eCPM'], factor: 1000 },
     cpc: { fields: ['spend', 'clicks', 'rate'], labels: ['Ad spend', 'Clicks', 'CPC'], factor: 1 },
+    cpv: { fields: ['spend', 'views', 'rate'], labels: ['Ad spend', 'Views', 'CPV'], factor: 1 },
     ctr: { fields: ['clicks', 'impressions', 'rate'], labels: ['Clicks', 'Ad impressions', 'CTR (%)'], factor: 100 },
     roas: { fields: ['revenue', 'spend', 'rate'], labels: ['Attributed revenue', 'Ad spend', 'ROAS (multiple)'], factor: 1 },
     conversion: { fields: ['cpc', 'ctr', 'cpm'], labels: ['CPC', 'CTR (%)', 'CPM'], factor: 10 }
@@ -17,14 +18,42 @@
   const { fields, labels, factor } = definition;
   const mode = document.getElementById('solve-for');
   const currency = document.getElementById('currency');
+  const currencyLabels = {
+    USD: 'United States · USD', GBP: 'United Kingdom · GBP', EUR: 'Europe (euro) · EUR', CAD: 'Canada · CAD', AUD: 'Australia · AUD',
+    NZD: 'New Zealand · NZD', INR: 'India · INR', PKR: 'Pakistan · PKR', DKK: 'Denmark · DKK', AED: 'United Arab Emirates · AED',
+    SAR: 'Saudi Arabia · SAR', JPY: 'Japan · JPY', CHF: 'Switzerland · CHF', SEK: 'Sweden · SEK', NOK: 'Norway · NOK',
+    PLN: 'Poland · PLN', CZK: 'Czech Republic · CZK', HUF: 'Hungary · HUF', RON: 'Romania · RON', SGD: 'Singapore · SGD',
+    HKD: 'Hong Kong · HKD', CNY: 'China · CNY', KRW: 'South Korea · KRW', TWD: 'Taiwan · TWD', THB: 'Thailand · THB',
+    MYR: 'Malaysia · MYR', IDR: 'Indonesia · IDR', PHP: 'Philippines · PHP', VND: 'Vietnam · VND', BDT: 'Bangladesh · BDT',
+    LKR: 'Sri Lanka · LKR', ZAR: 'South Africa · ZAR', NGN: 'Nigeria · NGN', KES: 'Kenya · KES', EGP: 'Egypt · EGP',
+    TRY: 'Turkey · TRY', ILS: 'Israel · ILS', QAR: 'Qatar · QAR', BRL: 'Brazil · BRL', MXN: 'Mexico · MXN',
+    NONE: 'Other · no currency symbol'
+  };
+  const popularCurrencies = ['USD', 'GBP', 'EUR', 'CAD', 'AUD', 'NZD', 'INR', 'PKR', 'DKK', 'AED', 'SAR', 'JPY'];
+  if (currency) {
+    const previous = currency.value;
+    const group = (label, codes) => {
+      const element = document.createElement('optgroup');
+      element.label = label;
+      codes.forEach(code => { const option = document.createElement('option'); option.value = code; option.textContent = currencyLabels[code]; element.appendChild(option); });
+      return element;
+    };
+    const others = Object.keys(currencyLabels).filter(code => code !== 'NONE' && !popularCurrencies.includes(code));
+    currency.textContent = '';
+    currency.append(group('Popular', popularCurrencies), group('More currencies', others), group('Other', ['NONE']));
+    currency.value = currencyLabels[previous] ? previous : 'USD';
+  }
   const tabs = [...document.querySelectorAll('[data-solve]')];
   const result = document.getElementById('output-value');
   const breakdown = document.getElementById('output-breakdown');
   const message = document.getElementById('input-error');
   const moneyFields = type === 'ctr' ? [] : type === 'conversion' ? ['cpc', 'cpm'] : type === 'roas' ? ['revenue', 'spend'] : [fields[0], 'rate'];
   const number = value => value.toLocaleString('en-US', { maximumFractionDigits: 4 });
+  const money = value => currency.value === 'NONE'
+    ? value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 })
+    : new Intl.NumberFormat('en-US', { style: 'currency', currency: currency.value, minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value);
   const format = (value, field) => moneyFields.includes(field)
-    ? new Intl.NumberFormat('en-US', { style: 'currency', currency: currency.value, minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value)
+    ? money(value)
     : number(value) + (field === 'ctr' || (type === 'ctr' && field === 'rate') ? '%' : type === 'roas' && field === 'rate' ? 'x' : '');
   // Track completed user calculations once inputs settle, never on each keystroke.
   let completionTimer, lastTracked = '';
@@ -124,7 +153,7 @@
       .then(text => {
         if (currencyChosen) return;
         const country = text.match(/^loc=([A-Z]{2})$/m)?.[1];
-        const map = {US:'USD',GB:'GBP',CA:'CAD',AU:'AUD',IN:'INR',PK:'PKR',AE:'AED',SA:'SAR',JP:'JPY'};
+        const map = {US:'USD',GB:'GBP',CA:'CAD',AU:'AUD',NZ:'NZD',IN:'INR',PK:'PKR',DK:'DKK',AE:'AED',SA:'SAR',JP:'JPY',CH:'CHF',SE:'SEK',NO:'NOK',PL:'PLN',CZ:'CZK',HU:'HUF',RO:'RON',SG:'SGD',HK:'HKD',CN:'CNY',KR:'KRW',TW:'TWD',TH:'THB',MY:'MYR',ID:'IDR',PH:'PHP',VN:'VND',BD:'BDT',LK:'LKR',ZA:'ZAR',NG:'NGN',KE:'KES',EG:'EGP',TR:'TRY',IL:'ILS',QA:'QAR',BR:'BRL',MX:'MXN'};
         const euro = ['AT','BE','HR','CY','EE','FI','FR','DE','GR','IE','IT','LV','LT','LU','MT','NL','PT','SK','SI','ES','BG'];
         currency.value = map[country] || (euro.includes(country) ? 'EUR' : 'USD');
         calculate();
