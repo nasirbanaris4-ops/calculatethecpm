@@ -1,0 +1,4 @@
+Buying tier,Spend (USD),Impressions,CPM (USD)
+Open exchange,750,50000,"=IF(OR(B2="""",C2=""""),"""",IF(OR(B2<0,C2<=0),""Check inputs"",B2/C2*1000))"
+Programmatic guaranteed,1050,42000,"=IF(OR(B3="""",C3=""""),"""",IF(OR(B3<0,C3<=0),""Check inputs"",B3/C3*1000))"
+Premium direct / live sports,2000,40000,"=IF(OR(B4="""",C4=""""),"""",IF(OR(B4<0,C4<=0),""Check inputs"",B4/C4*1000))"
