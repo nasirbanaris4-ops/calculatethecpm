@@ -1,0 +1,27 @@
+# CalculateTheCPM.net
+
+> Free online advertising calculators and guides for CPM, CPC, CTR, eCPM, ROAS, and CPV. All calculators run in the browser, support multiple currencies, and show the formula used for every result.
+
+## Calculators
+- [CPM Calculator](https://calculatethecpm.net/): find CPM, ad spend, or impressions.
+- [YouTube CPM Calculator](https://calculatethecpm.net/youtube-cpm-calculator)
+- [TikTok CPM Calculator](https://calculatethecpm.net/tiktok-cpm-calculator)
+- [Facebook & Instagram Ads CPM Calculator](https://calculatethecpm.net/facebook-ads-cpm-calculator)
+- [Google Ads CPM Calculator](https://calculatethecpm.net/google-ads-cpm-calculator)
+- [CPC Calculator](https://calculatethecpm.net/cpc-calculator)
+- [CTR Calculator](https://calculatethecpm.net/ctr-calculator)
+- [eCPM Calculator](https://calculatethecpm.net/ecpm-calculator)
+- [ROAS Calculator](https://calculatethecpm.net/roas-calculator)
+- [CPM to CPC Calculator](https://calculatethecpm.net/cpm-to-cpc-calculator)
+- [CPV Calculator](https://calculatethecpm.net/cpv-calculator)
+
+## Guides
+- [CPM vs CPC vs CPA](https://calculatethecpm.net/cpm-vs-cpc-vs-cpa)
+- [CPM vs eCPM](https://calculatethecpm.net/cpm-vs-ecpm)
+- [CPM Formula in Excel & Google Sheets](https://calculatethecpm.net/cpm-formula-excel-google-sheets)
+- [What Is a Good CPM?](https://calculatethecpm.net/what-is-a-good-cpm)
+- [Average CTV and OTT CPM](https://calculatethecpm.net/ctv-ott-cpm)
+
+## About
+- [About CalculateTheCPM](https://calculatethecpm.net/about)
+- [Contact](https://calculatethecpm.net/contact)
