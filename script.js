@@ -11,7 +11,8 @@
     cpv: { fields: ['spend', 'views', 'rate'], labels: ['Ad spend', 'Views', 'CPV'], factor: 1 },
     ctr: { fields: ['clicks', 'impressions', 'rate'], labels: ['Clicks', 'Ad impressions', 'CTR (%)'], factor: 100 },
     roas: { fields: ['revenue', 'spend', 'rate'], labels: ['Attributed revenue', 'Ad spend', 'ROAS (multiple)'], factor: 1 },
-    conversion: { fields: ['cpc', 'ctr', 'cpm'], labels: ['CPC', 'CTR (%)', 'CPM'], factor: 10 }
+    conversion: { fields: ['cpc', 'ctr', 'cpm'], labels: ['CPC', 'CTR (%)', 'CPM'], factor: 10 },
+    rf: { fields: ['impressions', 'reach', 'rate'], labels: ['Impressions', 'Reach', 'Average frequency'], factor: 1 }
   };
   const definition = definitions[type];
   if (!definition) return;
@@ -47,14 +48,14 @@
   const result = document.getElementById('output-value');
   const breakdown = document.getElementById('output-breakdown');
   const message = document.getElementById('input-error');
-  const moneyFields = type === 'ctr' ? [] : type === 'conversion' ? ['cpc', 'cpm'] : type === 'roas' ? ['revenue', 'spend'] : [fields[0], 'rate'];
+  const moneyFields = (type === 'ctr' || type === 'rf') ? [] : type === 'conversion' ? ['cpc', 'cpm'] : type === 'roas' ? ['revenue', 'spend'] : [fields[0], 'rate'];
   const number = value => value.toLocaleString('en-US', { maximumFractionDigits: 4 });
   const money = value => currency.value === 'NONE'
     ? value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 })
     : new Intl.NumberFormat('en-US', { style: 'currency', currency: currency.value, minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value);
   const format = (value, field) => moneyFields.includes(field)
     ? money(value)
-    : number(value) + (field === 'ctr' || (type === 'ctr' && field === 'rate') ? '%' : type === 'roas' && field === 'rate' ? 'x' : '');
+    : number(value) + (field === 'ctr' || (type === 'ctr' && field === 'rate') ? '%' : (type === 'roas' || type === 'rf') && field === 'rate' ? 'x' : '');
   // Track completed user calculations once inputs settle, never on each keystroke.
   let completionTimer, lastTracked = '';
   function scheduleCompletion() {
