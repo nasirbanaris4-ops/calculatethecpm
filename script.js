@@ -12,7 +12,8 @@
     ctr: { fields: ['clicks', 'impressions', 'rate'], labels: ['Clicks', 'Ad impressions', 'CTR (%)'], factor: 100 },
     roas: { fields: ['revenue', 'spend', 'rate'], labels: ['Attributed revenue', 'Ad spend', 'ROAS (multiple)'], factor: 1 },
     conversion: { fields: ['cpc', 'ctr', 'cpm'], labels: ['CPC', 'CTR (%)', 'CPM'], factor: 10 },
-    rf: { fields: ['impressions', 'reach', 'rate'], labels: ['Impressions', 'Reach', 'Average frequency'], factor: 1 }
+    rf: { fields: ['impressions', 'reach', 'rate'], labels: ['Impressions', 'Reach', 'Average frequency'], factor: 1 },
+    cpa: { fields: ['spend', 'acquisitions', 'rate'], labels: ['Ad spend', 'Acquisitions', 'CPA'], factor: 1 }
   };
   const definition = definitions[type];
   if (!definition) return;
