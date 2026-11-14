@@ -51,3 +51,11 @@
 
 /sitemap.html /sitemap 301
 /sitemap/ /sitemap 301
+
+# Recently added calculator pages
+/cpa-calculator.html /cpa-calculator 301
+/cpa-calculator/ /cpa-calculator 301
+/cpl-calculator.html /cpl-calculator 301
+/cpl-calculator/ /cpl-calculator 301
+/reach-frequency-calculator.html /reach-frequency-calculator 301
+/reach-frequency-calculator/ /reach-frequency-calculator 301
