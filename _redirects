@@ -1,6 +1,7 @@
 # Legacy policy addresses
 /privacy-policy.html /privacy 301
 /privacy-policy /privacy 301
+/privacy-policy/ /privacy 301
 # Permanent canonical redirects for known HTML documents
 /about.html /about 301
 /about/ /about 301
